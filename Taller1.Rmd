@@ -1,0 +1,151 @@
+---
+title: "Ecología"
+author: Cristian Ganan - Yonatan Moran - Federico Loiza
+date: ""
+output: 
+  html_document:
+    df_print: paged
+    code_folding: hide
+    theme: lumen
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+## índices de diversidad {.tabset .tabset-fade .tabset-pills}
+
+La diversidad es un termino complejo definir, por sus problemas semanticos, conceptuales y tecnicos a que esta sujeto (Hill, 1973; Ludwing y Reynolds, 1988). Segun PETT (1974), la diversidad, siempre ha sido definida por los índices utilizados para medirla y no ha adquirido la uniformidad requerida para el estableciemiento claro de idea e hipotesis, es decir, que los índices de diversidad son parecidos a los modelos estadisticos que modelan la realidad pero de alguna forma u otra son muy convenientes de acuerdo al invetigador pues son ajustados para dar *"lo que deberia dar"*; a pesar de todas la advertencias y custionamientos, los índices de diversidad sigen siendo muy populares entre los ecologos (Ludwing y Reynolds, 1988).
+
+A continuacion se presentan algunos índices de diversidad calculados, con el fin de analizar los resultados estudiando conceptos como **Riqueza, abundancia, Heterogeneidad, etc**:
+
+
+```{r, include= FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+### Datos 
+
+```{r}
+datos<- read_xlsx("Taller_indices.xlsx")
+
+datos<- datos %>% mutate(PARCELA=as.factor(PARCELA), 
+                         Individuo= as.numeric(ID_INDV_MU), 
+                         ESPECIE= as.factor(ESPECIE), N_Cientifico= as.factor(N_Cientifico)) %>% 
+  slice(1:199)
+datos
+```
+
+
+### índice Margalef
+
+El índice de margalef mide la diversidad especifica
+
+$$D= \ \frac{S-1}{\ln(N)}$$
+
+```{r}
+data<- datos %>% 
+  group_by(PARCELA) %>% 
+  summarise(Margalef= (length(unique(N_Cientifico))-1)/log(NROW(N_Cientifico)))
+data
+```
+
+La **diversidad específica** consta de dos partes: **Riqueza**[^1] y **Uniformidad**[^2](Odum 1985). Para el conjunto de parcelas que se tienen que la riqueza de especies es realtivamente alto, esto basandose en que los valores menores de 2 denotan una baja riqueza de especies (Mora-Donjuán et al, 2017). Se puede observar en la *Figura 1* que las parcela 7 y 8 tienen un valor mayor a 5 lo que sugiere un valor de riqueza alto, pero no se puede concluir del todo esto, pues hay que tener en cuenta que el área de la parcela influye sobre el resultado pues según Odum 1985 la diversidad específica tiene a aumentar con el tamaño del área, no se  tiene esta información, es decir, en terminos generales el bosque tiene un índice de **diverisidad específica** aceptable, pero a nivel de parcela es dificil concluir esto. 
+
+[^1]: Se basa en el numero total de especies totales
+[^2]: Se basa en la abundancia relativa de la especie.
+
+```{r, fig.cap= "*Figura 1* índice de Margalef", fig.height= 4, fig.align= "center", fig.width= 5}
+ggplot(data, mapping = aes(x= PARCELA, y= Margalef, fill= PARCELA)) +
+  geom_col()
+```
+
+
+### índice Shanon
+
+$$H'= -\sum \ P_i \ \ln(P_i)$$ $P_i= \frac{n_i}{N}$
+
+El índice de **Shanon** mide el contenido de información por individuo en muestras obtenidas al azar provenientes de una
+comunidad ‘extensa’ de la que se conoce el número total de especies (Mora-Donjuán et al, 2017), su valor normal esta entre 2 y 3. Para el conjunto de parcelas que se tienen se puede decir que, la uniformidad y riqueza del sitio son normales (**Tabla 1**), al obtener un valor promedio de parcelas de $2.3$  lo que sugire un relativo equilibrio, es decir, en muestreos aleatorios donde se saquen especies al azar se esperaría que estas sean diferentes al menos en un porcentaje alto.
+
+```{r}
+datos2<- datos %>% group_by(PARCELA) %>% 
+  mutate(shanon= NROW(N_Cientifico))
+
+datos2<- datos2 %>% group_by(N_Cientifico, PARCELA) %>% 
+  mutate(s= (NROW(N_Cientifico)/shanon)*log(NROW(N_Cientifico)/shanon))
+
+datos2<- datos2 %>% group_by(PARCELA, N_Cientifico) %>% 
+  summarise(sp= (unique(s)))
+
+datos2<- datos2 %>% group_by(PARCELA) %>% 
+  summarise(shanon= sum(-1*sp))
+
+datos2
+```
+**Tabla 1** *índice de Shanon*
+
+### índice de Pielou
+
+$$J'= \frac{H'}{H'_{max}}$$
+
+Según Moreno, C. E. (2001) este índice mide la proporción de la diversidad observada con relación a la máxima diversidad
+esperada, basandose en la formula es facil deducir que su valor maximo es $1$ lo cual quiere decir que entre mas el valor se acerque a $1$ habra mas diversidad en el sitio.
+
+Para las parcelas que se tienen es posible decir que son diversas (**Tabla 2**) pues los valores se acercan a uno; esto da información de la diversidad de todo el espacio estudiado en general sería diverso.
+
+```{r}
+datos %>% group_by(PARCELA) %>% 
+  summarise(S= length(unique(N_Cientifico))) %>% 
+  mutate(Pielou= datos2$shanon/log(S))
+```
+**Tabla 2** *índice de Pielou*
+
+### índice de Simpson
+
+$$\lambda= \ \sum\ P_i^2$$
+
+Según Moreno, C. E. (2001) índice de manifiesta la probabilidad de que dos individuos tomados al azar de una muestra sean
+de la misma especie, es decir, que si la probabilidad es alta el bosque sera menos diverso, lo que se puede intuir en una dominancia alta de una sola especie.
+
+Para los datos obtenidos de las parcelas (**Tabla 3**), las probabilidades son bajas la mas alta de estas no supera el $50\%$ y algunas del orden $>10\%$ lo que podría indicar que si bien el bosque no tiene un dominancia marcada de una especie si es posible encontrar grupos mas abundantes que otros.
+
+```{r}
+datos2<- datos %>% group_by(PARCELA) %>% 
+  mutate(shanon= NROW(N_Cientifico))
+
+datos2<- datos2 %>% group_by(N_Cientifico, PARCELA) %>% 
+  mutate(Pi= NROW(N_Cientifico)/shanon)
+
+datos2<- datos2 %>% group_by(PARCELA, N_Cientifico) %>% 
+  summarise(sp= (unique(Pi)))
+
+datos2 %>% group_by(PARCELA) %>% 
+  summarise(Simpson_Dom= sum(sp^2))
+```
+**Tabla 3** *índice de Simpson*
+
+## Conclusión
+
+En terminos generales el bosque tiene riqueza de especies acepatable[^3], las parcelas siguen un patron general $<5$ que es lo normal, sin embargo, las parcelas $7$ y $8$ presentan un valor
+$>5$ lo que se tomaría en un principio como mas ricas que las otras con esto se deduce que hay mas riqueza de unas especies que otras. Se puede reforzar la afirmación anterior acudiendo al índice de **Shanon**  y **Simpson** pues la probabilidad de sacar dos especies diferentes al azar de un muestreo es alta esto permite concluir que hay una diversidad alta en terminos de diferencia de especies (Homogeneidad) pero en terminos de **abundancia** esto cambia un poco pues según el índice de **Pielou** la dominacia de especies no es marcada pero la abundancia de estas si es evidente al encontrar valores con probabilidades $>10\%$ pero $<50\%$ lo que sugiriria que la abundancia entre las especies es distinta no en un porcentaje alto pero existente.
+
+
+[^3]: índice de Margalef
+
+## Bibliografía
+
+  - Moreno, C. E. (2001). Métodos para medir la biodiversidad. Programa Iberoamericano de Ciencia y Tecnología para el Desarrollo, CYTED. Retrieved from <http://search.ebscohost.com.ezproxy.unal.edu.co/login.aspx?direct=true&db=cat02704a&AN=unc.000254074&lang=es&site=eds-live>
+  
+  - Mora-Donjuán, C. A., Burbano-Vargas, O. N., Méndez-Osorio, C., & Castro-Rojas, D. F. (2017). Evaluación de la biodiversidad y caracterización estructural de un Bosque de Encino (Quercus L.) en la Sierra Madre del Sur, México. Retrieved from <http://search.ebscohost.com.ezproxy.unal.edu.co/login.aspx?direct=true&db=edsbas&AN=edsbas.2161E068&lang=es&site=eds-live>
+  
+  - ODUM, E. P. et al. Fundamentos de ecología. [s.l.] : Thomson Editores, S.A. de C.V., 2006. Disponível em: <http://search.ebscohost.com.ezproxy.unal.edu.co/login.aspx?direct=true&db=cat02704a&AN=unc.000762294&lang=es&site=eds-live>. Acesso em: 19 out. 2019.
+ 
+  - Alcolado, Pedro. (1998). Conceptos e índices relacionados con la diversidad. Avicennia. 7-21. 
+  
+  - LUDWIG, J.  A. Y REYNOLDS, J. F. 1988. Statistical Ecology: A primer on methods and computing. John Wiley & Sons, New York, 337 pp.
+  
+  - PEET, R. K. 1974. The measurement of species diversity. Ann. Rev. Ecol. Syst., 5: 285-307.
