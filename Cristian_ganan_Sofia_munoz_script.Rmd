@@ -35,6 +35,7 @@ data<- data %>% select(Parcela,
          Finca= ...4) %>% 
   mutate(Parcela = as.factor(Parcela),
          Finca= as.factor(Finca))
+
 ```
 
 
@@ -67,12 +68,12 @@ barplot(hist_f0$counts,las=2, xlab= "DAP (cm)", ylab="Numero de individuos",ylim
 ##Numero de clases con la ley de Sturges
 finca_0$abasal_cm2<-with(finca_0,(pi/4)*DAP_cm^2)
 n_clases<-round(1 + 3.322 * log10(length(finca_0$abasal_cm2)))
-abhist_f0<-hist(finca_0$abasal_cm2,breaks=seq(20,13000,1442),ylab="Numero de individuos",
+abhist_f0<-hist(finca_0$abasal_cm2,breaks=seq(200,13000,1422),ylab="Numero de individuos",
                 xlab="Area basal",
                 main="Distribuciones Area basal Finca 0")
-ampl.intervalo<- (13000 - 20)/ 9
-marca.clase <- seq(20+(1442/2),13000-(1442/2), 1442)
-lim.interv<-seq(20,13000,(13000-20)/9)
+ampl.intervalo<- (13000 - 200)/ 9
+marca.clase <- seq(20+(1422/2),13000-(1422/2), 1422)
+lim.interv<-seq(200,13000,(13000-200)/9)
 names(abhist_f0$counts) <- abhist_f0$mids
 barplot(abhist_f0$counts,las=2, xlab= "Area basal(cm2)", ylab="Numero de individuos",ylim=c(0,100),
         main="Distribuciones Area basal Finca 0")
@@ -254,9 +255,12 @@ barplot(abhist_f5$counts,las=2, xlab= "Area basal(cm2)", ylab="Numero de individ
 ```
 
 
-Se observa que hay dos fincas que presentan estructura unimodal (fincas 0 y 4), mientras que las distribuciones diamétricas para las demás fincas muestran estructura de J invertida. Si se interpreta el diámetro como estimador de la edad, entonces podría decirse que en las fincas 1 y 4, de acuerdo con la estructura unimodal, la cual indica disetaneidad, se encuentran ecosistemas donde los individuos tienen la misma edad, como por ejemplo una plantación. Se observa que las clases diamétricas medias tienen una mayor concentración, mientras que hay un menor número de individuos tanto en las clases menores como en las mayores, es decir, la mayoría de los árboles se encuentran concentrados alrededor de un tamaño promedio. Por otro lado, para las demás fincas se registran bosques disetáneos, es decir, se presenta una mayor concentración de individuos en las clases menores, lo que indica que a medida que aumentan los valores de diámetro, disminuye el número de individuos. Esta estructura es característica de bosques naturales e indica un proceso de regeneración activo. No obstante, realizar comparaciones entre estas fincas y sacar conclusiones no es lo adecuado, puesto que los muestreos no han sido completamente homogéneos y no se tiene información sobre el sitio en el que se encuentra cada una de ellas. Por otro lado, es importante decir que la distribución en clases diamétricas no indica siempre el comportamiento respecto a la edad, puesto que puede haber individuos que tengan muchos años, pero que correspondan a especies que no desarrollan tanto su crecimiento secundario. 
+Se observa que hay dos fincas que presentan estructura unimodal (fincas 0 y 4), mientras que las distribuciones diamétricas para las demás fincas muestran estructura de J invertida. Si se interpreta el diámetro como estimador de la edad, podría decirse que en las fincas 1 y 4, de acuerdo con la estructura unimodal, la cual indica coetaneidad, se encuentran ecosistemas donde los individuos tienen la misma edad, como por ejemplo una plantación. Para estas fincas, se observa que las clases diamétricas medias tienen una mayor concentración de individuos, mientras que hay un menor número de individuos tanto en las clases menores como en las mayores, es decir, la mayoría de los árboles se encuentran concentrados alrededor de un tamaño promedio. Por otro lado, para las demás fincas, se registran bosques disetáneos, es decir, se presenta una mayor concentración de individuos en las clases menores, lo que señala que a medida que aumentan los valores de diámetro, disminuye el número de individuos. Esta estructura es característica de bosques naturales e indica un proceso de regeneración activo. No obstante, hacer comparaciones entre estas fincas y realizar conclusiones no es lo adecuado, puesto que los muestreos no han sido completamente homogéneos, pues las fincas no tienen la misma extensión y no se tiene información sobre el sitio en el que se encuentra cada una de ellas. Por otro lado, es importante decir que la distribución en clases diamétricas no indica siempre el comportamiento respecto a la edad, puesto que puede haber individuos que tengan muchos años, pero que correspondan a especies que no desarrollan tanto su crecimiento secundario.
 
-Por otro lado, al observar las distribuciones para el área basal, se esperaría que se obtuvieran las mismas estructuras, puesto que los valores de área basal se han obtenido a partir de los de DAP. Las diferencias gráficas que se observan se deben principalmente al número de clases, por ejemplo, para la Finca 0, las distribuciones correspondientes al área basal muestran una estructura menos detallada que la estructura generada a partir de las distribuciones diamétricas, sin embargo, esto se debe a que, con la ley de Sturges, se definieron 9 clases para la primera, mientras que para las distribuciones diamétricas se generaron 26 clases. No obstante, el comportamiento para ambas variables es igual. Cabe señalar que la finca 4, a pesar de ser la finca más grande no es la finca para la que se registran mayores valores de área basal; sin embargo, sí se registra un mayor número de individuos por clase si se compara con las demás fincas. Esto indica que no necesariamente una finca que cuente con un gran número de individuos contará con una mayor suma de área basal, puesto que en ella pueden encontrarse muchos individuos de diámetros pequeños, mientras que en otras fincas pueden encontrarse pocos individuos con grandes valores de diámetro. Esto también es señal de que es importante conocer la naturaleza de los datos y su procedencia, puesto que factores que se relacionen directamente con el crecimiento de los individuos, como por ejemplo la especie o el área de estudio son relevantes para la realización de comparaciones. 
+
+Por otro lado, al observar las distribuciones para el área basal, se esperaría que se obtuvieran las mismas estructuras, puesto que los valores de área basal se han obtenido a partir de los de DAP, así, las diferencias gráficas que se observan se deben principalmente al número de clases. Por ejemplo, para la Finca 0, las distribuciones correspondientes al área basal muestran una estructura menos detallada que la estructura generada a partir de las distribuciones diamétricas; sin embargo, esto se debe a que, con la ley de Sturges, se definieron 9 clases para la primera, mientras que para las distribuciones diamétricas se generaron 26 clases. No obstante, el comportamiento para ambas variables es igual. 
+
+Cabe señalar que la finca 4, a pesar de ser la finca más grande (16 ha), no es la finca para la que se registran mayores valores de área basal; sin embargo, sí se registra un mayor número de individuos por clase si se compara con las demás. Por otro lado, la finca 0, la cual es la más pequeña (1 ha), es aquella para la que se registran los mayores valores de área basal. Esto indica que no necesariamente una finca que cuente con un gran número de individuos contará con una mayor suma de área basal, puesto que en ella pueden encontrarse muchos individuos de diámetros pequeños, mientras que en otras pueden encontrarse pocos individuos con grandes valores de diámetro. Así, es importante conocer la naturaleza de los datos y su procedencia, puesto que factores que se relacionen directamente con el crecimiento de los individuos, como por ejemplo la especie o el área de estudio son relevantes para la realización de comparaciones. Ejemplo de esto es que, si se comparan las 4 fincas que presentan estructura de J invertida, puede observarse que la finca 1 presenta valores de área basal más disímiles a los de las demás fincas, lo que podría explicarse si se cuenta con información como la ubicación, las especies registradas o el momento de establecimiento de las parcelas. 
 
 
 ### Punto 2
@@ -280,7 +284,7 @@ data1 <- data %>% group_by(Finca, Parcela) %>% summarise(area2= sum((pi/4)*(DAP_
 ```
 
 
-En la siguiente tabla se muestran los resultados del test de correlación entre las variables. Como se puede apreciar, según sus intervalos de confianza, no hay relación entre $Dcm/Nind$, puesto que el valor del coeficiente no es cercano a -1 o 1. Sin embargo, cabe aclarar que el coeficiente solo indica si hay o no una correlación lineal, lo que significa que las variables si pueden relacionarse. Luego, se observa que para las relaciones $area\ basal/N\ ind$ y $Dcm/area\ basal$, si se obtuvo un mayor grado de asociación, siendo la de mayor valor la relación $area\ basal/N\ ind$. 
+En la siguiente tabla se muestran los resultados del test de correlación entre las variables. Como se puede apreciar, según sus intervalos de confianza, no hay relación entre Dcm/Nind, puesto que el valor del coeficiente no es cercano a $-1$ o $1$ (Ver **Fig.3**). Sin embargo, cabe aclarar que el coeficiente solo indica si hay o no una correlación lineal, lo que significa que las variables si pueden estar relacionadas. Luego, se observa que para las relaciones $área basal/N ind$ y $Dcm/área basal$, se obtuvo un mayor grado de asociación, siendo $área basal/N ind$ aquella para la que se obtuvo el mayor valor.
 
 <!-- Con tidyverse --->
 
@@ -310,7 +314,7 @@ data1 %>% filter(Finca == "finca0" | Finca == "finca2" |
 ```
 
 
-En la **Fig.4** se tiene la relación $área \ basal/Nind$ en esta como en la anterior tabla se tiene una correlación positiva y significativa, lo que sugiere un comportamiento lineal positivo, sin embargo, en la **Fig.4** si bien se observa tal nexo hay una desviación al patrón general, es curioso ver como al principio de la gráfica hay un línea casi perfecta pero después los datos se vuelven diferentes, esto tal vez sea causa de algunos datos atípicos; dado que son bastantes podrìan estos reflejar un comportamiento especial en el terreno como por ejemplo parches en el bosque causando diferentes edades por ende muy diferentes áreas basales. También es importante señalar que esta tendencia ha de deberse a que se realizó una prueba de correlación para tres fincas, lo que puede implicar un sesgo debido a las diferencias estructurales de cada una de estas. Como se mencionó en el primer punto, se observa la correlación negativa para estas dos variables en la finca 4, sin embargo, es de esperarse que al agrupar la información de estas tres fincas la tendencia cambie al igual que el tipo de correlación. 
+En la **Fig.4** se observa la gráfica de correlación entre $área basal/Nind$, correlación positiva y significativa, lo que sugiere un comportamiento lineal positivo; sin embargo, al principio de la gráfica hay una tendencia lineal que cambia abruptamente, tal vez debido a algunos datos atípicos. Si se considera que hay varios outliers, podría decirse que estos reflejan un comportamiento especial en el terreno, debido a que se están evaluando dos fincas de estructura coetánea y una finca de estructura disetánea en conjunto, lo que resulta en el análisis de individuos de diferentes edades y por ende diferentes valores de área basal. 
 
 
 ```{r, fig.cap= "**Fig.4**  Relacion $area \ basal/N_ind$ ", fig.height= 3, fig.width= 5}
@@ -321,7 +325,7 @@ data1 %>% filter(Finca == "finca0" | Finca == "finca2" |
 ```
 
 
-En la **Fig.5** pasa algo parecido a lo anterior descrito, pero aquí, la relación en “trozos” es muy marcada sugiriendo un comportamiento lineal pero a pedazos donde la pendiente en un principio es alta ,es decir, la tasa de cambio entre $area \ basal$ y $Dcm$ es muy rápida llega un punto donde está pendiente baja considerablemente y dado la densidad de puntos allí encontrados sugiere que árboles con DAP altos son pocos pues su medida de ocupación es “pobre” en comparación con los de $DAP$ bajo.
+En la **Fig.5** sucede algo similar a lo descrito anteriormente, pero aquí, la relación en “trozos” es muy marcada sugiriendo un comportamiento lineal a tramos, donde la pendiente en un principio es alta ,es decir, la tasa de cambio entre $área basal$ y $Dcm$ es muy rápida, llega un punto donde esta pendiente baja considerablemente y dado la densidad de puntos allí encontrados sugiere que hay pocos individuos con altos valores de área basal, por lo que podría decirse que su medida de ocupación es “pobre” en comparación con los de menor área basal. 
 
 
 ```{r, fig.cap= "**Fig.5**  Relacion $Dcm/area \ basal$", fig.height= 3, fig.width= 5}
@@ -514,7 +518,7 @@ data1 %>% group_by(Finca) %>%
 ```
 
 
-En la anterior tabla se observa el promedio y la desviación estándar de tres variables $Dcm$,$Nind$ y $area \ basal$, se esperaría que para bosques coetáneos `finca0` y `finca4` tuvieran mayor grado de ocupaciòn con las menores variaciones en esto, sin embargo, sus desviaciones son elevadas más que la de los los comportamientos disetáneos, esto quizás se deba a que si bien ha habido un control para la `finca0` y `finca4`, la finca se divide en distintas plantaciones de diferentes edades, lo que causa una variación sustancial a las medidas de tendencia central como las analizadas, esta hipótesis se apoya en la cantidad de individuos por finca pues esa variación por lo menos para la `finca0` aumenta con este parámetro.
+En la anterior tabla se observa el promedio y la desviación estándar de tres variables $Dcm$, $Nind$ y $área basal$, se esperaría que para bosques coetáneos `finca0` y `finca4` tuvieran mayor grado de ocupación con las menores variaciones, sin embargo, sus desviaciones son elevadas más que la de aquellos de estructura disetánea, esto quizás se deba a que si bien ha habido un control para la `finca0` y `finca4`, estas se dividen en distintas plantaciones de diferentes edades, lo que causa una variación sustancial a las medidas de tendencia central como las analizadas, esta hipótesis se apoya en la cantidad de individuos por finca pues esa variación por lo menos para la finca0 aumenta con este parámetro.
 
 
   
@@ -585,8 +589,7 @@ ggplot(data1, mapping = aes(x= Finca , y= N_individuos, color= grupos)) +
   geom_boxplot()
 ```
 
-En la **Fig.6** se muestra las diferencias entre fincas para $Dcm$, las fincas $3, \ 5$ y $2$ no presentan diferencia significativa, sin embargo, las fincas 0, 4 y 1 son diferentes, esto indica que las fincas coetáneas son plantaciones de distintas edades que no comparten relación. Por otro lado, para las fincas disetaneas se podría afirmar que tres de ellas son relativamente nuevas (fincas 2, 3 y 5) en comparación con la finca 1, esta tendencia descrita anteriormente se sigue presentando en la **Fig.7** (diferencias entre fincas para área basal), donde, nuevamente se ve la marcada diferencia de la `finca0` con respecto al resto.  En general, se reafirma que las plantaciones son distintas en sus parámetros de ocupación.
-
+En la **Fig.6** se muestra las diferencias entre fincas para Dcm. Las fincas $3, 5$ y $2$ no presentan diferencia significativa, sin embargo, se presentan diferencias entre las fincas $0,1$ y $4$, esto podría indicar que las fincas coetáneas son plantaciones de distintas edades que no comparten relación. Por otro lado, para las fincas disetaneas se podría afirmar que tres de ellas son relativamente nuevas (fincas $2, 3$ y $5$) en comparación con la finca 1, esta tendencia descrita anteriormente se sigue presentando en la **Fig.7** (diferencias entre fincas para área basal), donde, nuevamente se ve la marcada diferencia de la finca0 con respecto al resto. La anterior hipótesis supone árboles iguales en todos los parámetros pues se está diciendo nueva o vieja en función de la ocupación en conjunto de los individuos, como se mencionaba en el punto uno, es posible que para algunas fincas haya menor número de individuos con altos valores de diámetro, mientras que en otras se encuentra una mayor concentración de individuos de diámetros bajos, que al sumarlos den un mismo valor de ocupación. Así, se estaría incurriendo en un error al decir si una finca tiene poblaciones más jóvenes o más viejas, sería acertado decir que hay fincas con la misma ocupación en área mas no se puede afirmar con certeza si sus edades  son iguales.
 
 En la **Fig.8** se puede observar las diferencias entre fincas para número de individuos, aquí, es evidente que hay más individuos en la `finca0`. También, es curioso notar que entre las fincas disetáneas, la `finca1` es la que presenta mayor $Dcm$ y $área basal$; sin embargo, es la que menor número de individuos tiene pudiéndose concluir que en esta hay pocos individuos que tienen valores de diámetro altos. 
 
@@ -858,7 +861,7 @@ summary(aov_abasal_finca)
 
 TukeyHSD(aov_abasal_finca)
 plot(TukeyHSD(aov_abasal_finca))
-windows()
+
 
 ##ANOVA Diametro cuadratico
 aov_dq_finca<-aov(Dq_cm~Finca,datos2)
@@ -877,7 +880,7 @@ TukeyHSD(aov_nind_finca)
 plot(TukeyHSD(aov_nind_finca))
 
 
-windows()
+
 par(mfrow=c(3,1))
 with(datos2,plot(Finca,A_basal_m2_ha, xlab="Finca", ylab="Area basal(m2/ha)",
                  las=1))

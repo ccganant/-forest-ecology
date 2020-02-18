@@ -1,0 +1,109 @@
+---
+title: "Medidas dasométricas"
+author: "Cristian Gañan"
+date: ""
+output: 
+  pdf_document:
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r}
+data<- read.csv2("Salida1.csv")
+
+data<- data %>% mutate(Parcela = as.factor(Parcela),
+                       Subparcela = as.factor(Subparcela)) %>% select(-c(X.))
+
+
+data<- data %>% group_by(Parcela) %>% mutate(`Area ind(m)`= (pi/4)*(DAP_cm/100)^2, 
+                                             Dap_f_cm = (d1+d2)/2, 
+                                             `Area copa(m)` = (pi/4)*(D_copa)^2) %>% 
+  mutate(`Error DAP`= ((abs(Dap_f_cm - DAP_cm))/ DAP_cm)*100, 
+         `Error alt` = ((abs(Alt_med - Alt_cal))/ Alt_cal)*100)
+
+```
+
+
+
+```{r}
+data %>% group_by(Parcela, Subparcela) %>% 
+  summarise(a= sum(`Area ind(m)`), 
+            Dcm= sqrt(mean(DAP_cm^2)),
+            n= length(Parcela), 
+            Area_p= sum(`Area copa(m)`)/length(Subparcela), 
+            Altura_p= sum(Alt_cal)/length(Subparcela)) %>% 
+  mutate(`Area basal`= a*10000/250, 
+         N_ind= n*10000/250) %>% 
+  select(c(Parcela, Subparcela, Dcm, `Area basal`,N_ind, Area_p, 
+           Altura_p))
+```
+
+## Distribuciónes DAP
+
+```{r}
+
+data1<- data %>% filter(Parcela == "1")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 4, binwidth = 5.125)
+
+
+data1<- data %>% filter(Parcela == "2")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 7.18)
+
+
+data1<- data %>% filter(Parcela == "3")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 5.12)
+
+data1<- data %>% filter(Parcela == "4")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 4)
+```
+
+
+```{r}
+  
+data1<- data %>% filter(Parcela == "1")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 4, binwidth = 5.125)
+
+
+data1<- data %>% filter(Parcela == "2")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 7.18)
+
+
+data1<- data %>% filter(Parcela == "3")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 5.12)
+
+data1<- data %>% filter(Parcela == "4")
+
+ggplot(data = data1, mapping = aes(DAP_cm)) +
+  geom_histogram(bins = 5, binwidth = 4)
+
+```
+
+
+
+
+
+
+
