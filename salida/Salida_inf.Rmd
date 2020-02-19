@@ -28,50 +28,45 @@ data<- data %>% group_by(Parcela) %>% mutate(`Area ind(m)`= (pi/4)*(DAP_cm/100)^
                                              Dap_f_cm = (d1+d2)/2, 
                                              `Area copa(m)` = (pi/4)*(D_copa)^2) %>% 
   mutate(`Error DAP`= ((abs(Dap_f_cm - DAP_cm))/ DAP_cm)*100, 
-         `Error alt` = ((abs(Alt_med - Alt_cal))/ Alt_cal)*100)
+         `Error alt` = ((abs(Alt_med - Alt_cal))/ Alt_cal)*100) 
+
+data1<- data %>% rename(DAP_obs= DAP_cm, DAP_est= Dap_f_cm, 
+                Alt_obs= Alt_cal, Alt_est= Alt_med) %>% select(DAP_obs, DAP_est, Alt_obs, Alt_est,
+                                                                       `Error DAP`, `Error alt`) %>% 
+  filter(DAP_est != "NA")
+data1
+
+data1 %>% group_by(Parcela)%>% summarise(DAP_obs= mean(DAP_obs), DAP_est= mean(DAP_obs), Alt_obs= mean(Alt_obs), Alt_est= mean(Alt_est), `Error DAP`= mean(`Error DAP`), `Error alt`= mean(`Error alt`))
 
 ```
 
 
 
 ```{r}
-data %>% group_by(Parcela, Subparcela) %>% 
+data %>% group_by(Subparcela) %>% 
   summarise(a= sum(`Area ind(m)`), 
             Dcm= sqrt(mean(DAP_cm^2)),
-            n= length(Parcela), 
-            Area_p= sum(`Area copa(m)`)/length(Subparcela), 
+            Area_copa_p= sum(`Area copa(m)`)/length(Subparcela), 
             Altura_p= sum(Alt_cal)/length(Subparcela)) %>% 
-  mutate(`Area basal`= a*10000/250, 
-         N_ind= n*10000/250) %>% 
-  select(c(Parcela, Subparcela, Dcm, `Area basal`,N_ind, Area_p, 
-           Altura_p))
+  mutate(`Area basal`= a*10000/100) %>% 
+  select(c(Subparcela, Dcm, `Area basal`, Area_copa_p, 
+           Altura_p)) %>% slice(-c(1))
+
+data %>% group_by(Parcela) %>% 
+  summarise(a= sum(`Area ind(m)`), N_ind= length(Parcela),
+            Dcm= sqrt(mean(DAP_cm^2))) %>% 
+  mutate(`Area basal`= a*10000/250) %>% 
+  select(c(Parcela, Dcm, `Area basal`))
+
+
 ```
 
 ## Distribuciónes DAP
 
 ```{r}
 
-data1<- data %>% filter(Parcela == "1")
+ 
 
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 4, binwidth = 5.125)
-
-
-data1<- data %>% filter(Parcela == "2")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 7.18)
-
-
-data1<- data %>% filter(Parcela == "3")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 5.12)
-
-data1<- data %>% filter(Parcela == "4")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 4)
 ```
 
 
