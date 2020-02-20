@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 library(tidyverse)
 library(ggplot2)
+library(readxl)
 ```
 
 
@@ -65,40 +66,47 @@ data %>% group_by(Parcela) %>%
 
 ```{r}
 
- 
+ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
+  geom_histogram(binwidth = 5, bins = 7) + labs(y= "Individuos")
 
 ```
 
+
+## distribuciónes alt
 
 ```{r}
-  
-data1<- data %>% filter(Parcela == "1")
+data1<- data %>% filter(Alt_cal != "NA")
 
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 4, binwidth = 5.125)
-
-
-data1<- data %>% filter(Parcela == "2")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 7.18)
-
-
-data1<- data %>% filter(Parcela == "3")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 5.12)
-
-data1<- data %>% filter(Parcela == "4")
-
-ggplot(data = data1, mapping = aes(DAP_cm)) +
-  geom_histogram(bins = 5, binwidth = 4)
+ggplot(data, mapping = aes(x= Alt_cal, col= "pink")) +
+  geom_histogram(binwidth = 3, bins = 5) + labs(y= "Individuos")
 
 ```
 
 
+## distribuciones copa
+
+```{r}
+ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
+  geom_histogram(binwidth = 10, bins = 7) + labs(y= "Individuos")
+```
+
+#Modelos
+
+```{r}
+
+data1<- read_xlsx("datoscampo.xlsx")
+data1<- data1 %>% mutate(Parcela= as.factor(Parcela), 
+                         Subparcela= as.factor(Subparcela))
+
+data2<- read.csv("SantaElena1.csv")
+
+data2<- data2 %>% mutate(Parcela= as.factor(Parcela)) %>% mutate(Altura=                                                                  dist_h_m*(tan(V_mas*pi/180)-tan(V_menos*pi/180)), 
+                                                                 `Area copa(m)` = (pi/4)*(dcopa)^2)
 
 
+  
+
+```
 
 
 
