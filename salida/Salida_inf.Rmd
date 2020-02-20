@@ -93,20 +93,153 @@ ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
 #Modelos
 
 ```{r}
-
 data1<- read_xlsx("datoscampo.xlsx")
-data1<- data1 %>% mutate(Parcela= as.factor(Parcela), 
-                         Subparcela= as.factor(Subparcela))
+data2<- read_xlsx("Libro1_datos_daso_g3.xlsx")
+data3<- read_xlsx("SantaElena.xlsx")
 
-data2<- read.csv("SantaElena1.csv")
+data1<- data1 %>% mutate(`Area copa(m)`= (pi/4)*((D1_DC_m+D2_DC_m)/2)^2) %>% 
+  rename(Altura= Altura_Laser, DAP_cm= DAP_cm_D) %>% select(Parcela, DAP_cm, Altura, 
+                                                            `Area copa(m)`) %>% 
+  filter(Altura != "NA")
 
-data2<- data2 %>% mutate(Parcela= as.factor(Parcela)) %>% mutate(Altura=                                                                  dist_h_m*(tan(V_mas*pi/180)-tan(V_menos*pi/180)), 
-                                                                 `Area copa(m)` = (pi/4)*(dcopa)^2)
+data2<- data2 %>% mutate(Parcela= as.factor(Parcela), Subparcela= as.factor(Subparcela)) %>%  
+  mutate(DAP_cm= (F1+F2)/2, `Area copa(m)`= (pi/4)*((D1+D2)/2)^2) %>% 
+  rename(Altura= Hipsometro) %>% 
+  group_by(Subparcela) %>% mutate(Parcela= if_else(Parcela == "1", "7", "8")) %>% 
+  select(Parcela, DAP_cm, Altura, `Area copa(m)`) %>% filter(Altura != "NA")
+
+data2<- data2[,-1]
+
+data3<- data3 %>% mutate(Parcela= as.factor(Parcela), dc_1_m= as.numeric(dc_1_m), 
+                         dc_2_m= as.numeric(dc_2_m)) %>%
+  mutate(`Area copa(m)`= (pi/4)*((dc_1_m+dc_2_m)/2)^2) %>% 
+  rename(Altura= H_total, parcela= Parcela) %>% group_by(parcela) %>% 
+  mutate(Parcela= if_else(parcela == "P1", "9", if_else(parcela == "P2", "10", "11"))) %>% 
+  filter(Altura != "NA") %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`)
+
+data3<- data3[,-1]
+
+data<- data %>% rename(Altura= Alt_cal) %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`) %>% 
+  filter(Altura != "NA")
+
+data1<- as.tibble(data1)
+data2<- as.tibble(data2)
+data3<- as.tibble(data3)
+data<- as.tibble(data)
+
+data1$Parcela<- as.factor(data1$Parcela)
+
+datos<- rbind(data, data1, data2, data3)
+
+datos<- datos %>% mutate(DAP_cm= as.numeric(DAP_cm), 
+                         Altura= as.numeric(Altura))
+```
 
 
-  
+## Modelo lineal (altura dap)
+
+```{r}
+linear<- lm(Altura ~ DAP_cm, data= datos)
+broom::tidy(linear)
+broom::glance(linear)
+
+shapiro.test(resid(linear))
+plot(rstandard(linear))
+abline(0,0, col= "red")
+
+library(lmtest)
+bptest(linear)
+
+
+ggplot(datos , mapping = aes(x= DAP_cm, y= Altura)) +
+  geom_point() +
+  geom_smooth(broom::augment(linear), mapping = aes(x= DAP_cm, y= .fitted))
+```
+
+## Modelo exponencial (altura dap)
+
+```{r}
+nlinear<- lm(log(Altura) ~ log(DAP_cm), data= datos)
+broom::tidy(nlinear)
+
+ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
+  geom_point() + 
+  geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.DAP_cm.), 
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.)))
+
+prueba<- broom::augment(nlinear)
+
+prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.))%>% 
+  mutate(resid= exp(log.DAP_cm.)-fitted)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
+RSE
+
+summary(linear)$"sigma"
+
+#n<- nls(Altura ~ a*DAP_cm^b, start = list(a= 2.3479291, b= 0.1552072), data = datos)
+
+#broom::glance(n)
+
+#ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
+  #geom_point() +
+  #geom_smooth(broom::augment(n), mapping = aes(x= DAP_cm, 
+                                               #y= .fitted))
+```
+
+## Modelo lineal (acopa dap) 
+
+```{r}
+linear<- lm(`Area copa(m)` ~ DAP_cm , data= datos)
+broom::tidy(linear)
+broom::glance(linear)
+
+shapiro.test(resid(linear))
+plot(rstandard(linear))
+abline(0,0, col= "red")
+
+
+
+ggplot(datos , mapping = aes(x= DAP_cm, y= `Area copa(m)`)) +
+  geom_point() +
+  geom_smooth(broom::augment(linear), mapping = aes(x= DAP_cm, y= .fitted))
+
 
 ```
+
+
+## Modelo Exp(acopa dap)
+
+```{r, eval= FALSE}
+nlinear<- lm(log() ~ log(DAP_cm), data= datos)
+broom::tidy(nlinear)
+
+ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
+  geom_point() + 
+  geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.DAP_cm.), 
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.)))
+
+prueba<- broom::augment(nlinear)
+
+prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.))%>% 
+  mutate(resid= exp(log.DAP_cm.)-fitted)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
+RSE
+
+summary(linear)$"sigma"
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 
