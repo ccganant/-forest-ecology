@@ -37,7 +37,7 @@ data1<- data %>% rename(DAP_obs= DAP_cm, DAP_est= Dap_f_cm,
   filter(DAP_est != "NA")
 data1
 
-data1 %>% group_by(Parcela)%>% summarise(DAP_obs= mean(DAP_obs), DAP_est= mean(DAP_obs), Alt_obs= mean(Alt_obs), Alt_est= mean(Alt_est), `Error DAP`= mean(`Error DAP`), `Error alt`= mean(`Error alt`))
+data1 %>% group_by(Parcela)%>% summarise(DAP_obs= mean(DAP_obs), DAP_est= mean(DAP_est), Alt_obs= mean(Alt_obs), Alt_est= mean(Alt_est), `Error DAP`= mean(`Error DAP`), `Error alt`= mean(`Error alt`))
 
 ```
 
@@ -67,8 +67,9 @@ data %>% group_by(Parcela) %>%
 ```{r}
 
 ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
-  geom_histogram(binwidth = 5, bins = 7) + labs(y= "Individuos")
-
+  geom_histogram(bins = 7, origin= 15) + labs(y= "Individuos", title = "Distribuciónes diamétricas DAP") +
+  scale_x_continuous(breaks = seq(12, 50, 6)) + theme(legend.position = "none")
+  
 ```
 
 
@@ -77,8 +78,9 @@ ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
 ```{r}
 data1<- data %>% filter(Alt_cal != "NA")
 
-ggplot(data, mapping = aes(x= Alt_cal, col= "pink")) +
-  geom_histogram(binwidth = 3, bins = 5) + labs(y= "Individuos")
+ggplot(data1, mapping = aes(x= Alt_cal, col= "pink")) +
+  geom_histogram(binwidth = 4) + labs(y= "Individuos", title = "Distribuciónes diamétricas Altura") +
+  scale_x_continuous(breaks = seq(4, 25, 4)) +theme(legend.position = "none") 
 
 ```
 
@@ -87,7 +89,8 @@ ggplot(data, mapping = aes(x= Alt_cal, col= "pink")) +
 
 ```{r}
 ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
-  geom_histogram(binwidth = 10, bins = 7) + labs(y= "Individuos")
+  geom_histogram(binwidth = 10) + labs(y= "Individuos", title = "Distribuciónes diamétricas Area de copa") +
+  theme(legend.position = "none") + scale_x_continuous(breaks = seq(0, 65, 10)) 
 ```
 
 #Modelos
