@@ -143,15 +143,10 @@ datos<- datos %>% mutate(DAP_cm= as.numeric(DAP_cm),
 
 ```{r}
 linear<- lm(Altura ~ DAP_cm, data= datos)
-broom::tidy(linear)
-broom::glance(linear)
 
-shapiro.test(resid(linear))
 plot(rstandard(linear))
 abline(0,0, col= "red")
 
-library(lmtest)
-bptest(linear)
 
 
 ggplot(datos , mapping = aes(x= DAP_cm, y= Altura)) +
@@ -163,7 +158,6 @@ ggplot(datos , mapping = aes(x= DAP_cm, y= Altura)) +
 
 ```{r}
 nlinear<- lm(log(Altura) ~ log(DAP_cm), data= datos)
-broom::tidy(nlinear)
 
 ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
   geom_point() + 
@@ -176,9 +170,7 @@ prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479
   mutate(resid= exp(log.DAP_cm.)-fitted)
 
 RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
-RSE
 
-summary(linear)$"sigma"
 
 #n<- nls(Altura ~ a*DAP_cm^b, start = list(a= 2.3479291, b= 0.1552072), data = datos)
 
@@ -190,9 +182,27 @@ summary(linear)$"sigma"
                                                #y= .fitted))
 ```
 
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l||l|l|l|}
+\hline
+Modelo & ValorP & RSE & Shapiro test & AIC\\
+\hline \hline 
+$H= 13.92+0.14*DAP$ & $0.0035402$ & $4.21$ & $0.389$ & $421.0029$ \\ 
+$H= exp(2.38 + 0.155*log(DAP))$ & $0.0095268$ & $9.73$ & &  \\ 
+\hline
+\end{tabular}
+\caption{Modelos altura}
+\end{center}
+\end{table}
+
+
 ## Modelo lineal (acopa dap) 
 
 ```{r}
+datos<- datos %>% filter(`Area copa(m)` != 0)
+
 linear<- lm(`Area copa(m)` ~ DAP_cm , data= datos)
 broom::tidy(linear)
 broom::glance(linear)
@@ -213,25 +223,39 @@ ggplot(datos , mapping = aes(x= DAP_cm, y= `Area copa(m)`)) +
 
 ## Modelo Exp(acopa dap)
 
-```{r, eval= FALSE}
-nlinear<- lm(log() ~ log(DAP_cm), data= datos)
+```{r}
+nlinear<- lm(log(`Area copa(m)`) ~ log(DAP_cm), data= datos)
 broom::tidy(nlinear)
 
-ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
+ggplot(datos, mapping = aes(x= DAP_cm, y= `Area copa(m)`)) +
   geom_point() + 
   geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.DAP_cm.), 
-                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.)))
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+0.1885491+0.8910002*log.DAP_cm.)))
 
 prueba<- broom::augment(nlinear)
 
-prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.))%>% 
+prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+0.1885491+0.8910002*log.DAP_cm.))%>% 
   mutate(resid= exp(log.DAP_cm.)-fitted)
 
 RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
 RSE
 
 summary(linear)$"sigma"
+
+
+n<- nls(`Area copa(m)` ~ a*DAP_cm^b, start = list(a= 0.1885491, b= 0.8910002), data = datos)
+
+broom::glance(n)
+
+ggplot(datos, mapping = aes(x= DAP_cm, y= `Area copa(m)`)) +
+  geom_point() +
+  geom_smooth(broom::augment(n), mapping = aes(x= DAP_cm, 
+                                               y= .fitted))
 ```
+
+
+
+
 
 
 
