@@ -1,6 +1,6 @@
 ---
 title: "USO DE EQUIPOS Y TOMA DE INFORMACIÓN RELACIONADA CON LA ESTRUCTURA DEL BOSQUE"
-author: "Cristian Camilo Gañan Tapasco -Duván Arley Marín Gil - Yonatan Macovi Moran Ruano - Elkin Danilo Vanegas Vargas - Natalia Velásquez Marín - Juan Alvaro Vidal Arango"
+author: "Cristian Camilo Gañan Tapasco - Yonatan Macovi Moran Ruano - Elkin Danilo Vanegas Vargas - Natalia Velásquez Marín - Juan Alvaro Vidal Arango"
 date: ""
 output: 
   pdf_document:
@@ -137,7 +137,7 @@ knitr::include_graphics("diametro de copa.png")
 
 ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
   geom_histogram(bins = 7, origin= 15) + labs(y= "Individuos", title = "Distribuciónes diamétricas DAP") +
-  scale_x_continuous(breaks = seq(12, 50, 6)) + theme(legend.position = "none")
+  scale_x_continuous(breaks = seq(12, 50, 6)) + theme(legend.position = "none") 
   
 ```
 
@@ -236,9 +236,9 @@ nlinear<- lm(log(Altura) ~ log(DAP_cm), data= datos)
 ggplot(datos, mapping = aes(x= DAP_cm, y= Altura)) +
   geom_point() + 
   geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.DAP_cm.), 
-                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.)))
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.))) + geom_smooth(se= FALSE, method = "lm", col= "red")
 
-prueba<- broom::augment(nlinear)
+prueba<- broom::augment(nlinear) 
 
 prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.3479291+0.1552072*log.DAP_cm.))%>% 
   mutate(resid= exp(log.DAP_cm.)-fitted)
@@ -270,6 +270,8 @@ $H= exp(2.38 + 0.155*log(DAP))$ & $7.101$ & $0.0095268$ & $9.73$ & &$0.09093$ & 
 \caption{Modelos altura DAP}
 \end{center}
 \end{table}
+
+
 
 Respecto a la selección del mejor modelo, se selecciona el modelo lineal, pues su error estándar de residuales (RSE) es menor, por lo tanto la diferencia entre los valores  observados y los estimados serán menores. Adicional a esto, se observa  que cumple el supuesto de normalidad pues el valor p de la prueba de shapiro wilk me indica que no rechazó la hipótesis nula.
 
@@ -392,6 +394,7 @@ $Dcm= exp(3.855 + (-0.3735)*log(N_{ind}))$ & $2.306$ & $0.163$ & $21.97$ & $0.00
 \caption{Modelos Dc Nind}
 \end{center}
 \end{table}
+
 
 
 ```{r, fig.cap= " Modelo lineal Diámetro cuadrático promedio vs Altura promedio por parcelas", fig.height= 4, fig.width= 4, fig.align= "center", results='asis'}
