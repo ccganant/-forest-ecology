@@ -1,6 +1,6 @@
 ---
-title: "Medidas dasométricas"
-author: "Cristian Gañan"
+title: "USO DE EQUIPOS Y TOMA DE INFORMACIÓN RELACIONADA CON LA ESTRUCTURA DEL BOSQUE"
+author: "Cristian Camilo Gañan Tapasco -Duván Arley Marín Gil - Yonatan Macovi Moran Ruano - Elkin Danilo Vanegas Vargas - Natalia Velásquez Marín - Juan Alvaro Vidal Arango"
 date: ""
 output: 
   pdf_document:
@@ -17,6 +17,41 @@ library(ggplot2)
 library(readxl)
 ```
 
+
+# INTRODUCCIÓN 
+
+Se realiza una visita a la estación forestal piedras blancas con el objetivo de aplicar los conocimientos adquiridos teóricamente en lo relacionado a uso de equipos y toma de información relacionada con la estructura del bosque. La información recolectada en las parcelas relacionada con el DAP, altura de los árboles y diámetro de copa (DC);  se usa para realizar comparaciones entre parcelas y además comparar los métodos de medición implementados en la práctica. 
+
+# MATERIALES Y EQUIPOS
+
++ Forcípula:  Regla graduada que permite medir el diámetro de los de una superficie circular como el caso de los árboles.
++ Cinta diamétrica: Cinta graduada en pulgadas o centímetros que se usa para medir el diámetro de los árboles
++ Clinómetro:  Medición de la altura de un árbol mediante la medición del ángulo y la respectiva distancia desde donde se toma el ángulo con respecto al fuste del árbol.
++ Hipsómetro:  Instrumento de medición empleado en el cálculo de las alturas de los árboles.
+
+
+# PROCEDIMIENTO 
+
+En la realización de la práctica se procedió de la siguiente manera: 
+
+Para el levantamiento de las parcelas en campo se seleccionaron al azar 4 parcelas circulares en una plantación de pino Pátula en la reserva forestal de piedras blancas. 
+
+En las parcelas circulares con un área de de 250 m2, se procedió a medir el DAP a los individuos que tenían un DAP >= 10  con cinta diamétrica.
+Seguidamente dentro de la parcela de 250 m2 se procedió a establecer una subparcela de 100 m2 en la cual se tomaron las siguientes mediciones: 
+
+Altura total con clinómetro e hipsómetro de los individuos
+Diámetro de copa 
+DAP con forcípula 
+Para obtener el diámetro de copa medio se midió la proyección en dos direcciones, con cinta métrica, el diámetro normal se midió con forcípula en forma cruzada, utilizando el promedio entre las dos mediciones realizadas a cada árbol.  
+Posterior a la recolección de información se procedió a realizar los correspondientes cálculos que se pueden apreciar en el script de R studio presentado; los resultados de dichos cálculos se relacionan a continuación. 
+
+
+# RESULTADOS 
+
+
+## Error en las mediciones
+
+Con la fórmula $(E\% = 100 * \frac{Estimado-Observado}{Observado})$ en valor absoluto, calculamos el porcentaje de error de DAP y altura, tomando los datos del estimado para DAP como el DAP con forcípula, y e observado el DAP tomado con cinta diamétrica; para altura estimada se tomó la lectura del hipsómetro y para observada, la que se calculó con el clinómetro.
 
 ```{r}
 data<- read.csv2("Salida1.csv")
@@ -35,32 +70,45 @@ data1<- data %>% rename(DAP_obs= DAP_cm, DAP_est= Dap_f_cm,
                 Alt_obs= Alt_cal, Alt_est= Alt_med) %>% select(DAP_obs, DAP_est, Alt_obs, Alt_est,
                                                                        `Error DAP`, `Error alt`) %>% 
   filter(DAP_est != "NA")
-data1
-
-data1 %>% group_by(Parcela)%>% summarise(DAP_obs= mean(DAP_obs), DAP_est= mean(DAP_est), Alt_obs= mean(Alt_obs), Alt_est= mean(Alt_est), `Error DAP`= mean(`Error DAP`), `Error alt`= mean(`Error alt`))
 
 ```
 
 
+```{r results = 'asis'}
+knitr::kable(data1, caption = "Error de DAP y altura, DAP_obs= DAP tomado con cinta diamétrica, DAP_est= DAP tomado con forcípula, Alt_obs= Altura calculada (con clinómetro) con ángulos y distancia, Alt_est= Altura tomada con hipsómetro.")
+```
 
-```{r}
-data %>% group_by(Subparcela) %>% 
+
+```{r results='asis'}
+knitr::kable(data1 %>% group_by(Parcela)%>% summarise(DAP_obs= mean(DAP_obs), DAP_est= mean(DAP_est), Alt_obs= mean(Alt_obs), Alt_est= mean(Alt_est), `Error DAP`= mean(`Error DAP`), `Error alt`= mean(`Error alt`)), 
+             caption = "Error promedio de DAP y altura por Parcela.")
+```
+
+
+```{r results='asis'}
+knitr::kable(data %>% group_by(Parcela) %>% 
+  summarise(a= sum(`Area ind(m)`), N_ind= length(Parcela),
+            Dcm= sqrt(mean(DAP_cm^2))) %>% 
+  mutate(`Area basal`= a*10000/250) %>% 
+  select(c(Parcela, Dcm, `Area basal`)), 
+  caption = "Diámetro cuadrático promedio y área basal por parcela.")
+
+
+```
+
+```{r results='asis'}
+knitr::kable(data %>% group_by(Subparcela) %>% 
   summarise(a= sum(`Area ind(m)`), 
             Dcm= sqrt(mean(DAP_cm^2)),
             Area_copa_p= sum(`Area copa(m)`)/length(Subparcela), 
             Altura_p= sum(Alt_cal)/length(Subparcela)) %>% 
   mutate(`Area basal`= a*10000/100) %>% 
   select(c(Subparcela, Dcm, `Area basal`, Area_copa_p, 
-           Altura_p)) %>% slice(-c(1))
-
-data %>% group_by(Parcela) %>% 
-  summarise(a= sum(`Area ind(m)`), N_ind= length(Parcela),
-            Dcm= sqrt(mean(DAP_cm^2))) %>% 
-  mutate(`Area basal`= a*10000/250) %>% 
-  select(c(Parcela, Dcm, `Area basal`))
-
-
+           Altura_p)) %>% slice(-c(1)), 
+  caption = "Diámetro cuadrático promedio, área basal,  área de copa promedio y altura promedio por subparcela.")
 ```
+
+
 
 ## Distribuciónes DAP
 
@@ -79,7 +127,7 @@ ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
 data1<- data %>% filter(Alt_cal != "NA")
 
 ggplot(data1, mapping = aes(x= Alt_cal, col= "pink")) +
-  geom_histogram(binwidth = 4) + labs(y= "Individuos", title = "Distribuciónes diamétricas Altura") +
+  geom_histogram(binwidth = 4) + labs(y= "Individuos", title = "Distribuciónes de Altura") +
   scale_x_continuous(breaks = seq(4, 25, 4)) +theme(legend.position = "none") 
 
 ```
@@ -89,7 +137,7 @@ ggplot(data1, mapping = aes(x= Alt_cal, col= "pink")) +
 
 ```{r}
 ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
-  geom_histogram(binwidth = 10) + labs(y= "Individuos", title = "Distribuciónes diamétricas Area de copa") +
+  geom_histogram(binwidth = 10) + labs(y= "Individuos", title = "Distribuciónes de área de copa") +
   theme(legend.position = "none") + scale_x_continuous(breaks = seq(0, 65, 10)) 
 ```
 
@@ -100,29 +148,32 @@ data1<- read_xlsx("datoscampo.xlsx")
 data2<- read_xlsx("Libro1_datos_daso_g3.xlsx")
 data3<- read_xlsx("SantaElena.xlsx")
 
-data1<- data1 %>% mutate(`Area copa(m)`= (pi/4)*((D1_DC_m+D2_DC_m)/2)^2) %>% 
+data1<- data1 %>% mutate(`Area copa(m)`= (pi/4)*((D1_DC_m+D2_DC_m)/2)^2, 
+                         Dc= (D1_DC_m+D2_DC_m)/2) %>% 
   rename(Altura= Altura_Laser, DAP_cm= DAP_cm_D) %>% select(Parcela, DAP_cm, Altura, 
-                                                            `Area copa(m)`) %>% 
+                                                            `Area copa(m)`, Dc) %>% 
   filter(Altura != "NA")
 
 data2<- data2 %>% mutate(Parcela= as.factor(Parcela), Subparcela= as.factor(Subparcela)) %>%  
-  mutate(DAP_cm= (F1+F2)/2, `Area copa(m)`= (pi/4)*((D1+D2)/2)^2) %>% 
+  mutate(DAP_cm= (F1+F2)/2, `Area copa(m)`= (pi/4)*((D1+D2)/2)^2, 
+         Dc= (D1+D2)/2) %>% 
   rename(Altura= Hipsometro) %>% 
   group_by(Subparcela) %>% mutate(Parcela= if_else(Parcela == "1", "7", "8")) %>% 
-  select(Parcela, DAP_cm, Altura, `Area copa(m)`) %>% filter(Altura != "NA")
+  select(Parcela, DAP_cm, Altura, `Area copa(m)`, Dc) %>% filter(Altura != "NA")
 
 data2<- data2[,-1]
 
 data3<- data3 %>% mutate(Parcela= as.factor(Parcela), dc_1_m= as.numeric(dc_1_m), 
                          dc_2_m= as.numeric(dc_2_m)) %>%
-  mutate(`Area copa(m)`= (pi/4)*((dc_1_m+dc_2_m)/2)^2) %>% 
+  mutate(`Area copa(m)`= (pi/4)*((dc_1_m+dc_2_m)/2)^2, 
+         Dc= (dc_1_m+dc_2_m)/2) %>% 
   rename(Altura= H_total, parcela= Parcela) %>% group_by(parcela) %>% 
   mutate(Parcela= if_else(parcela == "P1", "9", if_else(parcela == "P2", "10", "11"))) %>% 
-  filter(Altura != "NA") %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`)
+  filter(Altura != "NA") %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`, Dc)
 
 data3<- data3[,-1]
 
-data<- data %>% rename(Altura= Alt_cal) %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`) %>% 
+data<- data %>% rename(Altura= Alt_cal, Dc= D_copa) %>% select(Parcela, DAP_cm, Altura, `Area copa(m)`, Dc) %>% 
   filter(Altura != "NA")
 
 data1<- as.tibble(data1)
@@ -261,12 +312,115 @@ $Acopa= exp(0.661+0.891*log(DAP))$ & $0.0000831$ & $8.435$ & &  \\
 \end{table}
 
 
+## Modelo lineal (DC ind)
+
+```{r}
+
+datos<- datos %>% filter(`Area copa(m)` != 0)
+
+datos1<- datos %>% group_by(Parcela) %>% summarise(Dcp= sum(Dc)/length(Parcela), N_ind= length(Parcela))
+
+linear<- lm(Dcp ~ N_ind , data= datos1)
+
+plot(rstandard(linear))
+abline(0,0, col= "red")
+
+
+ggplot(datos1 , mapping = aes(x= N_ind, y= Dcp)) +
+  geom_point() +
+  geom_smooth(broom::augment(linear), mapping = aes(x= N_ind, y= .fitted))
+
+```
+
+## Modelo Exp (Dc ind)
+
+```{r}
+nlinear<- lm(log(Dcp) ~ log(N_ind), data= datos1)
+
+ggplot(datos1, mapping = aes(x= N_ind, y= Dcp)) +
+  geom_point() + 
+  geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.N_ind.), 
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+1.9427317+(-0.1616441)*log.N_ind.)))
+
+prueba<- broom::augment(nlinear)
+
+prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+1.9427317+(-0.1616441)*log.N_ind.))%>% 
+  mutate(resid= exp(log.N_ind.)-fitted)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
+
+
+```
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l||l|l|l|}
+\hline
+Modelo & ValorP & RSE & Shapiro test & AIC\\
+\hline \hline 
+$Dc= 6.647+(-0.191)*N_{ind}$ & $0.2012157$ & $1.32$ & $0.587$ & $41.159$ \\ 
+$Dc= exp(1.974 + (-0.161)*log(N_{ind}))$ & $0.3158088$ & $3.78$ & &  \\ 
+\hline
+\end{tabular}
+\caption{Modelos Dc Nind}
+\end{center}
+\end{table}
+
+
+## Modelo lineal (hprom dc)
+
+```{r}
+datos1<- datos %>% group_by(Parcela) %>% 
+  summarise(Dcp= sum(Dc)/length(Parcela), 
+            Hprom= sum(Altura)/length(Parcela))
+
+linear<- lm(Hprom ~ Dcp , data= datos1)
+
+plot(rstandard(linear))
+abline(0,0, col= "red")
+
+
+ggplot(datos1 , mapping = aes(x= Dcp, y= Hprom)) +
+  geom_point() +
+  geom_smooth(broom::augment(linear), mapping = aes(x= Dcp, y= .fitted))
+
+```
 
 
 
+## Modelo exp (Hrpm dc)
 
+```{r}
+nlinear<- lm(log(Hprom) ~ log(Dcp), data= datos1)
 
+ggplot(datos1, mapping = aes(x= Dcp, y= Hprom)) +
+  geom_point() + 
+  geom_smooth(broom::augment(nlinear), mapping = aes(x= exp(log.Dcp.), 
+                                                     y= exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.5059254+(0.1929978)*log.Dcp.)))
 
+prueba<- broom::augment(nlinear)
+
+prueba<- prueba %>% mutate(fitted=  exp(((anova(nlinear)$"Mean Sq"[2])/2)+2.5059254+(0.1929978)*log.Dcp.))%>% 
+  mutate(resid= exp(log.Dcp.)-fitted)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(nlinear)$df[2])
+
+```
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|l|l||l|l|l|}
+\hline
+Modelo & ValorP & RSE & Shapiro test & AIC\\
+\hline \hline 
+$H_{prom}= 12.8299+0.7993*Dcp$ & $0.2951164$ & $3.139$ & $0.148$ & $60.181$ \\ 
+$H_{prom}= exp(2.525 + 0.193*log(Dcp))$ & $0.4478473$ & $13.068$ & &  \\ 
+\hline
+\end{tabular}
+\caption{Modelos Hprom Dcp}
+\end{center}
+\end{table}
 
 
 

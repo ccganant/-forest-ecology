@@ -1,0 +1,349 @@
+\documentclass[letterpaper,9pt,twocolumn,twoside,]{pinp}
+
+%% Some pieces required from the pandoc template
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Use the lineno option to display guide line numbers if required.
+% Note that the use of elements such as single-column equations
+% may affect the guide line number alignment.
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{longtable}
+
+% pinp change: the geometry package layout settings need to be set here, not in pinp.cls
+\geometry{layoutsize={0.95588\paperwidth,0.98864\paperheight},%
+  layouthoffset=0.02206\paperwidth, layoutvoffset=0.00568\paperheight}
+
+\definecolor{pinpblue}{HTML}{185FAF}  % imagecolorpicker on blue for new R logo
+\definecolor{pnasbluetext}{RGB}{101,0,0} %
+
+
+
+\title{USO DE EQUIPOS Y TOMA DE INFORMACIÓN RELACIONADA CON LA ESTRUCTURA DEL
+BOSQUE}
+
+\author[a]{Cristian Camilo Gañan Tapasco}
+\author[a]{Duván Arley Marín Gil}
+
+  \affil[a]{Departamento de ciencias forestales, Universidad Nacional de Colombia,
+Medellín}
+
+\setcounter{secnumdepth}{0}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Medición Forestal}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+ 
+
+\begin{abstract}
+
+\end{abstract}
+
+\dates{This version was compiled on \today} 
+
+% initially we use doi so keep for backwards compatibility
+% new name is doi_footer
+\doifooter{\url{https://cran.r-project.org/package=YourPackage}}
+
+\pinpfootercontents{YourPackage Vignette}
+
+\begin{document}
+
+% Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
+% You should only change this length when you've finalised the article contents.
+\verticaladjustment{-2pt}
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+
+
+\hypertarget{introducciuxf3n}{%
+\section{INTRODUCCIÓN}\label{introducciuxf3n}}
+
+Se realiza una visita a la estación forestal piedras blancas con el
+objetivo de aplicar los conocimientos adquiridos teóricamente en lo
+relacionado a uso de equipos y toma de información relacionada con la
+estructura del bosque. La información recolectada en las parcelas
+relacionada con el DAP, altura de los árboles y diámetro de copa (DC);
+se usa para realizar comparaciones entre parcelas y además comparar los
+métodos de medición implementados en la práctica.
+
+\hypertarget{materiales-y-equipos}{%
+\section{MATERIALES Y EQUIPOS}\label{materiales-y-equipos}}
+
+\begin{itemize}
+\tightlist
+\item
+  Forcípula: Regla graduada que permite medir el diámetro de los de una
+  superficie circular como el caso de los árboles.
+\item
+  Cinta diamétrica: Cinta graduada en pulgadas o centímetros que se usa
+  para medir el diámetro de los árboles
+\item
+  Clinómetro: Medición de la altura de un árbol mediante la medición del
+  ángulo y la respectiva distancia desde donde se toma el ángulo con
+  respecto al fuste del árbol.
+\item
+  Hipsómetro: Instrumento de medición empleado en el cálculo de las
+  alturas de los árboles.
+\end{itemize}
+
+\hypertarget{procedimiento}{%
+\section{PROCEDIMIENTO}\label{procedimiento}}
+
+En la realización de la práctica se procedió de la siguiente manera:
+
+Para el levantamiento de las parcelas en campo se seleccionaron al azar
+4 parcelas circulares en una plantación de pino Pátula en la reserva
+forestal de piedras blancas.
+
+En las parcelas circulares con un área de de 250 m2, se procedió a medir
+el DAP a los individuos que tenían un DAP \textgreater{}= 10 con cinta
+diamétrica. Seguidamente dentro de la parcela de 250 m2 se procedió a
+establecer una subparcela de 100 m2 en la cual se tomaron las siguientes
+mediciones:
+
+Altura total con clinómetro e hipsómetro de los individuos Diámetro de
+copa DAP con forcípula Para obtener el diámetro de copa medio se midió
+la proyección en dos direcciones, con cinta métrica, el diámetro normal
+se midió con forcípula en forma cruzada, utilizando el promedio entre
+las dos mediciones realizadas a cada árbol.\\
+Posterior a la recolección de información se procedió a realizar los
+correspondientes cálculos que se pueden apreciar en el script de R
+studio presentado; los resultados de dichos cálculos se relacionan a
+continuación.
+
+\hypertarget{resultados}{%
+\section{RESULTADOS}\label{resultados}}
+
+\hypertarget{error-en-las-mediciones}{%
+\subsection{Error en las mediciones}\label{error-en-las-mediciones}}
+
+Con la fórmula \((E\% = 100 * \frac{Estimado-Observado}{Observado})\) en
+valor absoluto, calculamos el porcentaje de error de DAP y altura,
+tomando los datos del estimado para DAP como el DAP con forcípula, y e
+observado el DAP tomado con cinta diamétrica; para altura estimada se
+tomó la lectura del hipsómetro y para observada, la que se calculó con
+el clinómetro.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{ShadedResult}
+\begin{verbatim}
+#  -- Attaching packages -------------------------------------------------------------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+\end{ShadedResult}
+\begin{ShadedResult}
+\begin{verbatim}
+#  v ggplot2 3.2.1     v purrr   0.3.3
+#  v tibble  2.1.3     v dplyr   0.8.3
+#  v tidyr   1.0.0     v stringr 1.4.0
+#  v readr   1.3.1     v forcats 0.4.0
+\end{verbatim}
+\end{ShadedResult}
+\begin{ShadedResult}
+\begin{verbatim}
+#  -- Conflicts ----------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+#  x dplyr::filter() masks stats::filter()
+#  x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+\end{ShadedResult}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(readxl)}
+
+\NormalTok{data<-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"Salida1.csv"}\NormalTok{)}
+
+\NormalTok{data<-}\StringTok{ }\NormalTok{data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Parcela =} \KeywordTok{as.factor}\NormalTok{(Parcela),}
+                       \DataTypeTok{Subparcela =} \KeywordTok{as.factor}\NormalTok{(Subparcela)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\KeywordTok{c}\NormalTok{(X.))}
+
+
+\NormalTok{data<-}\StringTok{ }\NormalTok{data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Parcela) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\StringTok{`}\DataTypeTok{Area ind(m)}\StringTok{`}\NormalTok{=}\StringTok{ }\NormalTok{(pi}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\NormalTok{(DAP_cm}\OperatorTok{/}\DecValTok{100}\NormalTok{)}\OperatorTok{^}\DecValTok{2}\NormalTok{, }
+                                             \DataTypeTok{Dap_f_cm =}\NormalTok{ (d1}\OperatorTok{+}\NormalTok{d2)}\OperatorTok{/}\DecValTok{2}\NormalTok{, }
+                                             \StringTok{`}\DataTypeTok{Area copa(m)}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{(pi}\OperatorTok{/}\DecValTok{4}\NormalTok{)}\OperatorTok{*}\NormalTok{(D_copa)}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\StringTok{`}\DataTypeTok{Error DAP}\StringTok{`}\NormalTok{=}\StringTok{ }\NormalTok{((}\KeywordTok{abs}\NormalTok{(Dap_f_cm }\OperatorTok{-}\StringTok{ }\NormalTok{DAP_cm))}\OperatorTok{/}\StringTok{ }\NormalTok{DAP_cm)}\OperatorTok{*}\DecValTok{100}\NormalTok{, }
+         \StringTok{`}\DataTypeTok{Error alt}\StringTok{`}\NormalTok{ =}\StringTok{ }\NormalTok{((}\KeywordTok{abs}\NormalTok{(Alt_med }\OperatorTok{-}\StringTok{ }\NormalTok{Alt_cal))}\OperatorTok{/}\StringTok{ }\NormalTok{Alt_cal)}\OperatorTok{*}\DecValTok{100}\NormalTok{) }
+
+\NormalTok{data1<-}\StringTok{ }\NormalTok{data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{DAP_obs=}\NormalTok{ DAP_cm, }\DataTypeTok{DAP_est=}\NormalTok{ Dap_f_cm, }
+                \DataTypeTok{Alt_obs=}\NormalTok{ Alt_cal, }\DataTypeTok{Alt_est=}\NormalTok{ Alt_med) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(DAP_obs, DAP_est, Alt_obs, Alt_est,}
+                                                                       \StringTok{`}\DataTypeTok{Error DAP}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{Error alt}\StringTok{`}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(DAP_est }\OperatorTok{!=}\StringTok{ "NA"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{ShadedResult}
+\begin{verbatim}
+#  Adding missing grouping variables: `Parcela`
+\end{verbatim}
+\end{ShadedResult}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(data, }\DataTypeTok{caption =} \StringTok{"Error de DAP y altura, DAP_obs= DAP tomado con cinta diamétrica, DAP_est= DAP tomado con forcípula, Alt_obs= Altura calculada (con clinómetro) con ángulos y distancia, Alt_est= Altura tomada con hipsómetro."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llrrrrrrrrrrrrrrrr@{}}
+\caption{Error de DAP y altura, DAP\_obs= DAP tomado con cinta
+diamétrica, DAP\_est= DAP tomado con forcípula, Alt\_obs= Altura
+calculada (con clinómetro) con ángulos y distancia, Alt\_est= Altura
+tomada con hipsómetro.}\tabularnewline
+\toprule
+Parcela & Subparcela & DAP\_cm & Dist\_m & V\_menos & V\_mas & Alt\_med
+& Alt\_cal & Copa1 & Copa2 & D\_copa & d1 & d2 & Area ind(m) &
+Dap\_f\_cm & Area copa(m) & Error DAP & Error alt\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Parcela & Subparcela & DAP\_cm & Dist\_m & V\_menos & V\_mas & Alt\_med
+& Alt\_cal & Copa1 & Copa2 & D\_copa & d1 & d2 & Area ind(m) &
+Dap\_f\_cm & Area copa(m) & Error DAP & Error alt\tabularnewline
+\midrule
+\endhead
+1 & 1a & 25.6 & 12.0 & 8 & 49 & 14.8 & 15.49 & 4.9 & 4.9 & 4.90 & 25.8 &
+26.0 & 0.0514719 & 25.90 & 18.857410 & 1.1718750 &
+4.4544868\tabularnewline
+1 & & 31.0 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0754768
+& NA & NA & NA & NA\tabularnewline
+1 & & 28.2 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0624580
+& NA & NA & NA & NA\tabularnewline
+1 & 1a & 34.2 & 13.8 & 9 & 45 & 15.6 & 15.99 & 6.0 & 6.2 & 6.10 & 33.6 &
+33.4 & 0.0918633 & 33.50 & 29.224666 & 2.0467836 &
+2.4390244\tabularnewline
+1 & & 24.2 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0459961
+& NA & NA & NA & NA\tabularnewline
+1 & & 35.1 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0967618
+& NA & NA & NA & NA\tabularnewline
+1 & & 28.6 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0642424
+& NA & NA & NA & NA\tabularnewline
+1 & & 31.5 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0779311
+& NA & NA & NA & NA\tabularnewline
+2 & & 22.5 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0397608
+& NA & NA & NA & NA\tabularnewline
+2 & 2a & 20.4 & 17.2 & 12 & 45 & 19.8 & 20.86 & 1.9 & 2.1 & 2.00 & 20.2
+& 19.4 & 0.0326851 & 19.80 & 3.141593 & 2.9411765 &
+5.0814957\tabularnewline
+2 & & 50.6 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.2010902
+& NA & NA & NA & NA\tabularnewline
+2 & 2a & 14.9 & 12.0 & 8 & 44 & 12.2 & 13.27 & 1.8 & 1.9 & 1.85 & 14.2 &
+14.9 & 0.0174366 & 14.55 & 2.688025 & 2.3489933 &
+8.0633007\tabularnewline
+2 & & 30.4 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0725834
+& NA & NA & NA & NA\tabularnewline
+2 & & 19.8 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0307907
+& NA & NA & NA & NA\tabularnewline
+2 & & 14.7 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0169717
+& NA & NA & NA & NA\tabularnewline
+2 & 2a & 20.8 & 13.8 & 14 & 46 & 17.0 & 17.73 & 4.1 & 5.5 & 4.80 & 19.2
+& 20.5 & 0.0339795 & 19.85 & 18.095574 & 4.5673077 &
+4.1173153\tabularnewline
+2 & & 23.0 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0415476
+& NA & NA & NA & NA\tabularnewline
+2 & & 21.8 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0373253
+& NA & NA & NA & NA\tabularnewline
+2 & & 32.7 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0839818
+& NA & NA & NA & NA\tabularnewline
+2 & & 29.6 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0688134
+& NA & NA & NA & NA\tabularnewline
+2 & & 14.7 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0169717
+& NA & NA & NA & NA\tabularnewline
+2 & 2a & 28.5 & 15.8 & 12 & 44 & 19.0 & 18.62 & 5.7 & 5.8 & 5.75 & 28.4
+& 28.8 & 0.0637940 & 28.60 & 25.967227 & 0.3508772 &
+2.0408163\tabularnewline
+2 & & 38.0 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.1134115
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 24.5 & 9.8 & 17 & 33 & 8.9 & 9.36 & 0.0 & 0.0 & 0.00 & 24.3 &
+24.3 & 0.0471435 & 24.30 & 0.000000 & 0.8163265 &
+4.9145299\tabularnewline
+3 & & 14.6 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0167415
+& NA & NA & NA & NA\tabularnewline
+3 & & 19.8 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0307907
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 18.1 & 9.8 & 18 & 43 & 11.5 & 12.32 & 5.2 & 2.3 & 3.75 & 18.3 &
+17.6 & 0.0257304 & 17.95 & 11.044662 & 0.8287293 &
+6.6558442\tabularnewline
+3 & 3a & 35.2 & 16.0 & 11 & 45 & 19.1 & 19.11 & 10.0 & 8.1 & 9.05 & 36.0
+& 32.1 & 0.0973140 & 34.05 & 64.326073 & 3.2670455 &
+0.0523286\tabularnewline
+3 & 3a & 27.5 & 15.8 & 8 & 42 & 15.7 & 16.45 & 4.6 & 5.1 & 4.85 & 26.8 &
+27.5 & 0.0593957 & 27.15 & 18.474528 & 1.2727273 &
+4.5592705\tabularnewline
+3 & & 34.8 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0951149
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 17.7 & 11.4 & 16 & 38 & 11.9 & 12.18 & 3.4 & 2.5 & 2.95 & 17.5
+& 17.7 & 0.0246057 & 17.60 & 6.834928 & 0.5649718 &
+2.2988506\tabularnewline
+3 & & 25.3 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0502726
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 19.9 & 11.2 & 16 & 31 & 9.7 & 9.94 & 0.0 & 0.0 & 0.00 & 19.5 &
+19.8 & 0.0311026 & 19.65 & 0.000000 & 1.2562814 &
+2.4144869\tabularnewline
+3 & & 32.0 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0804248
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 26.8 & 12.8 & 9 & 44 & 13.8 & 14.39 & 5.1 & 5.8 & 5.45 & 24.8 &
+27.0 & 0.0564104 & 25.90 & 23.328289 & 3.3582090 &
+4.1000695\tabularnewline
+3 & 3a & 21.3 & 10.4 & 4 & 42 & 9.9 & 10.09 & 0.0 & 0.0 & 0.00 & 21.0 &
+20.6 & 0.0356327 & 20.80 & 0.000000 & 2.3474178 &
+1.8830525\tabularnewline
+3 & & 40.2 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.1269235
+& NA & NA & NA & NA\tabularnewline
+3 & 3a & 19.9 & 10.8 & 13 & 32 & 9.1 & 9.24 & 4.0 & 1.5 & 2.75 & 19.2 &
+19.9 & 0.0311026 & 19.55 & 5.939574 & 1.7587940 &
+1.5151515\tabularnewline
+4 & & 27.2 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0581069
+& NA & NA & NA & NA\tabularnewline
+4 & 4a & 31.8 & 21.4 & 5 & 46 & 23.5 & 24.03 & 8.3 & 8.1 & 8.20 & 29.8 &
+28.9 & 0.0794226 & 29.35 & 52.810173 & 7.7044025 &
+2.2055764\tabularnewline
+4 & & 15.4 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0186265
+& NA & NA & NA & NA\tabularnewline
+4 & & 23.9 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0448627
+& NA & NA & NA & NA\tabularnewline
+4 & 4a & 34.9 & 19.4 & 7 & 44 & 20.7 & 21.12 & 7.9 & 7.8 & 7.85 & 33.5 &
+34.4 & 0.0956623 & 33.95 & 48.398198 & 2.7220630 &
+1.9886364\tabularnewline
+4 & 4a & 31.5 & 20.4 & 6 & 44 & 21.6 & 21.84 & 7.6 & 9.7 & 8.65 & 29.8 &
+30.5 & 0.0779311 & 30.15 & 58.765454 & 4.2857143 &
+1.0989011\tabularnewline
+4 & & 23.6 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0437435
+& NA & NA & NA & NA\tabularnewline
+4 & & 19.4 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0295592
+& NA & NA & NA & NA\tabularnewline
+4 & & 35.4 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0984230
+& NA & NA & NA & NA\tabularnewline
+4 & 4a & 28.8 & 17.4 & 8 & 43 & 18.2 & 18.67 & 5.9 & 7.8 & 6.85 & 27.3 &
+27.6 & 0.0651441 & 27.45 & 36.852845 & 4.6875000 &
+2.5174076\tabularnewline
+4 & & 20.1 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0317309
+& NA & NA & NA & NA\tabularnewline
+4 & 4a & 33.1 & 22.8 & 8 & 43 & 23.5 & 24.47 & 6.7 & 8.5 & 7.60 & 34.0 &
+31.2 & 0.0860490 & 32.60 & 45.364598 & 1.5105740 &
+3.9640376\tabularnewline
+4 & & 31.5 & NA & NA & NA & NA & NA & NA & NA & NA & NA & NA & 0.0779311
+& NA & NA & NA & NA\tabularnewline
+\bottomrule
+\end{longtable}
+
+%\showmatmethods
+
+
+\bibliography{pinp}
+\bibliographystyle{jss}
+
+
+
+\end{document}
+

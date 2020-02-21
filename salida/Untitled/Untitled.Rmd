@@ -1,0 +1,140 @@
+---
+title: USO DE EQUIPOS Y TOMA DE INFORMACIÓN RELACIONADA CON LA ESTRUCTURA DEL BOSQUE
+
+# Use letters for affiliations
+author:
+  - name: Cristian Camilo Gañan Tapasco
+    affiliation: a
+  - name: Duván Arley Marín Gil
+    affiliation: a
+    
+address:
+  - code: a
+    address: Departamento de ciencias forestales, Universidad Nacional de Colombia, Medellín
+    
+# Optional: line of arbitrary text with additional information.
+# Could be used, for example, to mention the bibliographic info in a post-print.
+# If not specified, defaults to "This version was compiled on \today"
+#date_subtitle: Published in *Journal of Statistical Software*, 2018
+
+# For footer text  TODO(fold into template, allow free form two-authors)
+lead_author_surname: Medición Forestal
+
+# Place eg a DOI URL or CRAN Package URL here
+doi_footer: "https://cran.r-project.org/package=YourPackage"
+
+# Abstract
+
+# Optional: Acknowledgements
+
+# Optional: One or more keywords
+
+
+# Paper size for the document, values of letter and a4
+papersize: letter
+
+# Font size of the document, values of 9pt (default), 10pt, 11pt and 12pt
+fontsize: 9pt
+
+# Optional: Force one-column layout, default is two-column
+#one_column: true
+
+# Optional: Enables lineno mode, but only if one_column mode is also true
+#lineno: true
+
+# Optional: Enable one-sided layout, default is two-sided
+#one_sided: true
+
+# Optional: Enable section numbering, default is unnumbered
+#numbersections: true
+
+# Optional: Specify the depth of section number, default is 5
+#secnumdepth: 5
+
+# Optional: Skip inserting final break between acknowledgements, default is false
+skip_final_break: true
+
+# Optional: Bibliography 
+bibliography: pinp
+
+# Optional: Enable a 'Draft' watermark on the document
+#watermark: true
+
+# Customize footer, eg by referencing the vignette
+footer_contents: "YourPackage Vignette"
+
+# Produce a pinp document
+output: pinp::pinp
+
+# Required: Vignette metadata for inclusion in a package.
+vignette: >
+  %\VignetteIndexEntry{YourPackage-vignetteentry}
+  %\VignetteKeywords{YourPackage, r, anotherkeyword}
+  %\VignettePackage{YourPackage}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+# INTRODUCCIÓN 
+
+Se realiza una visita a la estación forestal piedras blancas con el objetivo de aplicar los conocimientos adquiridos teóricamente en lo relacionado a uso de equipos y toma de información relacionada con la estructura del bosque. La información recolectada en las parcelas relacionada con el DAP, altura de los árboles y diámetro de copa (DC);  se usa para realizar comparaciones entre parcelas y además comparar los métodos de medición implementados en la práctica. 
+
+# MATERIALES Y EQUIPOS
+
++ Forcípula:  Regla graduada que permite medir el diámetro de los de una superficie circular como el caso de los árboles.
++ Cinta diamétrica: Cinta graduada en pulgadas o centímetros que se usa para medir el diámetro de los árboles
++ Clinómetro:  Medición de la altura de un árbol mediante la medición del ángulo y la respectiva distancia desde donde se toma el ángulo con respecto al fuste del árbol.
++ Hipsómetro:  Instrumento de medición empleado en el cálculo de las alturas de los árboles.
+
+
+# PROCEDIMIENTO 
+
+En la realización de la práctica se procedió de la siguiente manera: 
+
+Para el levantamiento de las parcelas en campo se seleccionaron al azar 4 parcelas circulares en una plantación de pino Pátula en la reserva forestal de piedras blancas. 
+
+En las parcelas circulares con un área de de 250 m2, se procedió a medir el DAP a los individuos que tenían un DAP >= 10  con cinta diamétrica.
+Seguidamente dentro de la parcela de 250 m2 se procedió a establecer una subparcela de 100 m2 en la cual se tomaron las siguientes mediciones: 
+
+Altura total con clinómetro e hipsómetro de los individuos
+Diámetro de copa 
+DAP con forcípula 
+Para obtener el diámetro de copa medio se midió la proyección en dos direcciones, con cinta métrica, el diámetro normal se midió con forcípula en forma cruzada, utilizando el promedio entre las dos mediciones realizadas a cada árbol.  
+Posterior a la recolección de información se procedió a realizar los correspondientes cálculos que se pueden apreciar en el script de R studio presentado; los resultados de dichos cálculos se relacionan a continuación. 
+
+
+# RESULTADOS 
+
+
+## Error en las mediciones
+
+Con la fórmula $(E\% = 100 * \frac{Estimado-Observado}{Observado})$ en valor absoluto, calculamos el porcentaje de error de DAP y altura, tomando los datos del estimado para DAP como el DAP con forcípula, y e observado el DAP tomado con cinta diamétrica; para altura estimada se tomó la lectura del hipsómetro y para observada, la que se calculó con el clinómetro.
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+
+data<- read.csv2("Salida1.csv")
+
+data<- data %>% mutate(Parcela = as.factor(Parcela),
+                       Subparcela = as.factor(Subparcela)) %>% select(-c(X.))
+
+
+data<- data %>% group_by(Parcela) %>% mutate(`Area ind(m)`= (pi/4)*(DAP_cm/100)^2, 
+                                             Dap_f_cm = (d1+d2)/2, 
+                                             `Area copa(m)` = (pi/4)*(D_copa)^2) %>% 
+  mutate(`Error DAP`= ((abs(Dap_f_cm - DAP_cm))/ DAP_cm)*100, 
+         `Error alt` = ((abs(Alt_med - Alt_cal))/ Alt_cal)*100) 
+
+data1<- data %>% rename(DAP_obs= DAP_cm, DAP_est= Dap_f_cm, 
+                Alt_obs= Alt_cal, Alt_est= Alt_med) %>% select(DAP_obs, DAP_est, Alt_obs, Alt_est,
+                                                                       `Error DAP`, `Error alt`) %>% 
+  filter(DAP_est != "NA")
+```
+
+```{r results = 'asis'}
+knitr::kable(data, caption = "Error de DAP y altura, DAP_obs= DAP tomado con cinta diamétrica, DAP_est= DAP tomado con forcípula, Alt_obs= Altura calculada (con clinómetro) con ángulos y distancia, Alt_est= Altura tomada con hipsómetro.")
+```
+
+
