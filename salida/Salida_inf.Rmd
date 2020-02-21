@@ -110,9 +110,30 @@ knitr::kable(data %>% group_by(Subparcela) %>%
 
 
 
-## Distribuciónes DAP
 
-```{r}
+## DISCUSIÓN 
+
+Para las alturas de los individuos se establecieron criterios específicos que permitieran minimizar las variables causales de error, se medían los ángulos con el clinómetro procurando que la distancia horizontal fuera suficiente para que la vista + fuera inferior a 45 grados, adicional a esto desde el mismo punto que se tomaron las alturas con clinómetro se tomaron las alturas con hipsómetro, de tal forma que la variable de distancia fuera constante.
+
+
+En la **tabla 1** y **2** se observa el porcentaje de error de DAP y de altura para cada individuo de las subparcelas de 0,01 ha. Se puede observar que en su mayoría, los errores en la medición del DAP es menor a los porcentajes de error de las alturas. El error en promedio para cada subparcela (1a, 2a, 3a, 4a, respectivamente) en la medida de DAP 1.609329, 2.552089,  1.718945, 4.182051, siendo el error promedio mayor el de la subparcela 4a, y el menor el de la subparcela 1a, esto gracias a que el mayor porcentaje de error pertenece a un individuo de la subparcela 4a, el error promedio de la subparcela 1a es el más bajo debido a la cantidad de datos tomados y su bajo porcentaje de error individual. Para las medias de alturas de las subparcelas (1a, 2a, 3a, 4a) tenemos 3.446756, 4.825732, 3.154843, 2.354912 siendo claramente el porcentaje de error mayor para la subparcela 2a porque el mayor dato de error pertenece a un individuo de esta subparcela, y el menor para la subparcela 4a, debido a la cantidad de datos tomados con un porcentaje de error relativamente bajo para cada individuo.
+
+
+La **figure 1** muestra la distribución del área basal de todos los individuos dentro de las parcelas, gracias a esta información podemos ver claramente que tenemos la mayor concentración de individuos en las primeras marcas de clase , por lo que se puede inferir que el nivel de ocupación de estas parcelas está dado por muchos individuos con poca área basal y solo se muestra un individuo con área basal por encima de los 2000 cm2 y pertenece a la parcela 2.
+
+
+```{r, fig.align= "center",fig.cap= "Distribuciónes área basal", fig.align= "center", out.width="400px", out.height="400px"}
+knitr::include_graphics("area basal.PNG")
+``` 
+
+Con respecto al diámetro de copa, en la **Figure 2** observamos que la mayor concentración de individuos presentan un diámetro de copa entre 0 y 1,8 metros, esto debido a que se encuentran en una plantación de pinus patula abandonada, la mayoría de los individuos con los diámetros más grandes se encontraban sin acículas en sus ramas y algunos otros carecían de ramas, esto debido a múltiples razones como pueden ser que por la falta de manejo, por exceso de peso, por la edad del árbol o condiciones climáticas.
+
+```{r, fig.align= "center", out.width="400px", out.height="400px", fig.cap= "Distribuciónes Diametro de copa"}
+knitr::include_graphics("diametro de copa.png")
+```
+
+
+```{r, fig.cap= "Distribuciónes DAP", fig.height= 4, fig.width= 4, fig.align= "center"}
 
 ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
   geom_histogram(bins = 7, origin= 15) + labs(y= "Individuos", title = "Distribuciónes diamétricas DAP") +
@@ -121,25 +142,28 @@ ggplot(data, mapping = aes(x= DAP_cm, col= "pink")) +
 ```
 
 
-## distribuciónes alt
+En una primera impresión podría afirmarse que el comportamiento que siguen las parcelas es coetáneo (**figure 3, 4 y 5**) el cual es típico de una plantación forestal por la visita en campo realizada y por los datos que se observan en el histograma. Sin embargo, es necesario tener una mayor cantidad de mediciones para estimar un comportamiento coetáneo perfecto y así determinar el tipo de bosque que se estudió. Es importante afirmar que en la primera clase (9-15) se encuentra esta cantidad de individuos debido a que al momento de realizar la medición algunos estaban muertos y por consiguiente su DAP no creció al ritmo de los demás individuos; para el caso de las clases de DAP mayor se podría decir que como en toda plantación forestal sobresalen algunos pocos individuos, esto debido a las condiciones de sitio del lugar. 
 
-```{r}
+```{r, fig.cap= "Distribuciónes área de copa", fig.height= 4, fig.width= 4, fig.align= "center"}
 data1<- data %>% filter(Alt_cal != "NA")
+
+ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
+  geom_histogram(binwidth = 10) + labs(y= "Individuos", title = "Distribuciónes de área de copa") +
+  theme(legend.position = "none") + scale_x_continuous(breaks = seq(0, 65, 10)) 
+
+```
+
+
+```{r, fig.cap= "Distribuciónes de altura", fig.height= 4, fig.width= 4, fig.align= "center"}
 
 ggplot(data1, mapping = aes(x= Alt_cal, col= "pink")) +
   geom_histogram(binwidth = 4) + labs(y= "Individuos", title = "Distribuciónes de Altura") +
   scale_x_continuous(breaks = seq(4, 25, 4)) +theme(legend.position = "none") 
-
 ```
 
+Teniendo en cuenta que las parcelas analizadas corresponden una plantación forestal destinada a conservación y por ende no presentan algún tipo de manejo se tienen alturas variadas que están distribuidas de manera desigual entre las diferentes clases que se analizaron, se encuentra de esta manera que la clase que contiene el mayor número de individuos corresponde al rango de entre los 18 y 22 metros de altura. Por otro lado se evidencia que la primera y la última clase corresponden a la menor cantidad de individuos se podría deducir que la plantación ha alcanzado su estado de madurez y también que no se tienen árboles pequeños o en otra etapa de desarrollo lo cual arroja en términos generales que la plantación ha tenido un crecimiento uniforme. 
 
-## distribuciones copa
-
-```{r}
-ggplot(data, mapping = aes(x= `Area copa(m)`, col= "pink")) +
-  geom_histogram(binwidth = 10) + labs(y= "Individuos", title = "Distribuciónes de área de copa") +
-  theme(legend.position = "none") + scale_x_continuous(breaks = seq(0, 65, 10)) 
-```
+las variaciones en las clases inferiores a la clase de 18-22 metros podrían corresponder a las condiciones de sitio de dichos individuos que se muestrearon dentro de las parcelas, teniendo en cuenta que no difieren en más de dos individuos para cada una de dichas clases. 
 
 #Modelos
 

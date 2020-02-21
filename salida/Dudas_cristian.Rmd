@@ -1,0 +1,83 @@
+---
+title: "Ejemplo Cristian"
+author: "Edimer"
+date: "21 de junio de 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tabla de contenido en español
+
+Para agregar la palabra "contenido" en español es necesario que los metadatos tengan la siguiente estructura:
+
+```
+---
+title: "Título"
+author: "Autor"
+date: "Fecha"
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 5
+header-includes:
+   - \renewcommand{\contentsname}{Contenido}    
+---
+```
+
+# Etiquetas en tablas
+
+Para agregar una etiqueta a una tabla hecha con RMarkdown (pdf), es necesario plasmar lo siguiente:
+
+```
+| Recipe | MW | g/l | Liquid measurement | 
+| :---- |:--:| :--:| :----------------: |
+| 0.7 mM K~2~SO~4~ | 174.25 g/mol | 0.122 g | | 
+| 0.1 mM KCl | 74.55 | 0.007 g | 700 $\mu l$ of 0.01% solution |
+| 0.1 mM KH~2~PO~4~ | 136 | 0.014 g | |
+| 2.0 mM Ca(NO~3~)~2~ | 164 | 0.328 g | |
+| 0.5 mM MgSO~4~ | 120.36 | 0.060 g | |
+| 10 $\mu M$ H~3~BO~3~ | 61.83 | 0.0006 g | 60 $\mu l$ of 0.01% solution |
+| 0.5 $\mu M$ MnSO~4~ | 151 | 0.000075 g | 7.5 $\mu l$ |
+|  | | | |
+| **+Iron** | | | |
+| 0.1 mM Fe-EDTA | 345 | 0.034 g | |
+| 100 $\mu M$ FeCl~3~ | 162 g/mol | 0.016 g | |
+Table: Solución nutritiva empleada para las plantas de *O. sativa*
+```
+
+Este código dará como resultado la siguiente tabla:
+
+| Recipe | MW | g/l | Liquid measurement | 
+| :---- |:--:| :--:| :----------------: |
+| 0.7 mM K~2~SO~4~ | 174.25 g/mol | 0.122 g | | 
+| 0.1 mM KCl | 74.55 | 0.007 g | 700 $\mu l$ of 0.01% solution |
+| 0.1 mM KH~2~PO~4~ | 136 | 0.014 g | |
+| 2.0 mM Ca(NO~3~)~2~ | 164 | 0.328 g | |
+| 0.5 mM MgSO~4~ | 120.36 | 0.060 g | |
+| 10 $\mu M$ H~3~BO~3~ | 61.83 | 0.0006 g | 60 $\mu l$ of 0.01% solution |
+| 0.5 $\mu M$ MnSO~4~ | 151 | 0.000075 g | 7.5 $\mu l$ |
+|  | | | |
+| **+Iron** | | | |
+| 0.1 mM Fe-EDTA | 345 | 0.034 g | |
+| 100 $\mu M$ FeCl~3~ | 162 g/mol | 0.016 g | |
+Table: Solución nutritiva empleada para las plantas de *O. sativa*
+
+# Etiquetas en imágenes
+
+El siguiente código permite incorporar una imagen en el documento y agregar la descripción necesaria.
+
+```
+\begin{figure}[htb]
+  \centering
+  \caption{Descripción o rótulo de la imagen}
+\end{figure}
+```
+
+```{r, out.width="200px", out.height="200px", echo = TRUE, eval = FALSE}
+knitr::include_graphics("imagen.png")
+``` 
+```
