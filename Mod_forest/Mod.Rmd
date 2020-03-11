@@ -1,0 +1,44 @@
+---
+title: "Modelos forestales"
+author: "Cristian Gañan - David Londoño"
+date: ""
+output: 
+  pdf_document:
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r}
+data<- read_xlsx("Datos_P2.xlsx")
+
+data<- data %>% mutate(Sitio= as.factor(Sitio))
+```
+
+1) *Seleccione aleatoriamente el $70\%$ de los arboles medidos para, ajustar los modelos y con el $30\%$ restante hacer la validación. Verificar si o no el rango de tamaño del archivo para los modelos contiene el archivo para validación. Explicar que significan sus resultados.*
+
+```{r}
+set.seed(40)
+col= sample(144, 101)
+datam<- data %>% slice(col)
+```
+
+```{r}
+set.seed(40)
+Col= sample(144 ,43)
+datav<- data %>% slice(Col)
+```
+
+Al mirar las filas que se genaran aleatoriamente de $144$ datos iniciales, tanto para los datos del modelo y los de validación es evidente que el rango del primero contiene al segundo (${1-142}$ y ${4-140}$ respectivamente); esto quizas cause al momento de validar unos errores bajos pues se esta corroborando con valores que ya estaban cuando se modeló y no se estaría siendo extricto pues este proceso debe hacerse con modelos completamente aparte de los datos modelados. Tambien resulta intersante fijar la atención en los pocos datos del `Sitio3` presentes en el archivo aleatorio, es probable entonces que se este con esto tranado de explicar mas los fenomenos presentes en el `Sitio2` que en el `Sitio3`. 
+
+
+
