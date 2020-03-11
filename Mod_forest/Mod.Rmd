@@ -40,5 +40,103 @@ datav<- data %>% slice(Col)
 
 Al mirar las filas que se genaran aleatoriamente de $144$ datos iniciales, tanto para los datos del modelo y los de validación es evidente que el rango del primero contiene al segundo (${1-142}$ y ${4-140}$ respectivamente); esto quizas cause al momento de validar unos errores bajos pues se esta corroborando con valores que ya estaban cuando se modeló y no se estaría siendo extricto pues este proceso debe hacerse con modelos completamente aparte de los datos modelados. Tambien resulta intersante fijar la atención en los pocos datos del `Sitio3` presentes en el archivo aleatorio, es probable entonces que se este con esto tranado de explicar mas los fenomenos presentes en el `Sitio2` que en el `Sitio3`. 
 
+2) *Ajustar y decidir el mejor modelo* 
+
+  2.1) Modelo de la forma: $$H= b_0 + b_1*DAP+b_2*DAP^2$$
+  
+```{r}
+modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
+
+a<- shapiro.test(resid(modelo))
+
+
+tabla<- tibble(Modelo= "mod1", 
+                Fc= broom::glance(modelo)$statistic, 
+                valor.p= broom::glance(modelo)$p.value, 
+                Shapiro= round(a$p.value, 4),
+                R.squared= broom::glance(modelo)$r.squared,
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+```
+
+
+  2.2) Modelo de la forma: $$H= b_0*DAP^{b_1}$$
+```{r}
+modelo<- lm(log(`Altura total (m)`) ~ log(`DAP (cm)`), data = datam)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+1.4690203+0.4469912*log..DAP..cm...)) %>% 
+  mutate(resid= fitted - exp(log..Altura.total..m...))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla2<- tibble(Modelo= "mod2", 
+                Fc= broom::glance(modelo)$statistic, 
+                valor.p= broom::glance(modelo)$p.value, 
+                Shapiro= round(a$p.value, 4),
+                R.squared= broom::glance(modelo)$r.squared,
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+```
+
+
+  2.3) Modelo de la forma: $$H= exp(b_0+b_1*log(DAP)+b_2*log(DAP)^2)$$
+
+```{r}
+modelo<- lm(log(`Altura total (m)`) ~ log(`DAP (cm)`) + I((log(`DAP (cm)`))^2), data = datam)
+
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+1.534780445	+0.395973547	*log..DAP..cm... + 0.009502094* log..DAP..cm...^2)) %>% 
+  mutate(resid= fitted - exp(log..Altura.total..m...))
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+
+tabla3<- tibble(Modelo= "mod3", 
+                Fc= broom::glance(modelo)$statistic, 
+                valor.p= broom::glance(modelo)$p.value, 
+                Shapiro= "",
+                R.squared= broom::glance(modelo)$r.squared,
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+```
+
+
+  2.4) Modelo `Michaelis-Menten`
+  
+```{r}
+start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
+
+modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
+             start = list(a= 30.539 , b= 14.856)) 
+
+tabla4<- tibble(Modelo= "mod4", 
+                Fc= "", 
+                valor.p= "***", 
+                Shapiro= "",
+                R.squared= "",
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+
+#broom::tidy(modelo)
+#broom::glance(modelo)
+
+```
+
+## Comparación de modelos
+
+```{r}
+knitr::kable(rbind(tabla, tabla2, tabla3, tabla4), caption = "Modelos ajustados")
+```
 
 
