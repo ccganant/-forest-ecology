@@ -58,10 +58,18 @@ tabla<- tibble(Modelo= "mod1",
                 AIC= broom::glance(modelo)$AIC,
                 RSE= broom::glance(modelo)$sigma)
 
+par(mfrow= c(2,2))
+plot(modelo)
+
+modelo1<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam[-c(68, 24, 76), ])
+
+knitr::kable(rbind(broom::glance(modelo), broom::glance(modelo1)), caption = "Modelos con y sin datos")
+
 ```
 
 
   2.2) Modelo de la forma: $$H= b_0*DAP^{b_1}$$
+  
 ```{r}
 modelo<- lm(log(`Altura total (m)`) ~ log(`DAP (cm)`), data = datam)
 
@@ -83,6 +91,10 @@ tabla2<- tibble(Modelo= "mod2",
                 R.squared= broom::glance(modelo)$r.squared,
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
+
+par(mfrow= c(2,2))
+plot(modelo)
+
 ```
 
 
