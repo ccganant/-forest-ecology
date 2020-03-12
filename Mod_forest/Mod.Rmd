@@ -1,6 +1,6 @@
 ---
-title: "Modelos forestales"
-author: "Cristian Gañan - David Londoño"
+title: "Parcial 2"
+author: "Cristian Camilo Gañan - David Londoño Lopera"
 date: ""
 output: 
   pdf_document:
@@ -159,7 +159,7 @@ Se evaluó, un modelo lineal cuadrático, logarítmico simple y cuadrático junt
 En la **Tabla 1** se muestra la comparación entre los modelos ajustados, se comparan los modelos que estén en la misma escala, es decir, $log$ con $log$ y $natural$ con $natural$, los modelos $2$ y $3$ son logarítmicos, el que tenga el menor valor de $AIC$ será el mejor modelo, por lo cual, el modelo $2$ es mejor ($AIC= -18.40$), siguiendo la misma lógica se comparan los modelos $1$ y $4$, el $AIC$ más pequeño lo tiene el modelo $1$ ($AIC= 535.07$). Hasta este punto, los mejores modelos estadísticamente hablando son el $1$ y $2$, como estos están en diferente escala se hace su comparación con el $RSE$, a este parámetro se le hicieron ajustes para poder usarlo, la confrontación sigue el mismo patrón del $AIC$, menor $RSE$ mejor ajuste, por lo cual, el modelo $1$  ($RSE= 3.34$), es decir el cuadrático, es el que presenta mejor ajuste a los datos.
 
 
-## Grafica del mejor modelo estadístico
+ 3) *Grafica del mejor modelo estadístico*
 
 ```{r,fig.cap= "Modelo lineal cuadratico", fig.height=3, fig.width=5}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
@@ -185,7 +185,9 @@ ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
 
 
 
-## Validación del mejor modelo
+ 4) *Validación del mejor modelo*
+
+Los resultados del punto 4 justifican los análisis realizados anteriormente, ya que el porcentaje de error de la media y de la desviación estándar son menores para el modelo `Michaelis-Menten`, esto es lo esperado que el modelo `Michaelis-menten` tenga un mejor ajuste, por ende un error menor al validar, pues como se dijo previamente es el modelo que refleja la tendencia natural de los datos con mínimas perturbaciones.
 
 ```{r, results= 'asis'}
 start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
