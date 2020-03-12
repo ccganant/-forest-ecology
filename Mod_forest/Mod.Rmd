@@ -44,7 +44,7 @@ Al mirar las filas que se genaran aleatoriamente de $144$ datos iniciales, tanto
 
   2.1) Modelo de la forma: $$H= b_0 + b_1*DAP+b_2*DAP^2$$
   
-```{r, fig.height= 4, fig.width= 4, fig.cap= "Suspuestos del modelo lineal"}
+```{r,fig.cap= "Suspuestos del modelo lineal"}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
 
 a<- shapiro.test(resid(modelo))
@@ -89,10 +89,6 @@ tabla2<- tibble(Modelo= "mod2",
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
 
-
-ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
-  geom_point() + geom_smooth(data= prueba, mapping = aes(x= exp(log..DAP..cm...), 
-                                                                         y= fitted ))
 ```
 
 
@@ -141,10 +137,6 @@ tabla4<- tibble(Modelo= "mod4",
 #broom::tidy(modelo)
 #broom::glance(modelo)
 
-ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
-  geom_point() + geom_smooth(data= broom::augment(modelo), mapping = aes(x= DAP..cm., 
-                                                                         y= .fitted ))
-
 ```
 
 ## Comparación de modelos
@@ -153,13 +145,54 @@ ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
 knitr::kable(rbind(tabla, tabla2, tabla3, tabla4), caption = "Modelos ajustados")
 ```
 
-## Grafica del mejor modelo
+## Grafica del mejor modelo estadístico
 
-```{r, fig.height= 4, fig.width=4, fig.cap= "Modelo lineal cuadratico"}
+```{r,fig.cap= "Modelo lineal cuadratico"}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
 
 ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
   geom_point() + geom_smooth(data= broom::augment(modelo), mapping = aes(x= DAP..cm., 
                                                                          y= .fitted ))
+```
+
+## Mejor modelo `Michaelis menten`
+
+```{r, fig.cap= "Modelo Michaelis-menten"}
+start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
+
+modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
+             start = list(a= 30.539 , b= 14.856)) 
+
+ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
+  geom_point() + geom_smooth(data= broom::augment(modelo), mapping = aes(x= DAP..cm., 
+                                                                         y= .fitted ))
+```
+
+
+## Validación del mejor modelo
+
+```{r}
+start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
+
+modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
+             start = list(a= 30.539 , b= 14.856))
+
+val<- datav %>% mutate(fitted= 30.539*`DAP (cm)`/(14.856+`DAP (cm)`)) %>% 
+  mutate(error= ((fitted - `Altura total (m)`)/`Altura total (m)`)*100)
+```
+
+```{r}
+modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
+
+val1<- datav %>% mutate(fitted= 8.47586702 + 0.37981066*`DAP (cm)`+ 0.00079334*`DAP (cm)`^2) %>% 
+  mutate(error= ((fitted - `Altura total (m)`)/`Altura total (m)`)*100)
+
+```
+
+```{r}
+knitr::kable(tibble(Modelo= c("Michaelis-menten", "Lineal cuadratico"), 
+                    `%error media`= c(mean(val$error), mean(val1$error)), 
+                    `%error sd` = c(sd(val$error), sd(val1$error))), 
+             caption = "Validación del mejor modelo")
 ```
 
