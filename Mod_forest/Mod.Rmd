@@ -44,7 +44,7 @@ Al mirar las filas que se genaran aleatoriamente de $144$ datos iniciales, tanto
 
   2.1) Modelo de la forma: $$H= b_0 + b_1*DAP+b_2*DAP^2$$
   
-```{r}
+```{r, fig.height= 4, fig.width= 4, fig.cap= "Suspuestos del modelo lineal"}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
 
 a<- shapiro.test(resid(modelo))
@@ -62,9 +62,6 @@ par(mfrow= c(2,2))
 plot(modelo)
 
 modelo1<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam[-c(68, 24, 76), ])
-
-knitr::kable(rbind(broom::glance(modelo), broom::glance(modelo1)), caption = "Modelos con y sin datos")
-
 ```
 
 
@@ -92,9 +89,10 @@ tabla2<- tibble(Modelo= "mod2",
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
 
-par(mfrow= c(2,2))
-plot(modelo)
 
+ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
+  geom_point() + geom_smooth(data= prueba, mapping = aes(x= exp(log..DAP..cm...), 
+                                                                         y= fitted ))
 ```
 
 
@@ -143,6 +141,10 @@ tabla4<- tibble(Modelo= "mod4",
 #broom::tidy(modelo)
 #broom::glance(modelo)
 
+ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
+  geom_point() + geom_smooth(data= broom::augment(modelo), mapping = aes(x= DAP..cm., 
+                                                                         y= .fitted ))
+
 ```
 
 ## Comparación de modelos
@@ -151,4 +153,13 @@ tabla4<- tibble(Modelo= "mod4",
 knitr::kable(rbind(tabla, tabla2, tabla3, tabla4), caption = "Modelos ajustados")
 ```
 
+## Grafica del mejor modelo
+
+```{r, fig.height= 4, fig.width=4, fig.cap= "Modelo lineal cuadratico"}
+modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
+
+ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
+  geom_point() + geom_smooth(data= broom::augment(modelo), mapping = aes(x= DAP..cm., 
+                                                                         y= .fitted ))
+```
 
