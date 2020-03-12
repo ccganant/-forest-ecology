@@ -38,11 +38,15 @@ Col= sample(144 ,43)
 datav<- data %>% slice(Col)
 ```
 
-Al mirar las filas que se genaran aleatoriamente de $144$ datos iniciales, tanto para los datos del modelo y los de validación es evidente que el rango del primero contiene al segundo (${1-142}$ y ${4-140}$ respectivamente); esto quizas cause al momento de validar unos errores bajos pues se esta corroborando con valores que ya estaban cuando se modeló y no se estaría siendo extricto pues este proceso debe hacerse con modelos completamente aparte de los datos modelados. Tambien resulta intersante fijar la atención en los pocos datos del `Sitio3` presentes en el archivo aleatorio, es probable entonces que se este con esto tranado de explicar mas los fenomenos presentes en el `Sitio2` que en el `Sitio3`. 
+Al mirar las filas que se generan aleatoriamente de $144$ datos iniciales, tanto para los datos del modelo como los de validación, es evidente que el rango del primero contiene al segundo ($1-142$ y $4-140$ respectivamente); esto podría causar errores bajos al momento de validar, ya que se está corroborando con valores que ya estaban cuando se modeló y no se estaría siendo estricto, pues este proceso debe hacerse con modelos completamente aparte de los datos modelados. También resulta interesante fijar la atención en los pocos datos del `Sitio3` presentes en el archivo aleatorio, es probable que el estudio del que se sacó la base de datos esté más direccionado a evaluar los fenómenos presentes en el `Sitio2` que en el `Sitio3`.
 
 2) *Ajustar y decidir el mejor modelo* 
 
   2.1) Modelo de la forma: $$H= b_0 + b_1*DAP+b_2*DAP^2$$
+  2.2) Modelo de la forma: $$H= b_0*DAP^{b_1}$$
+  2.3) Modelo de la forma: $$H= exp(b_0+b_1*log(DAP)+b_2*log(DAP)^2)$$
+  2.4) Modelo `Michaelis-Menten`
+  
   
 ```{r,fig.cap= "Suspuestos del modelo lineal"}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
@@ -50,11 +54,12 @@ modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
 a<- shapiro.test(resid(modelo))
 
 
-tabla<- tibble(Modelo= "mod1", 
-                Fc= broom::glance(modelo)$statistic, 
-                valor.p= broom::glance(modelo)$p.value, 
+tabla<- tibble(Modelo= "H= 8.476+DAP*
+               0.380+DAP^2*0.00079", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= round(broom::glance(modelo)$p.value, 4), 
                 Shapiro= round(a$p.value, 4),
-                R.squared= broom::glance(modelo)$r.squared,
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
                 RSE= broom::glance(modelo)$sigma)
 
@@ -62,10 +67,12 @@ par(mfrow= c(2,2))
 plot(modelo)
 
 modelo1<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam[-c(68, 24, 76), ])
+
+
 ```
 
 
-  2.2) Modelo de la forma: $$H= b_0*DAP^{b_1}$$
+  <!--- 2.2) Modelo de la forma: $$H= b_0*DAP^{b_1}$$ --->
   
 ```{r}
 modelo<- lm(log(`Altura total (m)`) ~ log(`DAP (cm)`), data = datam)
@@ -81,18 +88,20 @@ prueba<- prueba %>% mutate(fitted=
 
 RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
 
-tabla2<- tibble(Modelo= "mod2", 
-                Fc= broom::glance(modelo)$statistic, 
-                valor.p= broom::glance(modelo)$p.value, 
+tabla2<- tibble(Modelo= "H= 4.448+0.447* DAP", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= round(broom::glance(modelo)$p.value, 4), 
                 Shapiro= round(a$p.value, 4),
-                R.squared= broom::glance(modelo)$r.squared,
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
+
+
 
 ```
 
 
-  2.3) Modelo de la forma: $$H= exp(b_0+b_1*log(DAP)+b_2*log(DAP)^2)$$
+  <!--- 2.3) Modelo de la forma: $$H= exp(b_0+b_1*log(DAP)+b_2*log(DAP)^2)$$ --->
 
 ```{r}
 modelo<- lm(log(`Altura total (m)`) ~ log(`DAP (cm)`) + I((log(`DAP (cm)`))^2), data = datam)
@@ -106,18 +115,19 @@ prueba<- prueba %>% mutate(fitted=
 RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
 
 
-tabla3<- tibble(Modelo= "mod3", 
-                Fc= broom::glance(modelo)$statistic, 
-                valor.p= broom::glance(modelo)$p.value, 
+tabla3<- tibble(Modelo= "H= exp(1.535+ln(DAP)*
+                0.396+ln(DAP)^2*0.0095)", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= round(broom::glance(modelo)$p.value, 4), 
                 Shapiro= "",
-                R.squared= broom::glance(modelo)$r.squared,
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
 
 ```
 
 
-  2.4) Modelo `Michaelis-Menten`
+  <!---2.4) Modelo `Michaelis-Menten`--->
   
 ```{r}
 start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
@@ -125,7 +135,7 @@ start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
 modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
              start = list(a= 30.539 , b= 14.856)) 
 
-tabla4<- tibble(Modelo= "mod4", 
+tabla4<- tibble(Modelo= "H= 30.539*DAP/(14.856+DAP)", 
                 Fc= "", 
                 valor.p= "***", 
                 Shapiro= "",
@@ -134,20 +144,24 @@ tabla4<- tibble(Modelo= "mod4",
                 RSE= broom::glance(modelo)$sigma)
 
 
-#broom::tidy(modelo)
-#broom::glance(modelo)
 
 ```
 
-## Comparación de modelos
+<!---## Comparación de modelos--->
 
 ```{r}
-knitr::kable(rbind(tabla, tabla2, tabla3, tabla4), caption = "Modelos ajustados")
+knitr::kable(rbind(tabla, tabla2, tabla3, tabla4), caption = "Modelos ajustados", 
+             format = "latex", digits = 2, align = "l")
 ```
+
+Se evaluó, un modelo lineal cuadrático, logarítmico simple y cuadrático junto con un modelo no lineal alométrico Michaelis - Menten; en la **Figure 1** se muestran los supuestos para la regresión lineal del modelo cuadrático, se observa un gráfico de residuales donde aparentemente no hay problemas de heterocedasticidad, lo que sí es evidente son algunos “puntos palanca”, se quiso comprobar entonces cómo era el ajuste del modelo sin esas observaciones (observaciones $68, 24$ y $76$ ); al mirar el `RSE` y el AIC del modelo sin esos datos es claro que minimiza el error pues `RSE` y `AIC` ($AIC= 535$, $RSE= 3.34$), para el completo y ($AIC= 505$, $RSE= 3.11$) para el modelo sin las observaciones, son menores; en primera instancia se podría optar por borrar esos elementos, sin embargo, al no conocer la procedencia de los datos es difícil considerar esta opción, además, a pesar de que el modelo sin las observaciones disminuye el error, no está tan alejado del modelo completo, en ambos modelos no hay problemas de normalidad.
+
+En la **Tabla 1** se muestra la comparación entre los modelos ajustados, se comparan los modelos que estén en la misma escala, es decir, $log$ con $log$ y $natural$ con $natural$, los modelos $2$ y $3$ son logarítmicos, el que tenga el menor valor de $AIC$ será el mejor modelo, por lo cual, el modelo $2$ es mejor ($AIC= -18.40$), siguiendo la misma lógica se comparan los modelos $1$ y $4$, el $AIC$ más pequeño lo tiene el modelo $1$ ($AIC= 535.07$). Hasta este punto, los mejores modelos estadísticamente hablando son el $1$ y $2$, como estos están en diferente escala se hace su comparación con el $RSE$, a este parámetro se le hicieron ajustes para poder usarlo, la confrontación sigue el mismo patrón del $AIC$, menor $RSE$ mejor ajuste, por lo cual, el modelo $1$  ($RSE= 3.34$), es decir el cuadrático, es el que presenta mejor ajuste a los datos.
+
 
 ## Grafica del mejor modelo estadístico
 
-```{r,fig.cap= "Modelo lineal cuadratico"}
+```{r,fig.cap= "Modelo lineal cuadratico", fig.height=3, fig.width=5}
 modelo<- lm(`Altura total (m)` ~ `DAP (cm)` + I(`DAP (cm)`^2), data = datam)
 
 ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
@@ -155,9 +169,10 @@ ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
                                                                          y= .fitted ))
 ```
 
-## Mejor modelo `Michaelis menten`
+En la **Figure 2** se presenta el mejor modelo estadísticamente, se hace énfasis en este término, pues se demuestra que el modelo no refleja realmente el comportamiento natural de los datos, las observaciones más altas tienen gran influencia sobre el modelo pues es evidente el “forzamiento” de estos para hacer que se comporte como una línea recta, realmente el comportamiento de los datos es de forma más asintótica, ya que en un inicio hay una tasa de crecimiento relativamente rápido y a medida que se aumenta en $DAP$ la altura va siendo más constante, por esta razón es más factible elegir como mejor modelo aquel que presente esta tendencia, explorando los modelos anteriores todos tienen perturbaciones de los datos, pero quizás el que presenta menores puntos influenciables es el `Michaelis Menten`  (**Figure 3**), por esta razón este es el mejor modelo ecológico para el conjunto de datos.
 
-```{r, fig.cap= "Modelo Michaelis-menten"}
+
+```{r, fig.cap= "Modelo Michaelis-menten", fig.height=3, fig.width=5}
 start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
 
 modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
@@ -169,9 +184,10 @@ ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
 ```
 
 
+
 ## Validación del mejor modelo
 
-```{r}
+```{r, results= 'asis'}
 start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
 
 modelo<- nls(`Altura total (m)` ~ a*`DAP (cm)`/(b+`DAP (cm)`), data = datam, 
@@ -193,6 +209,6 @@ val1<- datav %>% mutate(fitted= 8.47586702 + 0.37981066*`DAP (cm)`+ 0.00079334*`
 knitr::kable(tibble(Modelo= c("Michaelis-menten", "Lineal cuadratico"), 
                     `%error media`= c(mean(val$error), mean(val1$error)), 
                     `%error sd` = c(sd(val$error), sd(val1$error))), 
-             caption = "Validación del mejor modelo")
+             caption = "Validación del mejor modelo", format = "latex")
 ```
 
