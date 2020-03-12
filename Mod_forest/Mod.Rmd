@@ -187,7 +187,7 @@ ggplot(data = datam, mapping = aes(x= `DAP (cm)`, y= `Altura total (m)`)) +
 
  4) *Validación del mejor modelo*
 
-Los resultados del punto 4 justifican los análisis realizados anteriormente, ya que el porcentaje de error de la media y de la desviación estándar son menores para el modelo `Michaelis-Menten`, esto es lo esperado que el modelo `Michaelis-menten` tenga un mejor ajuste, por ende un error menor al validar, pues como se dijo previamente es el modelo que refleja la tendencia natural de los datos con mínimas perturbaciones.
+Los resultados del punto 4 (**Table 2**)justifican los análisis realizados anteriormente, ya que el porcentaje de error de la media y de la desviación estándar son menores para el modelo `Michaelis-Menten`, esto es lo esperado que el modelo `Michaelis-menten` tenga un mejor ajuste, por ende un error menor al validar, pues como se dijo previamente es el modelo que refleja la tendencia natural de los datos con mínimas perturbaciones.
 
 ```{r, results= 'asis'}
 start<- nls(`Altura total (m)` ~ SSmicmen(`DAP (cm)`, a, b), data = datam)
