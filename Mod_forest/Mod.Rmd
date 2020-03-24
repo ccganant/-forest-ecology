@@ -57,7 +57,7 @@ a<- shapiro.test(resid(modelo))
 tabla<- tibble(Modelo= "H= 8.476+DAP*
                0.380+DAP^2*0.00079", 
                 Fc= round(broom::glance(modelo)$statistic, 4), 
-                valor.p= round(broom::glance(modelo)$p.value, 4), 
+                valor.p= "***", 
                 Shapiro= round(a$p.value, 4),
                 R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
@@ -90,7 +90,7 @@ RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
 
 tabla2<- tibble(Modelo= "H= 4.448+0.447* DAP", 
                 Fc= round(broom::glance(modelo)$statistic, 4), 
-                valor.p= round(broom::glance(modelo)$p.value, 4), 
+                valor.p= "***", 
                 Shapiro= round(a$p.value, 4),
                 R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
@@ -118,7 +118,7 @@ RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
 tabla3<- tibble(Modelo= "H= exp(1.535+ln(DAP)*
                 0.396+ln(DAP)^2*0.0095)", 
                 Fc= round(broom::glance(modelo)$statistic, 4), 
-                valor.p= round(broom::glance(modelo)$p.value, 4), 
+                valor.p= "***", 
                 Shapiro= "",
                 R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
