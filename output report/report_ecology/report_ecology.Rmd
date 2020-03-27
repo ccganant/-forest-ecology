@@ -1,0 +1,295 @@
+---
+title: Variación de la  altura de Vismia Macrophylla y Jacaranda Copaia a través de diferentes estados de sucesión de un bosque húmedo tropical de acuerdo con sus hábitos de crecimiento
+
+# Use letters for affiliations
+author:
+  - name: Camilo Cruz Sanchez
+    affiliation: a
+  - name: Yonatan Moran Ruano
+    affiliation: a
+  - name: Elkin Vanegas Vargas
+    affiliation: a
+  - name: Cristian Gañan Tapasco
+    affiliation: a
+  
+address:
+  - code: a
+    address: Departamento de ciencias forestales, Univeridad Nacional de Colombia, Medellín
+    
+# Optional: line of arbitrary text with additional information.
+# Could be used, for example, to mention the bibliographic info in a post-print.
+# If not specified, defaults to "This version was compiled on \today"
+#date_subtitle: Published in *Journal of Statistical Software*, 2018
+
+# For footer text  TODO(fold into template, allow free form two-authors)
+lead_author_surname: Sanchez-Moran-Vanegas-Gañan
+
+# Place eg a DOI URL or CRAN Package URL here
+doi_footer: "Depertamento de ciencias forestales"
+
+# Abstract
+abstract: |
+  Your abstract will be typeset here, and used by default a visually distinctive font.
+  An abstract should explain to the general reader the major contributions of the article. 
+
+# Optional: One or more keywords
+keywords:
+  - one
+  - two
+  - optional
+  - keywords
+  - here
+
+# Paper size for the document, values of letter and a4
+papersize: letter
+
+# Font size of the document, values of 9pt (default), 10pt, 11pt and 12pt
+fontsize: 9pt
+
+# Optional: Force one-column layout, default is two-column
+#one_column: true
+
+# Optional: Enables lineno mode, but only if one_column mode is also true
+#lineno: true
+
+# Optional: Enable one-sided layout, default is two-sided
+#one_sided: true
+
+# Optional: Enable section numbering, default is unnumbered
+#numbersections: true
+
+# Optional: Specify the depth of section number, default is 5
+#secnumdepth: 5
+
+# Optional: Skip inserting final break between acknowledgements, default is false
+skip_final_break: true
+
+# Optional: Bibliography 
+bibliography: pinp
+
+# Optional: Enable a 'Draft' watermark on the document
+#watermark: true
+
+# Customize footer, eg by referencing the vignette
+footer_contents: "Ecología Forestal"
+
+# Produce a pinp document
+output: pinp::pinp
+
+# Required: Vignette metadata for inclusion in a package.
+vignette: >
+  %\VignetteIndexEntry{YourPackage-vignetteentry}
+  %\VignetteKeywords{YourPackage, r, anotherkeyword}
+  %\VignettePackage{YourPackage}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(BIOMASS)
+```
+
+# Introduccíon
+
+Colombia presenta una alta diversidad biológica, amenazada por la intensa presión antrópica que envuelve la deforestación, la fragmentación y los cambios en el uso del suelo, causados principalmente por actividades ganaderas y agrícolas.\citep{salas} Las áreas que se recuperan de la perturbación, donde se ha practicado principalmente la agricultura de subsistencia de roza y quema, y zonas de pastura para la ganadería, generan un aumento de los bosques secundarios\citep{hammer} que han venido presentando una regeneración a través del tiempo.
+
+La Regeneración del ecosistema hace parte de un proceso dinámico en el cual nuevos individuos entran a hacer parte de la población reproductora a medida de que otros mueren por medio de un proceso natural /citep{pulido}, dando así paso a nuevas especies más prósperas en las condiciones que surgen a partir del cambio de vegetación y variables climáticas. La incidencia de las prácticas forestales o agrícolas suele alterar los parámetros de regeneración del bosque ya que esto altera condiciones esenciales para la vida de ciertas especies cambiando así la evolución natural del bosque \citep{pulido}.
+
+Para el estudio de la  regeneración o sucesión ecológica en el bosque húmedo tropical de la La Reserva Natural Hacienda San Pedro  ubicada en la cuenca media del río Magdalena se definen cuatro estados sucesionales de crecimiento del bosque: SS1: sucesión en edad de 0-5 años, con área de 30 ha, presencia de pastos, escasa vegetación arbórea y donde predominó la actividad ganadera; SS2: sucesión en edad de 10-13 años con vegetación arbórea, con área de 50 ha, con presencia de helechos y dominio de especies heliófilas de rápido crecimiento, con suelo anteriormente usado en actividades agrícolas; SS3: sucesión con edad de 18-20 años, con área de 40ha, con algunos árboles de altura mayor a 30m y un dosel más cubierto, con presencia de epífitas y especies tolerantes a la sombra y con suelo antes usado en actividades ganaderas; SS4: sucesión avanzada con edad mayor a 50 años, con área de 180 ha, con grandes árboles y dosel cubierto, con pocos claros y presencia de epífitas y bromelias y con presencia de bosque anteriormente sometido a tala selectiva. 
+
+En esta reserva  se realizó un levantamiento de datos por medio de 4 parcelas ubicadas según las condiciones topográficas y logísticas, donde se tuvieron en cuenta dos especies, la primera *Jacaranda Copaia* que es un árbol grande de hasta 35 m de altura que vive mejor a una altura de 0 a 1000 msnm, siendo este de tipo heliófita y una especie pionera en la regeneración de bosques[1], la cual se encontraron muy pocos individuos en todas las parcelas  y la segunda, *Vismia Macrophylla*, árbol o arbusto característico de lugares en barbecho, enrastrojados o áreas de pastos cercanas a bosques fragmentados, de tipo Heliófita[6], puede llegar a medir hasta 12 m de altura, presente más comúnmente entre los 10 a 700 msnm\citep{vismia}. Con dichas especies se realizó una comparación entre los estados sucesionales de crecimiento y el cambio en la altura de estas dos especies en las diferentes parcelas por medio de los modelos Weibull y Michaelis Menten. 
+
+Las radiación que llega a un determinado lugar influyen en numerosos procesos fisiológicos, reproductivos de plantas, y afecta de forma muy significativa el funcionamiento general del ecosistema. Los rasgos de la radiación que tienen relevancia ecológica y evolutiva son: la intensidad, la calidad, la direccionalidad, y la distribución en el tiempo y en el espacio.
+Además, la luz es el factor abiótico más variable en el tiempo y en el espacio, el análisis de esta variabilidad, así como sus causas y consecuencias , supone una de las mejores aproximaciones al estudio de la luz como un factor ecológico y evolutivo muy importante. \citep{vallares} Es por eso que mediante un análisis de porcentaje de radiación que pasa a través del dosel realizado con el software ImageJ por medio de fotos tomadas en medio del dosel dentro de las parcelas, se espera que muestre la disminución en la disponibilidad de luz a medida que la regeneración del bosque es más avanzada y con esto analizar el comportamiento en la cantidad de individuos encontrados en cada parcela de las especies mencionadas anteriormente según sus hábitos de crecimiento y el gremio ecológico que presentan.
+
+Con todo esto se espera responder cómo varía la altura de Vismia Macrophylla y Jacaranda Copaia a través de los diferentes estados de sucesión de  un bosque húmedo tropical de acuerdo con sus hábitos de crecimiento.
+
+# Materiales y métodos
+
+## Localización y descripción del área de estudio
+
+La Reserva Natural Hacienda San Pedro tiene carácter privado, con una extensión total de $300ha$ y predominio de áreas con bosque secundario en regeneración natural. Se encuentra ubicada en la cuenca media del río Magdalena, junto al río Nus $(6^{\circ} 27'35'' N\ , \ 74^{\circ} 47'15'' W)$, en el Municipio Maceo, Departamento de Antioquia, Colombia **Fig.1**. Tiene una temperatura media de $23,8^{\circ}C$, una humedad relativa del $87\%$ y una precipitación media anual de $2.757mm$, para la estación meteorológica Caracolí ($2308053$ - Red Hidrometeorológica de Empresas Públicas de Medellín $–EE.PP.M-$). Se encuentra en zona de Bosque Húmedo Premontano $(bh-P)$ y Bosque Húmedo Tropical $(bh-T)$, en un rango altitudinal de $800$ a $1.100m$ $s.n.m$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width= 0.5\textwidth]{figure1.jpeg}
+  \caption{Reserva Natural Hacienda San Pedro}
+\end{figure}
+
+
+El desarrollo del presente trabajo se dio en dos etapas las cuales se describen a continuación:
+
+### 1) Levantamiento de información
+
+Para la recolección de la información se procedió a establecer áreas determinadas para cada parcela estudiada de acuerdo con condiciones como la topografía y logísticas que permitieran el desarrollo del trabajo. Se centró la recolección de la información en especies de plantas comunes en las diferentes parcelas; para el caso del presente análisis se trabajaron las especies Vismia Macrophylla y Jacaranda Copaia. Las áreas de las parcelas y especificaciones se se relacionan en la **Table 1**:
+
+```{r, results='asis'}
+knitr::kable(read_xlsx("tabla1.xlsx"), format = "latex", 
+             caption = "Areas de parcelas trabajadas")
+```
+
+
+Una vez establecidas las parcelas se procedió a recolectar la información de las correspondientes especies, para la recolección de esta información se procedió a categorizar las especies en tres tamaños los cuales fueron Brinzales, Latizales y Fustales; dicha descripción se presenta en la **Table 2** 
+
+
+```{r, results='asis'}
+knitr::kable(read_xlsx("tabla2.xlsx"), format = "latex", 
+             caption = "Catregorias de especies")
+```
+
+Posterior al montaje de cada una de las parcelas se procedió a medir la altura $(m)$  y $DAP \ (cm)$ de las especies que se estudiaron. Para el registro de los datos se utilizó la `App Memento` en la cual se tuvo en cuenta la corrección por pendiente para el caso de la categoría de fustales, para el caso de los latizales no se hizo corrección por pendiente y en el caso de los brinzales se realizó la respectiva medición con la cinta métrica. En cada una de las parcelas se observaron características bióticas y abióticas como lo fueron vegetación dominante, cobertura, características sustrato, topografía y perturbaciones (antrópicas o naturales).
+
+Otro de los aspectos que se tomó en cuenta en la recolección de los datos fueron las fotografías bajo el dosel  de cada una de las parcelas con el objetivo de realizar la respectiva caracterización de radiación que pasa a través del dosel y entender la relación que tiene con el estado de sucesión de las parcelas, también se tomaron dichas fotografías para observar la relación que guarda la radiación con los hábitos de crecimiento de las especies que se analizaron. 
+
+### 2) Procesamiento de los datos recolectados
+
+#### a) Ajuste del modelo 
+
+
+Se ajustó un modelo que describiera la altura en función del $DAP$. El modelo biológicamente correcto presenta comúnmente una forma sigmoidea con un punto de inflexión en la parte inferior de los datos o bien forma cóncava sin punto de inflexión aparente \citep{huan}, esto sugiere modelos no lineales que ajusten el comportamiento esperado; por experiencia se sabe que hay modelos alométricos que describen lo ya mencionado, es el caso del modelo Weibull y Michaelis Menten, estos se escogieron para el ajuste, pues son funciones que siguen la ontogenia natural. Para hacerlos, se tuvo que ordenar los datos, algunos de estos no eran lógicos, se encontró DAP del orden de $2cm$ o menos con alturas de $96 m$ lo cual no es posible, se halló que todos los datos no superan $50 m$ de altura, excepto algunos con el problema descrito, se hace un filtro de Altura $< \ 50 m$, con esto, se ajustan los modelos para las dos especies en cuestión.
+
+#### b) Procesamiento de fotografías del dosel
+
+El dosel influye en la cantidad de radiación del bosque dependiendo de la cantidad de radiación directa o indirecta que llegue al ecosistema. la penetración de la radiación depende de la localización, del tamaño, la arquitectura y altura del dosel. la radiación lumínica disponible se estimó mediante fotografías realizadas en campo.   las imágenes se procesaron con el software `imagenJ`. Este programa convierte las fotos en imágenes binarias de blancos y negros (Fig.2). De esta manera se puede obtener el porcentaje blancos en cada fotografía, asumiendo este como el porcentaje de radiación que atraviesa el dosel como se puede observar en la tabla 3 . 
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width= 0.5\textwidth]{ima2.png}
+  \caption{Conversión de imagenes a blancos y negros}
+\end{figure}
+
+
+
+# Resultados
+
+La forma y la disposición del dosel en las diferentes parcelas y sus respectivos estados de sucesión dieron lugar a dos grupos  de formaciones significativas sobre la radiación disponible en el bosque. El primero de ellos comprende las parcelas 1,3 y 4  que pertenecen a los estados de sucesión SS1, SS2 Y SS1 respectivamente donde en las parcelas 1 y 4  se puede encontrar presencia de pastos y escasa vegetación arbórea, en la parcela 3 cuenta con vegetación arbórea, con presencia de helechos y especies heliófilas de rápido crecimiento. Es por eso que este primer grupo la radiación en el bosque fue en promedio de un $17 \%$ (**Table 3**) de radiación disponible. Por otro lado la parcela 2 perteneciente al estado de sucesión SS3 donde la radiación disponible no superó el $8 \%$ (**Table 3**) debido a que en este estado teniendo en cuenta su edad de regeneración se puede encontrar algunos árboles de altura mayor de $30 m$ y de esta manera teniendo un dosel más cubierto, permitiendo un menor ingreso de radiación al interior del bosque, esta ausencia de radiación disponible explica la presencia de plantas epifitas y especies tolerantes a la sombra. 
+
+
+```{r}
+knitr::kable(read_xlsx("tabla3.xlsx"), format = "latex", 
+             caption = "Porcentaje de radiación que atraviesa el dosel")
+```
+
+
+
+
+```{r}
+data<- read_xlsx("parcelas (2).xlsx")
+
+data<- data %>% mutate(Habito= as.factor(Habito), Especie= as.factor(Especie), 
+                       Parcela= as.factor(Parcela))
+
+data<- data %>% filter(DAP..cm. != 0 & Altura != 0) 
+data<- data %>% filter(Altura < 50)
+
+data<- data %>% filter(Especie != "Xylopia frutescens")
+
+data<- data %>% mutate(Habito= if_else(DAP..cm. < 5, "Brinzales", 
+                                       if_else(DAP..cm. >10, "Fustales", "Latizales")))
+```
+
+
+```{r, eval=FALSE, include=FALSE}
+model<- modelHD(data$DAP..cm., data$Altura, method = "weibull")
+
+model<- nls(Altura ~ a*(1-exp(-(DAP..cm./b)^c)), data = data,
+            start = list(a= 13.324489 , b= 7.134244, c= 1.334295))
+
+ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
+  geom_point(aes(color= Especie, shape= Habito)) +
+  geom_smooth(broom::augment(model), mapping = aes(x= DAP..cm., y= .fitted))
+```
+
+
+# Modelo Michaelis Menten
+
+El modelo Weibull a pesar de tener un RSE de 2.67 con un AIC de 873.76 frente al Michaelis Menten RSE de 2.70 con un  AIC de 876.90, no se puede escoger como el mejor modelo pues gráficamente tiende disminuir la altura a medida que aumenta el DAP > 25 lo cual no tiene sentido, lo normal sería un tendencia asintótica a medida que aumenta el DAP; por esta razón se elige al modelo de Michaelis Menten como el modelo que ajusta mejor a los datos, pues sigue la tendencia natural.
+
+```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Modelo Michaelis Menten parcela-especie"}
+MP<- nls(Altura ~ SSmicmen(DAP..cm., a,b), data = data)
+
+model<- nls(Altura ~ (a*DAP..cm.)/(b+DAP..cm.), data= data,
+            start = list(a= 19.803, b= 9.417))
+
+ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
+  geom_point(aes(color= Parcela, shape= Especie)) +
+  geom_smooth(broom::augment(model), mapping = aes(x= DAP..cm., y= .fitted))
+```
+
+
+```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Modelo Michaelis Menten especie-habito"}
+ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
+  geom_point(aes(color= Especie, shape= Habito)) +
+  geom_smooth(broom::augment(model), mapping = aes(x= DAP..cm., y= .fitted))
+```
+
+
+```{r}
+knitr::kable(data %>% group_by(Habito) %>% summarise(Dcm= sqrt(mean(DAP..cm.^2))), 
+             format = "latex", caption = "Diametro cuadratico medio")
+```
+
+
+```{r}
+data1<- data %>% group_by(Parcela, Habito) %>%  filter(Especie == "\r\nJacaranda Copaia") %>% 
+  mutate(`Jacaranda Copaia`= if_else(Parcela == "1" & 
+                                          Habito == "Brinzales", 
+                                        length(Habito)*10000/50, 
+                                        if_else(Parcela == "1" & 
+                                                  Habito == "Latizales", 
+                                                length(Habito)* 10000/250, 
+                                                if_else(Parcela == "1" &
+                                                          Habito == "Latizales", 
+                                                        length(Habito)*10000/500, 
+                                                        if_else(Parcela == "2", 
+                                                                length(Habito)*(18*18), 
+                                                                if_else(Parcela== "3", 
+                                                                        length(Habito)*(30*15), 
+                                                                        length(Habito)*(40*20))))))) %>% 
+  summarise(`Jacaranda Copaia (ind)`= unique(`Jacaranda Copaia`))
+  
+data2<- data %>% group_by(Parcela, Habito) %>% filter(Especie == "Vismia macrophylla")  %>% 
+  mutate(`Vismia macrophylla` = if_else(Parcela == "1" & 
+                                          Habito == "Brinzales", 
+                                        length(Habito)*10000/50, 
+                                        if_else(Parcela == "1" & 
+                                                  Habito == "Latizales", 
+                                                length(Habito)* 10000/250, 
+                                                if_else(Parcela == "1" & 
+                                                          Habito == "Latizales", 
+                                                        length(Habito)*10000/500, 
+                                                        if_else(Parcela == "2", 
+                                                                length(Habito)*(18*18), 
+                                                                if_else(Parcela== "3", 
+                                                                        length(Habito)*(30*15), 
+                                                                        length(Habito)*(40*20))))))) %>% 
+  summarise(`Vismia macrophylla (ind)`= unique(`Vismia macrophylla`))
+```
+
+
+
+```{r}
+knitr::kable(data1, format = "latex", caption = "Numero de individuos por hectarea de Jacaranda Copaia")
+```
+
+
+```{r}
+knitr::kable(data2, format = "latex", caption = "Numero de individuos por hectarea de Vismia macrophylla")
+```
+
+
+
+
+
+
+
+
+
+

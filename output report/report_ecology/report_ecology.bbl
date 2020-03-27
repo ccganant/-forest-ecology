@@ -1,0 +1,52 @@
+\begin{thebibliography}{6}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{de~Colombia(2007)}]{vismia}
+de~Colombia UN (2007).
+\newblock \enquote{COL000259536 - Vismia macrophylla Kunth - Hypericaceae.}
+\newblock
+  \urlprefix\url{http://www.biovirtual.unal.edu.co/es/colecciones/detail/610578/}.
+
+\bibitem[{Hammer \emph{et~al.}(2001)Hammer, Harper, Ryan
+  \emph{et~al.}}]{hammer}
+Hammer {\O}, Harper DA, Ryan PD, \emph{et~al.} (2001).
+\newblock \enquote{PAST: Paleontological statistics software package for
+  education and data analysis.}
+\newblock \emph{Palaeontologia electronica}, \textbf{4}(1), 9.
+
+\bibitem[{Huang \emph{et~al.}(1992)Huang, Titus, and Wiens}]{huan}
+Huang S, Titus SJ, Wiens DP (1992).
+\newblock \enquote{Comparison of nonlinear height--diameter functions for major
+  Alberta tree species.}
+\newblock \emph{Canadian Journal of Forest Research}, \textbf{22}(9),
+  1297--1304.
+
+\bibitem[{Pulido(2002)}]{pulido}
+Pulido FJ (2002).
+\newblock \enquote{Biolog{\'\i}a reproductiva y conservaci{\'o}n: el caso de la
+  regeneraci{\'o}n de bosques templados y subtropicales de robles (Quercus
+  spp.).}
+\newblock \emph{Revista chilena de historia natural}, \textbf{75}(1), 5--15.
+
+\bibitem[{Salas~Correa \emph{et~al.}(2018)Salas~Correa, Mancera~Rodr{\'\i}guez
+  \emph{et~al.}}]{salas}
+Salas~Correa {\'A}D, Mancera~Rodr{\'\i}guez NJ, \emph{et~al.} (2018).
+\newblock \enquote{Relaciones entre la diversidad de aves y la estructura de
+  vegetaci{\'o}n en cuatro etapas sucesionales de bosque secundario, Antioquia,
+  Colombia.}
+
+\bibitem[{Valladares(2006)}]{vallares}
+Valladares F (2006).
+\newblock \enquote{La disponibilidad de luz bajo el dosel de los bosques y
+  matorrales ib{\'e}ricos estimada mediante fotograf{\'\i}a hemisf{\'e}rica.}
+\newblock \emph{Ecolog{\'\i}a}, \textbf{20}, 11--30.
+
+\end{thebibliography}
