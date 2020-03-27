@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{8}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -9,8 +9,8 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem[{de~Colombia(2007)}]{vismia}
-de~Colombia UN (2007).
+\bibitem[{biovirtual(2007)}]{vismia}
+biovirtual (2007).
 \newblock \enquote{COL000259536 - Vismia macrophylla Kunth - Hypericaceae.}
 \newblock
   \urlprefix\url{http://www.biovirtual.unal.edu.co/es/colecciones/detail/610578/}.
@@ -29,6 +29,11 @@ Huang S, Titus SJ, Wiens DP (1992).
 \newblock \emph{Canadian Journal of Forest Research}, \textbf{22}(9),
   1297--1304.
 
+\bibitem[{Lezama~Ahumada \emph{et~al.}(2019)}]{leza}
+Lezama~Ahumada K, \emph{et~al.} (2019).
+\newblock \enquote{Caracterizaci{\'o}n de la regeneraci{\'o}n de bosques en
+  tres ambientes contrastantes en el retorno, Guaviare-Colombia.}
+
 \bibitem[{Pulido(2002)}]{pulido}
 Pulido FJ (2002).
 \newblock \enquote{Biolog{\'\i}a reproductiva y conservaci{\'o}n: el caso de la
@@ -42,6 +47,12 @@ Salas~Correa {\'A}D, Mancera~Rodr{\'\i}guez NJ, \emph{et~al.} (2018).
 \newblock \enquote{Relaciones entre la diversidad de aves y la estructura de
   vegetaci{\'o}n en cuatro etapas sucesionales de bosque secundario, Antioquia,
   Colombia.}
+
+\bibitem[{Tapia and Armas(2014)}]{tapia}
+Tapia W, Armas G (2014).
+\newblock \enquote{Estudio de la actividad antibacteriana y t{\'o}xica del
+  kuiship (jacaranda copaia).}
+\newblock \emph{La Granja}, \textbf{19}(1), 12--20.
 
 \bibitem[{Valladares(2006)}]{vallares}
 Valladares F (2006).

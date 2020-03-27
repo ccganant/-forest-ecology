@@ -103,7 +103,7 @@ La Regeneración del ecosistema hace parte de un proceso dinámico en el cual nu
 
 Para el estudio de la  regeneración o sucesión ecológica en el bosque húmedo tropical de la La Reserva Natural Hacienda San Pedro  ubicada en la cuenca media del río Magdalena se definen cuatro estados sucesionales de crecimiento del bosque: SS1: sucesión en edad de 0-5 años, con área de 30 ha, presencia de pastos, escasa vegetación arbórea y donde predominó la actividad ganadera; SS2: sucesión en edad de 10-13 años con vegetación arbórea, con área de 50 ha, con presencia de helechos y dominio de especies heliófilas de rápido crecimiento, con suelo anteriormente usado en actividades agrícolas; SS3: sucesión con edad de 18-20 años, con área de 40ha, con algunos árboles de altura mayor a 30m y un dosel más cubierto, con presencia de epífitas y especies tolerantes a la sombra y con suelo antes usado en actividades ganaderas; SS4: sucesión avanzada con edad mayor a 50 años, con área de 180 ha, con grandes árboles y dosel cubierto, con pocos claros y presencia de epífitas y bromelias y con presencia de bosque anteriormente sometido a tala selectiva. 
 
-En esta reserva  se realizó un levantamiento de datos por medio de 4 parcelas ubicadas según las condiciones topográficas y logísticas, donde se tuvieron en cuenta dos especies, la primera *Jacaranda Copaia* que es un árbol grande de hasta 35 m de altura que vive mejor a una altura de 0 a 1000 msnm, siendo este de tipo heliófita y una especie pionera en la regeneración de bosques[1], la cual se encontraron muy pocos individuos en todas las parcelas  y la segunda, *Vismia Macrophylla*, árbol o arbusto característico de lugares en barbecho, enrastrojados o áreas de pastos cercanas a bosques fragmentados, de tipo Heliófita[6], puede llegar a medir hasta 12 m de altura, presente más comúnmente entre los 10 a 700 msnm\citep{vismia}. Con dichas especies se realizó una comparación entre los estados sucesionales de crecimiento y el cambio en la altura de estas dos especies en las diferentes parcelas por medio de los modelos Weibull y Michaelis Menten. 
+En esta reserva  se realizó un levantamiento de datos por medio de 4 parcelas ubicadas según las condiciones topográficas y logísticas, donde se tuvieron en cuenta dos especies, la primera *Jacaranda Copaia* que es un árbol grande de hasta 35 m de altura que vive mejor a una altura de 0 a 1000 msnm, siendo este de tipo heliófita y una especie pionera en la regeneración de bosques \citep{tapia}, la cual se encontraron muy pocos individuos en todas las parcelas  y la segunda, *Vismia Macrophylla*, árbol o arbusto característico de lugares en barbecho, enrastrojados o áreas de pastos cercanas a bosques fragmentados, de tipo Heliófita \citep{leza}, puede llegar a medir hasta 12 m de altura, presente más comúnmente entre los 10 a 700 msnm\citep{vismia}. Con dichas especies se realizó una comparación entre los estados sucesionales de crecimiento y el cambio en la altura de estas dos especies en las diferentes parcelas por medio de los modelos Weibull y Michaelis Menten. 
 
 Las radiación que llega a un determinado lugar influyen en numerosos procesos fisiológicos, reproductivos de plantas, y afecta de forma muy significativa el funcionamiento general del ecosistema. Los rasgos de la radiación que tienen relevancia ecológica y evolutiva son: la intensidad, la calidad, la direccionalidad, y la distribución en el tiempo y en el espacio.
 Además, la luz es el factor abiótico más variable en el tiempo y en el espacio, el análisis de esta variabilidad, así como sus causas y consecuencias , supone una de las mejores aproximaciones al estudio de la luz como un factor ecológico y evolutivo muy importante. \citep{vallares} Es por eso que mediante un análisis de porcentaje de radiación que pasa a través del dosel realizado con el software ImageJ por medio de fotos tomadas en medio del dosel dentro de las parcelas, se espera que muestre la disminución en la disponibilidad de luz a medida que la regeneración del bosque es más avanzada y con esto analizar el comportamiento en la cantidad de individuos encontrados en cada parcela de las especies mencionadas anteriormente según sus hábitos de crecimiento y el gremio ecológico que presentan.
@@ -226,7 +226,7 @@ ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
 
 ```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Modelo Michaelis Menten especie-habito"}
 ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
-  geom_point(aes(color= Especie, shape= Habito)) +
+  geom_point(aes(color= Habito, shape= Especie)) +
   geom_smooth(broom::augment(model), mapping = aes(x= DAP..cm., y= .fitted))
 ```
 
@@ -249,10 +249,10 @@ data1<- data %>% group_by(Parcela, Habito) %>%  filter(Especie == "\r\nJacaranda
                                                           Habito == "Latizales", 
                                                         length(Habito)*10000/500, 
                                                         if_else(Parcela == "2", 
-                                                                length(Habito)*(18*18), 
+                                                                length(Habito)*10000/(18*18), 
                                                                 if_else(Parcela== "3", 
-                                                                        length(Habito)*(30*15), 
-                                                                        length(Habito)*(40*20))))))) %>% 
+                                                                        length(Habito)*10000/(30*15), 
+                                                                        length(Habito)*10000/(40*20))))))) %>% 
   summarise(`Jacaranda Copaia (ind)`= unique(`Jacaranda Copaia`))
   
 data2<- data %>% group_by(Parcela, Habito) %>% filter(Especie == "Vismia macrophylla")  %>% 
@@ -266,22 +266,32 @@ data2<- data %>% group_by(Parcela, Habito) %>% filter(Especie == "Vismia macroph
                                                           Habito == "Latizales", 
                                                         length(Habito)*10000/500, 
                                                         if_else(Parcela == "2", 
-                                                                length(Habito)*(18*18), 
+                                                                length(Habito)*10000/(18*18), 
                                                                 if_else(Parcela== "3", 
-                                                                        length(Habito)*(30*15), 
-                                                                        length(Habito)*(40*20))))))) %>% 
+                                                                        length(Habito)*10000/(30*15), 
+                                                                        length(Habito)*10000/(40*20))))))) %>% 
   summarise(`Vismia macrophylla (ind)`= unique(`Vismia macrophylla`))
 ```
 
 
 
-```{r}
-knitr::kable(data1, format = "latex", caption = "Numero de individuos por hectarea de Jacaranda Copaia")
+```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Número de individuos por parcela"}
+data1<- data1 %>% mutate(Especie= "Jacaranda Copaia") %>% rename(N_ind= `Jacaranda Copaia (ind)`)
+
+data2<- data2 %>% mutate(Especie= "Vismia macrophylla") %>% rename(N_ind= `Vismia macrophylla (ind)`)
+
+data3<- rbind(data1, data2)
+
+data3$Habito = factor(data3$Habito, levels=c('Brinzales','Latizales','Fustales'))
+
+data3 %>% group_by(Especie) %>% ggplot(., mapping = aes(x= Parcela, y= N_ind)) + 
+  geom_col(mapping = aes(fill= Especie)) + facet_wrap(~Habito)
 ```
 
 
+
 ```{r}
-knitr::kable(data2, format = "latex", caption = "Numero de individuos por hectarea de Vismia macrophylla")
+knitr::kable(data3, format = "latex", caption = "Numero de individuos por hectarea")
 ```
 
 
