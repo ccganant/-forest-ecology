@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{15}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -15,12 +15,24 @@ biovirtual (2007).
 \newblock
   \urlprefix\url{http://www.biovirtual.unal.edu.co/es/colecciones/detail/610578/}.
 
+\bibitem[{Grubb(1977)}]{grubb}
+Grubb PJ (1977).
+\newblock \enquote{The maintenance of species-richness in plant communities:
+  the importance of the regeneration niche.}
+\newblock \emph{Biological reviews}, \textbf{52}(1), 107--145.
+
 \bibitem[{Hammer \emph{et~al.}(2001)Hammer, Harper, Ryan
   \emph{et~al.}}]{hammer}
 Hammer {\O}, Harper DA, Ryan PD, \emph{et~al.} (2001).
 \newblock \enquote{PAST: Paleontological statistics software package for
   education and data analysis.}
 \newblock \emph{Palaeontologia electronica}, \textbf{4}(1), 9.
+
+\bibitem[{Hooper \emph{et~al.}(2004)Hooper, Legendre, and Condit}]{hooper}
+Hooper ER, Legendre P, Condit R (2004).
+\newblock \enquote{Factors affecting community composition of forest
+  regeneration in deforested, abandoned land in Panama.}
+\newblock \emph{Ecology}, \textbf{85}(12), 3313--3326.
 
 \bibitem[{Huang \emph{et~al.}(1992)Huang, Titus, and Wiens}]{huan}
 Huang S, Titus SJ, Wiens DP (1992).
@@ -29,10 +41,31 @@ Huang S, Titus SJ, Wiens DP (1992).
 \newblock \emph{Canadian Journal of Forest Research}, \textbf{22}(9),
   1297--1304.
 
+\bibitem[{Jakovac \emph{et~al.}(2014)Jakovac, Bentos, Mesquita, and
+  Williamson}]{jak}
+Jakovac AC, Bentos TV, Mesquita RC, Williamson GB (2014).
+\newblock \enquote{Age and light effects on seedling growth in two alternative
+  secondary successions in central Amazonia.}
+\newblock \emph{Plant Ecology \& Diversity}, \textbf{7}(1-2), 349--358.
+
+\bibitem[{Lasky \emph{et~al.}(2014)Lasky, Uriarte, Boukili, Erickson,
+  John~Kress, and Chazdon}]{lasky}
+Lasky JR, Uriarte M, Boukili VK, Erickson DL, John~Kress W, Chazdon RL (2014).
+\newblock \enquote{The relationship between tree biodiversity and biomass
+  dynamics changes with tropical forest succession.}
+\newblock \emph{Ecology letters}, \textbf{17}(9), 1158--1167.
+
 \bibitem[{Lezama~Ahumada \emph{et~al.}(2019)}]{leza}
 Lezama~Ahumada K, \emph{et~al.} (2019).
 \newblock \enquote{Caracterizaci{\'o}n de la regeneraci{\'o}n de bosques en
   tres ambientes contrastantes en el retorno, Guaviare-Colombia.}
+
+\bibitem[{Pickett \emph{et~al.}(1987)Pickett, Collins, and Armesto}]{pic}
+Pickett S, Collins S, Armesto JJ (1987).
+\newblock \enquote{A hierarchical consideration of causes and mechanisms of
+  succession.}
+\newblock In \emph{Theory and models in vegetation science}, pp. 109--114.
+  Springer.
 
 \bibitem[{Pulido(2002)}]{pulido}
 Pulido FJ (2002).
@@ -40,6 +73,19 @@ Pulido FJ (2002).
   regeneraci{\'o}n de bosques templados y subtropicales de robles (Quercus
   spp.).}
 \newblock \emph{Revista chilena de historia natural}, \textbf{75}(1), 5--15.
+
+\bibitem[{Salas \emph{et~al.}(2016)Salas, Gregoire, Craven, and
+  Gilabert}]{forest}
+Salas C, Gregoire TG, Craven DJ, Gilabert H (2016).
+\newblock \enquote{Forest growth modelling: the state of the art.}
+\newblock \emph{Bosque}, \textbf{37}(1), 3--12.
+
+\bibitem[{Salas-Correa and Mancera-Rodr{\'\i}guez(2018)}]{sala}
+Salas-Correa {\'A}D, Mancera-Rodr{\'\i}guez NJ (2018).
+\newblock \enquote{RELATIONSHIPS BETWEEN BIRD DIVERSITY AND VEGETATION
+  STRUCTURE IN FOUR SECONDARY FOREST SUCCESSIONAL STAGES, ANTIOQUIA, COLOMBIA.}
+\newblock \emph{Revista UDCA Actualidad \& Divulgaci{\'o}n Cient{\'\i}fica},
+  \textbf{21}(2), 519--529.
 
 \bibitem[{Salas~Correa \emph{et~al.}(2018)Salas~Correa, Mancera~Rodr{\'\i}guez
   \emph{et~al.}}]{salas}

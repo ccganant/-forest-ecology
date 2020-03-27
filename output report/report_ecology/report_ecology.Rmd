@@ -29,16 +29,14 @@ doi_footer: "Depertamento de ciencias forestales"
 
 # Abstract
 abstract: |
-  Your abstract will be typeset here, and used by default a visually distinctive font.
-  An abstract should explain to the general reader the major contributions of the article. 
+  Entender el comportamiento de variables como altura y radiación es de vital importancia para analizar las dinámicas de regeneración que un ecosistema ha tenido de acuerdo con las  perturbaciones particulares que presenta. En este informe se analizan aspectos como el crecimiento y distribución de dos especies (Vismia Macrophylla y Jacaranda Copaia), en 4 parcelas con diferentes estados de sucesión; dicho análisis se realiza de acuerdo con los hábitos de crecimiento de cada una de las especies. Se aplica el modelo Michaelis Menten con un RSE de 2.70 y un  AIC de 876.90 para explicar el crecimiento de estas especies y la forma como varía su altura relacionado con el cambio en el estado de sucesión del bosque, obteniendo relaciones significativas entre la altura de las especies y el estado de sucesión. De la misma forma por medio del análisis del porcentaje de radiación realizado mediante el software ImageJ se busca mostrar la disminución de disponibilidad de luz que atraviesa el dosel obteniendo la mayor cantidad de luz  (17,38%) en la parcela 4 que presenta un estado de sucesión SS1 y una menor cantidad de luz (8,92%) en la parcela 2 con un estado de sucesión SS3, demostrando así dicha hipótesis.   
 
 # Optional: One or more keywords
 keywords:
-  - one
-  - two
-  - optional
-  - keywords
-  - here
+  - Vismia Macrophylla
+  - Jacaranda Copaia
+  - Sucesión
+  - Radiación
 
 # Paper size for the document, values of letter and a4
 papersize: letter
@@ -167,17 +165,9 @@ El dosel influye en la cantidad de radiación del bosque dependiendo de la canti
 
 
 
-# Resultados
+# Resultados y Discusión 
 
-La forma y la disposición del dosel en las diferentes parcelas y sus respectivos estados de sucesión dieron lugar a dos grupos  de formaciones significativas sobre la radiación disponible en el bosque. El primero de ellos comprende las parcelas 1,3 y 4  que pertenecen a los estados de sucesión SS1, SS2 Y SS1 respectivamente donde en las parcelas 1 y 4  se puede encontrar presencia de pastos y escasa vegetación arbórea, en la parcela 3 cuenta con vegetación arbórea, con presencia de helechos y especies heliófilas de rápido crecimiento. Es por eso que este primer grupo la radiación en el bosque fue en promedio de un $17 \%$ (**Table 3**) de radiación disponible. Por otro lado la parcela 2 perteneciente al estado de sucesión SS3 donde la radiación disponible no superó el $8 \%$ (**Table 3**) debido a que en este estado teniendo en cuenta su edad de regeneración se puede encontrar algunos árboles de altura mayor de $30 m$ y de esta manera teniendo un dosel más cubierto, permitiendo un menor ingreso de radiación al interior del bosque, esta ausencia de radiación disponible explica la presencia de plantas epifitas y especies tolerantes a la sombra. 
-
-
-```{r}
-knitr::kable(read_xlsx("tabla3.xlsx"), format = "latex", 
-             caption = "Porcentaje de radiación que atraviesa el dosel")
-```
-
-
+En la **Fig.2** se muestra el modelo escogido (Michaelis Menten), el modelo Weibull a pesar de tener un $RSE$ de $2.67$ con un $AIC$ de $873.76$ frente al Michaelis Menten $RSE$ de $2.70$ con un  $AIC$ de $876.90$, no se puede escoger como el mejor modelo pues gráficamente tiende disminuir la altura a medida que aumenta el $DAP \ > \ 25$ lo cual no tiene sentido, lo normal sería un tendencia asintótica a medida que aumenta el DAP; por esta razón se elige al modelo de Michaelis Menten como el modelo que ajusta mejor a los datos, pues sigue la tendencia natural, para representar la variación de la altura con respecto al estado de sucesión relacionado con cada parcela. El ajuste “predice” de buena manera el comportamiento del sitio, pues muestra cómo las sucesiones tempranas (brinzales y latizales) tienen una pendiente de la recta tangente mayor, lo cual se puede interpretar como la tasa de cambio de la altura en función del DAP, es de esperarse que el crecimiento en etapas tempranas sea rápido, \citep{lasky} informaron tendencias de crecimiento-diversidad más fuertes y positivas durante la sucesión temprana, seguidas de tendencias de crecimiento-diversidad débiles y negativas en rodales más antiguos, es decir, que a una edad temprana y por ende un sucesión primaria donde es común encontrar brinzales y algunos latizales, la tasa de cambio de la altura será mayor que en otros estados, esto, puede ser causa de que el crecimiento es producto de diversos factores bióticos y abióticos, que interactúan sobre un árbol y sobre el bosque \citep{forest}, hay diversos factores que influyen en el crecimiento de los árboles en este estudio, sólo se esboza someramente el efecto de la luz.
 
 
 ```{r}
@@ -208,11 +198,7 @@ ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
 ```
 
 
-# Modelo Michaelis Menten
-
-El modelo Weibull a pesar de tener un RSE de 2.67 con un AIC de 873.76 frente al Michaelis Menten RSE de 2.70 con un  AIC de 876.90, no se puede escoger como el mejor modelo pues gráficamente tiende disminuir la altura a medida que aumenta el DAP > 25 lo cual no tiene sentido, lo normal sería un tendencia asintótica a medida que aumenta el DAP; por esta razón se elige al modelo de Michaelis Menten como el modelo que ajusta mejor a los datos, pues sigue la tendencia natural.
-
-```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Modelo Michaelis Menten parcela-especie"}
+```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Modelo Michaelis Menten parcela-especie", eval=TRUE, include=FALSE}
 MP<- nls(Altura ~ SSmicmen(DAP..cm., a,b), data = data)
 
 model<- nls(Altura ~ (a*DAP..cm.)/(b+DAP..cm.), data= data,
@@ -231,7 +217,18 @@ ggplot(data, mapping = aes(x= DAP..cm., y= Altura)) +
 ```
 
 
+Los diferentes estados de sucesión del bosque que presenta cada parcela con sus condiciones de sitio (suelo y clima) mostraron que ** Jacaranda Copaia** esté presente en mayor cantidad en  la parcela 3 con un estado de sucesión SS2 y ausente en la parcela 1 con  estado de secesión SS1 donde por la escasa vegetación arbórea hay mayor disponibilidad de luz y por ende las especies heliófilas como **Jacaranda Copaia** deberían ser más prósperas,  aunque es necesario aclarar que varios individuos de esta especie podrían no ser  representados en la toma de datos de la parcela 1, lo que no sucede en la parcela 4 que también tiene un estado de sucesión SS1 y si cuenta con individuos de dicha especie, esto se puede otorgar a qué **Jacaranda Copaia**  es una especie heliófita y pionera en la regeneración de bosques \citep{tapia}, por lo mismo se explica que esté presente en mayor cantidad en la parcela 3 con estado de sucesión SS2 donde dominan la especies heliófitas de rápido crecimiento gracias al gran porcentaje de radiación que atraviesa el dosel (**Table 3**).
+
 ```{r}
+knitr::kable(read_xlsx("tabla3.xlsx"), format = "latex", 
+             caption = "Porcentaje de radiación que atraviesa el dosel")
+```
+
+De acuerdo con la **Fig.2** se puede evidenciar la poca cantidad de individuos de **Jacaranda Copaia** en comparación con la especie **Vismia Macrophylla** que se encuentra  en todas las parcelas y en mayor cantidad. La Reserva Natural Hacienda San Pedro, que tiene predominio de áreas con bosque secundario en regeneración natural \citep{sala}, esto se muestra mediante la cantidad de individuos que se encuentran de **Vismia Macrophylla** en la mayoría de sus parcelas.  Además, el sitio históricamente ha tenido intervenciones agrícolas de ganadería y café, por lo cual es de esperarse este tipo de vegetación predominante, esto podría explicarse por que el uso de la tierra de alta intensidad puede reducir en gran medida la capacidad de recuperación de los ecosistemas al empobrecer el banco de semillas del suelo, agotar los nutrientes para el ciclado y compactar el suelo, así como al aumentar la distancia de los bosques maduros que son las principales fuentes de diversidad \citep{grubb, hooper, pic}, así mismo, la tierra sometida a sucesivos sucesos de incendios a menudo engendra bosques secundarios dominados por las especies pioneras del género Vismia (Hypericaceae) \citep{jak}
+
+
+
+```{r, eval=FALSE, include=FALSE}
 knitr::kable(data %>% group_by(Habito) %>% summarise(Dcm= sqrt(mean(DAP..cm.^2))), 
              format = "latex", caption = "Diametro cuadratico medio")
 ```
@@ -274,8 +271,11 @@ data2<- data %>% group_by(Parcela, Habito) %>% filter(Especie == "Vismia macroph
 ```
 
 
+Para mostrar el número de individuos por hectárea de las dos especies estudiadas se presenta **Fig.3**, en el cual se evidencia que **Vismia Macrophylla** presenta una mayor cantidad de individuos en la categoría de latizales y fustales es decir, con DAPs mayores a 5 cm, para todas las parcelas. Por otro lado,  se observa que **Jacaranda Copaia** presenta la mayor cantidad de individuos con un DAP menor a 5 cm (categoría brinzales). Para el caso de la parcela 2, se observa que si bien **Jacaranda Copaia** alcanza una baja cantidad de individuos en la categoría de fustales (DAP mayores a 10 cm), es decir árboles antiguos, con esto es suficiente para dispersar semillas y obtener de esta manera en la categoría de brinzales (DAP menores a 5 cm) árboles jóvenes, un buen número de individuos por hectárea para esta especie, lo que vendría siendo la regeneración del bosque en dicha parcela; Lo mismo se ocurren en la parcela 3 donde se tiene una menor cantidad de individuos en las categorías latizales y fustales y gran cantidad en la categoría de Brinzales para dicha especie. Otra de los aspectos a considerar es que en la  parcela 2 que presenta el mayor estado de sucesión (SS3), en la categoría de latizales no hay presencia de  Jacaranda Copaia; esto se ve reflejado en los pocos individuos que dominan el dosel de dicha especie y su regeneración, es decir mayor cantidad en la categoría de Brinzales. 
 
-```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Número de individuos por parcela"}
+Con respecto a **Vismia Macrophylla** se pueden hacer algunas apreciaciones relacionadas con las parcelas 1 y 4. Como se ha mencionado anteriormente, este género es uno de los pioneros en la regeneración de un bosque, esto se ve reflejado en estas dos parcelas las cuales presentan la mayoría de individuos asociados a esta especie (salvo categoría brinzales para parcela 4); Una de las posibles razones para esta salvedad es que si bien las parcelas 1 y 4 se clasificaron bajo el mismo estado de sucesión(SS1), la parcela 1 tenía un uso para la ganadería un poco más reciente comparado con la parcela 4, lo que puede estar relacionado con que al tener más perturbación en esta parcela no es posible la adaptación inicial de **Jacaranda Copaia**. Además podría estar relacionado con el sitio de muestreo de la parcela 1, debido a que estaba ubicada en una zona en límite con el uso agropecuario, ya que podría imposibilitar la llegada de semillas de **Jacaranda Copaia** para su colonización, esto se puede presentar por un efecto de borde para dicha parcela.  
+
+```{r, fig.height= 3.5, fig.width= 6, fig.cap= "Relación número de individuos (Ha) y categoría de vegetación por parcela"}
 data1<- data1 %>% mutate(Especie= "Jacaranda Copaia") %>% rename(N_ind= `Jacaranda Copaia (ind)`)
 
 data2<- data2 %>% mutate(Especie= "Vismia macrophylla") %>% rename(N_ind= `Vismia macrophylla (ind)`)
@@ -290,9 +290,21 @@ data3 %>% group_by(Especie) %>% ggplot(., mapping = aes(x= Parcela, y= N_ind)) +
 
 
 
-```{r}
+```{r, include=FALSE}
 knitr::kable(data3, format = "latex", caption = "Numero de individuos por hectarea")
 ```
+
+La forma y la disposición del dosel en las diferentes parcelas y sus respectivos estados de sucesión dieron lugar a dos grupos  de formaciones significativas sobre la radiación disponible en el bosque. El primero de ellos comprende las parcelas 1,3 y 4  que pertenecen a los estados de sucesión SS1, SS2 Y SS1 respectivamente donde en las parcelas 1 y 4  se puede encontrar presencia de pastos y escasa vegetación arbórea, en la parcela 3 cuenta con vegetación arbórea, con presencia de helechos y especies heliófilas de rápido crecimiento. Es por eso que en este primer grupo, la radiación incidente fue en promedio de un $17 \%$ (**Table 3**) de radiación disponible, esto puede presentarse por una baja densidad y tamaño en las copas de los árboles\citep{plateros} lo que permite el paso de una mayor cantidad de luz al sotobosque. 
+Por otro lado la parcela 2 perteneciente al estado de sucesión SS3 la radiación disponible no superó el $8 \%$ (**Table 3**) debido a que en este estado de regeneración se puede encontrar algunos árboles de altura mayor de $30 m$ y de esta manera teniendo un dosel más cerrado, sin permitir un ingreso de radiación al interior del bosque, lo que genera influencia en los procesos fisiológicos, morfológicos y reproductivos de los organismos presentes bajo el dosel, favorecido así a plantas epifitas y especies tolerantes a la sombra \citep{plateros}. Por estos motivos se puede explicar la ausencia de **Jacaranda Copaia** en esta parcela para la categoría de Latizales (**Fig.2**); la poca disponibilidad de luz en el sotobosque dificulta el crecimiento de especies Heliófitas. 
+
+Otra de las características importantes para la parcela 2 es que al presentar unas copas más cerradas en sus árboles se dan procesos de acumulación de materia orgánica en forma de hojarasca lo cual permitirá que en dicho estado de sucesión se mejoren las condiciones de disponibilidad de nutrientes en el suelo, aumente la riqueza del banco de semillas y se mejoren las condiciones de regeneración para la consolidación del bosque. Caso contrario, ocurre con las parcelas 1, 3 y 4, que si bien presentan estados de sucesión diferentes tiene la característica que no alcanzan ese cierre de copas necesario para empezar a acumular materia orgánica por medio de la hojarasca y por este motivo presentan especies que realizan un ciclado de nutrientes muy eficiente para presentar un crecimiento más rápido en comparación con las especies que ya están establecidas en la parcela 2 la cual se explica en el modelo presentado. 
+
+# Conclusiones
+
+A mayor estado de sucesión del bosque menor es la cantidad de luz disponible bajo el dosel y por ende menor la regeneración de plantas Heliófilas. 
+
+El uso y actividades previas del suelo puede llegar a ser limitante en la regeneración de un bosque y colonización de ciertas especies (Jacaranda Copaia).
+
 
 
 
