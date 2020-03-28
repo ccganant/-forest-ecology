@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  27 MAR 2020 17:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  27 MAR 2020 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1949,7 +1949,7 @@ LaTeX Info: Redefining \nameref on input line 71.
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
-* \@twocolumntrue
+* \@twocolumnfalse
 * \@twosidetrue
 * \@mparswitchtrue
 * \@reversemarginfalse
@@ -2138,15 +2138,11 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.82996pt on input line 85.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
 (Font)              scaled to size 8.64006pt on input line 90.
-
-Underfull \vbox (badness 2050) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.18097pt on input line 163.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              scaled to size 6.18097pt on input line 156.
+[1
 
-
-]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
 (hyperref)                be the same. Added a new anchor on input line 167.
@@ -2156,16 +2152,11 @@ LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
 
 LaTeX Warning: Command \textendash invalid in math mode on input line 178.
 
-<figure1.jpeg, id=70, 609.27625pt x 479.7925pt>
-File: figure1.jpeg Graphic file (type jpg)
-<use figure1.jpeg>
-Package pdftex.def Info: figure1.jpeg  used on input line 184.
-(pdftex.def)             Requested size: 252.84825pt x 199.11017pt.
-
-Overfull \hbox (6.75pt too wide) in paragraph at lines 184--185
- [][] 
- []
-
+<area.png, id=72, 1606.0pt x 1240.635pt>
+File: area.png Graphic file (type png)
+<use area.png>
+Package pdftex.def Info: area.png  used on input line 184.
+(pdftex.def)             Requested size: 353.98601pt x 273.45166pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.06396pt on input line 193.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <8> not available
@@ -2217,7 +2208,7 @@ LaTeX Font Info:    Font shape `MDB/mdbch/m/n' will be
 (Font)              scaled to size 5.04pt on input line 208.
 LaTeX Font Info:    Font shape `MDB/mdbch/m/n' will be
 (Font)              scaled to size 3.60002pt on input line 208.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 248.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 249.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -2226,59 +2217,30 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<ima2.png, id=73, 1052.93375pt x 390.45876pt>
+ [2 <./area.png>]
+<ima2.png, id=88, 1052.93375pt x 390.45876pt>
 File: ima2.png Graphic file (type png)
 <use ima2.png>
 Package pdftex.def Info: ima2.png  used on input line 304.
-(pdftex.def)             Requested size: 252.84825pt x 93.75967pt.
-
-Overfull \hbox (6.75pt too wide) in paragraph at lines 304--305
- [][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./figure1.jpeg>]
-<report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf, id=97, 417.56pt x 240
+(pdftex.def)             Requested size: 353.98601pt x 131.27069pt.
+<report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf, id=93, 417.56pt x 240
 .9pt>
 File: report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (typ
 e pdf)
 <use report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: report_ecology_files/figure-latex/unnamed-chunk-6-1.pd
 f  used on input line 340.
-(pdftex.def)             Requested size: 252.84825pt x 145.87543pt.
-
-Overfull \hbox (6.75pt too wide) in paragraph at lines 340--341
- [][] 
- []
-
-
-Overfull \hbox (2.93317pt too wide) in paragraph at lines 368--381
- [][] 
- []
-
-[3 <./ima2.png> <./report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf>]
-<report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf, id=136, 417.56pt x 2
+(pdftex.def)             Requested size: 353.98601pt x 204.23296pt.
+ [3 <./ima2.png>]
+[4 <./report_ecology_files/figure-latex/unnamed-chunk-6-1.pdf>]
+<report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf, id=140, 417.56pt x 2
 40.9pt>
 File: report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (ty
 pe pdf)
 <use report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: report_ecology_files/figure-latex/unnamed-chunk-10-1.p
-df  used on input line 444.
-(pdftex.def)             Requested size: 252.84825pt x 145.87543pt.
-
-Overfull \hbox (6.75pt too wide) in paragraph at lines 444--445
- [][] 
- []
-
-
-Package natbib Warning: Citation `plateros' on page 4 undefined on input line 4
-61.
-
-
-Package natbib Warning: Citation `plateros' on page 4 undefined on input line 4
-70.
+df  used on input line 443.
+(pdftex.def)             Requested size: 353.98601pt x 204.23296pt.
 
 (./report_ecology.bbl
 LaTeX Font Info:    Font shape `OT1/mdbch/m/n' will be
@@ -2299,22 +2261,14 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 22.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 7.06396pt on input line 22.
-)
-
-Package natbib Warning: There were undefined citations.
-
-
+LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
+(Font)              scaled to size 7.68005pt on input line 43.
+ [5 <./report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf>]) 
 AED: lastpage setting LastPage
-- LAST -
-Extra skip:0.0pt
-Left:675.94505pt/0.0pt
-Right:675.94505pt/0.0pt
-Output:675.94505pt
-[4 <./report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf>]
+[6]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 510.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 510.
-
-(./report_ecology.aux)
+ (./report_ecology.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 510.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 510.
 Package rerunfilecheck Info: File `report_ecology.out' has not changed.
@@ -2322,13 +2276,13 @@ Package rerunfilecheck Info: File `report_ecology.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 510.
  ) 
 Here is how much of TeX's memory you used:
- 34590 strings out of 492982
- 636562 string characters out of 6134896
- 748574 words of memory out of 5000000
- 37151 multiletter control sequences out of 15000+600000
- 634803 words of font info for 375 fonts, out of 8000000 for 9000
+ 34591 strings out of 492982
+ 636632 string characters out of 6134896
+ 729710 words of memory out of 5000000
+ 37155 multiletter control sequences out of 15000+600000
+ 637042 words of font info for 372 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,77p,10404b,475s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,77p,10404b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1
 /texnansi.enc}</usr/share/texlive/texmf-dist/fonts/type1/bitstrea/charter/bchb8
@@ -2338,15 +2292,14 @@ re/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/mdb
 ch/md-chr7t.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/md
 bch/md-chr7y.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/m
-dbch/md-chr8t.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/
-mdbch/md-chri7m.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
-b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on report_ecology.pdf (4 pages, 742460 bytes).
+dbch/md-chri7m.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb
+8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on report_ecology.pdf (6 pages, 911345 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 178 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
- 54873 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 217 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 56921 words of extra memory for PDF output out of 61914 (max. 10000000)
 
