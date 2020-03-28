@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  27 MAR 2020 20:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  27 MAR 2020 21:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2241,8 +2241,8 @@ pe pdf)
 Package pdftex.def Info: report_ecology_files/figure-latex/unnamed-chunk-10-1.p
 df  used on input line 443.
 (pdftex.def)             Requested size: 353.98601pt x 204.23296pt.
-
-(./report_ecology.bbl
+ [5 <./report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf>] (./report_eco
+logy.bbl
 LaTeX Font Info:    Font shape `OT1/mdbch/m/n' will be
 (Font)              scaled to size 7.68005pt on input line 16.
 LaTeX Font Info:    Font shape `OML/mdbch/m/it' will be
@@ -2261,9 +2261,8 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 22.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 7.06396pt on input line 22.
-LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
-(Font)              scaled to size 7.68005pt on input line 43.
- [5 <./report_ecology_files/figure-latex/unnamed-chunk-10-1.pdf>]) 
+)
+
 AED: lastpage setting LastPage
 [6]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 510.
@@ -2276,13 +2275,13 @@ Package rerunfilecheck Info: File `report_ecology.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 510.
  ) 
 Here is how much of TeX's memory you used:
- 34591 strings out of 492982
- 636632 string characters out of 6134896
- 729710 words of memory out of 5000000
- 37155 multiletter control sequences out of 15000+600000
- 637042 words of font info for 372 fonts, out of 8000000 for 9000
+ 34585 strings out of 492982
+ 636555 string characters out of 6134896
+ 729707 words of memory out of 5000000
+ 37153 multiletter control sequences out of 15000+600000
+ 634712 words of font info for 369 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,11n,77p,10404b,507s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,12n,77p,10404b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1
 /texnansi.enc}</usr/share/texlive/texmf-dist/fonts/type1/bitstrea/charter/bchb8
@@ -2296,10 +2295,10 @@ dbch/md-chri7m.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on report_ecology.pdf (6 pages, 911345 bytes).
+Output written on report_ecology.pdf (6 pages, 911946 bytes).
 PDF statistics:
  217 PDF objects out of 1000 (max. 8388607)
  187 compressed objects within 2 object streams
  40 named destinations out of 1000 (max. 500000)
- 56921 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 54873 words of extra memory for PDF output out of 61914 (max. 10000000)
 
