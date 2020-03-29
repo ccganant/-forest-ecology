@@ -1,0 +1,514 @@
+---
+title: "Parcial 3"
+author: "Cristian Gañan - David Londoño"
+date: "28/3/2020"
+output: pinp::pinp
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(tidyverse)
+library(agricolae)
+library(BIOMASS)
+library(modelr)
+
+smalian<- function(D, H){
+  x<- c()
+  for (i in 1:(NROW(D)-1)){
+    val<- (pi/80000)*((D[i]^2+D[i+1]^2))*(H[i+1]-H[i])
+    x[i]<- val
+  }
+  return(x)
+}
+```
+
+# 1) Calculo del volumen usando la ecuación de Smalian
+
+```{r}
+data<- read.csv2("Parcial_3_volumen.csv")
+
+```
+
+
+```{r}
+data1<- data %>% mutate(No_.arbol= as.factor(No_.arbol)) %>% 
+  group_by(No_.arbol) %>% 
+  summarise(smalian= sum(smalian(di, hi)))
+```
+
+
+```{r}
+data<- data %>% mutate(No_.arbol= as.factor(No_.arbol)) %>% 
+  group_by(No_.arbol) %>% summarise(DAP= unique(D), altura= unique(H))
+
+data1<- as.tibble(data1) %>% select(-c(No_.arbol))
+
+
+data1<- cbind(data, data1)
+
+```
+
+
+# 2) Seleccón de muestras aleatorias para construcción de modelos
+
+```{r}
+set.seed(32)
+nr<- sample(75, 52)
+dmodel<- data1 %>% slice(nr)
+
+set.seed(32)
+nr<- sample(75, 22)
+dval<- data1 %>% slice(nr)
+```
+
+## 3) Modelos de volumen
+
+El mejor modelo escogido es el 4, pues su $RSE$ es el menor de todos lo modelos.
+
+los lineales no cumplen supuestos, mirar grafica de residuales para mirar tendencia log.
+
+
+```{r}
+modelo<- lm(smalian ~ DAP+ I(DAP^2) + altura + I(altura^2), data1)
+
+a<- shapiro.test(resid(modelo))
+
+tabla<- tibble(Modelo= "V= 7.61e-01+(-1.30e-02*D+
+               (8.69e-04*D^2)+(-1.09e-01*H)+
+               (4.19e-03*H^2)", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+```
+
+
+```{r}
+modelo<- lm(smalian ~ I(DAP^2*altura), data1)
+
+a<- shapiro.test(resid(modelo))
+
+tabla1<- tibble(Modelo= "V= 2.44e-02+3.72e-05*(D^2*H)", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+```
+
+```{r}
+modelo<- lm(log(smalian) ~ log(DAP) + log(altura), data1)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-10.11047)+1.81712*log.DAP.+1.18930*log.altura.)) %>% 
+  mutate(resid= fitted - exp(log.smalian.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla2<- tibble(Modelo= "V= 6.40e-04*D^6.15*H^3.28", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+```
+
+```{r}
+modelo<- lm(log(smalian) ~ log(I(DAP^2*altura)), data1)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-9.7530)+0.9581*log.I.DAP.2...altura..)) %>% 
+  mutate(resid= fitted - exp(log.smalian.))
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla3<- tibble(Modelo= "V= 5.88e-05*(D^2*H)^2.61", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+
+```
+
+
+```{r}
+knitr::kable(rbind(tabla, tabla1, tabla2, tabla3), format = "latex", 
+             caption = "Comparación de modelos")
+```
+
+```{r}
+ggplot(data1, mapping = aes(x= (DAP^2*altura), y= smalian)) +
+  geom_point() +
+  geom_smooth(prueba, mapping = aes(x= exp(log.I.DAP.2...altura..), y= fitted)) +
+  labs(y= "Volumen (m^3)")
+```
+
+
+```{r}
+dval<- dval %>% mutate(V3= exp(-7.353183+ 1.81712*log(DAP)+1.18930*log(altura)), 
+                       V4= exp(-9.7530+0.9581*log(DAP^2*altura))) %>%
+  mutate(val3= ((smalian-V3)/smalian)*100, 
+         val4= ((smalian-V4)/smalian)*100)
+
+dval<- dval %>% summarise(Media3= mean(val3), sd3= sd(val3), 
+                          Media4= mean(val4), sd4= sd(val4))
+knitr::kable(dval, format = "latex", 
+             caption = "Validación de modelos volumen")
+```
+
+
+
+# 4) Calculo de biomasa
+
+
+```{r}
+dbiom<- read.csv2("biomasa_arboles.csv")
+
+dbiom<- dbiom %>% mutate(N_arbol= as.factor(N_arbol))
+
+
+```
+
+```{r}
+dbiom1<- dbiom %>% mutate(CH= (Peso_verde_rodaja_kg-Peso_seco_rodaja_kg )/Peso_verde_rodaja_kg) %>% 
+  mutate(Biom= Peso_total_trozas_kg*(1-CH), 
+         Vol= Area_rodaja_m2*Espesor_rodaja_m2) %>% 
+  mutate(WD= Peso_seco_rodaja_kg/Vol)%>% group_by(N_arbol) %>% 
+  summarise(BiomF= sum(Biom), 
+            WD_p= mean(WD)/1000, 
+            vol_biom= sum(smalian(D = di_m*100, H = hi_m)))
+
+dbiom1$BiomF[13]<- 0
+
+dbiom1$BiomF[12]<- 0
+```
+
+```{r}
+dbiom2<- dbiom %>% filter(Peso_verde_total_ramas_kg != "NA") %>% 
+  mutate(CHR= (Peso_verde_muestra_ramas_kg-Peso_seco_muestra_ramas_kg)/Peso_verde_muestra_ramas_kg, 
+         CHH= (Peso_verde_muestra_hojas_kg-Peso_seco_muestra_hojas_kg)/Peso_verde_muestra_hojas_kg) %>% 
+  mutate(BiomTR= Peso_verde_total_ramas_kg*(1-CHR), 
+         BiomTH= Peso_verde_total_hojas_kg*(1-CHH)) %>% 
+  select(N_arbol, DAP_m, Ht_m,BiomTR, BiomTH)
+```
+
+```{r}
+dbiom1<- as.tibble(dbiom1) %>% select(-c(N_arbol))
+
+dbiom<- cbind(dbiom2, dbiom1)
+
+dbiom<- dbiom %>% mutate(BIOM= BiomTR +BiomTH+ BiomF) 
+dbiom<- dbiom %>% select(-c(BiomTR, BiomTH, BiomF))
+dbiom<- dbiom %>% mutate(DAP_cm= DAP_m*100) %>% 
+  select(-c(DAP_m))
+
+dbiom<- dbiom %>% select(N_arbol, DAP_cm, 
+                          Ht_m, BIOM, vol_biom, WD_p)
+```
+
+
+<!--- selección de datos para el modelo--->
+
+```{r}
+set.seed(26)
+nr<- sample(31, 25)
+
+dmodel<- dbiom %>% slice(nr)
+
+set.seed(26)
+nr<- sample(31, 6)
+
+dval<- dbiom %>% slice(nr)
+```
+
+
+# 5) Modelos de biomasa áerea
+
+se presentan los modelos
+
+```{r}
+# a
+
+modelo<- lm(BIOM ~ DAP_cm+Ht_m, dmodel)
+
+a<- shapiro.test(resid(modelo))
+
+tabla<- tibble(Modelo= "BA= -207.20+18.34*D+(-0.3342*H)", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+```
+
+
+```{r}
+# b
+
+modelo<- lm(BIOM ~ I(DAP_cm^2*Ht_m), dmodel)
+
+a<- shapiro.test(resid(modelo))
+
+tabla1<- tibble(Modelo= "BA= 3.75+0.025*(D^2*H)", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= broom::glance(modelo)$sigma)
+
+```
+
+
+```{r}
+# c
+
+modelo<- lm(log(BIOM) ~ log(DAP_cm) + log(Ht_m), dmodel)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-2.2189)+2.7286*log.DAP_cm.-0.4749*log.Ht_m.)) %>% 
+  mutate(resid= fitted - exp(log.BIOM.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla2<- tibble(Modelo= "BA= 0.12*D^15.31*H^0.62", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+```
+
+
+```{r}
+# d
+
+modelo<- lm(log(BIOM) ~ log(DAP_cm) + log(Ht_m) + log(WD_p), dbiom)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-1.84465 )+2.42798*log.DAP_cm.-0.06783*log.Ht_m.+ 0.76893*log.WD_p.)) %>% 
+  mutate(resid= fitted - exp(log.BIOM.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla3<- tibble(Modelo= "BA= 0.16*D^11.33*H^0.93*WD^2.16", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+```
+
+
+```{r}
+# e
+
+modelo<- lm(log(BIOM) ~ I(log(DAP_cm^2*WD_p)), dbiom)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-1.53457 )+
+                                   1.17380*I.log.DAP_cm.2...WD_p..)) %>% 
+  mutate(resid= fitted - exp(log.BIOM.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla4<- tibble(Modelo= "BA= 0.23*(D^2*WD)^3.23", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+
+
+ggplot(dbiom, mapping = aes(x= DAP_cm^2*WD_p, y= BIOM)) +
+  geom_point() +
+  geom_smooth(prueba, mapping = aes(x= exp(I.log.DAP_cm.2...WD_p..), 
+                                    y= fitted)) +
+  labs(y= "Biomasa (kg)")
+
+```
+
+
+```{r}
+# f
+
+modelo<- lm(log(BIOM)  ~ I(log(DAP_cm^2*Ht_m)), dbiom)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-2.33630)+
+                                   0.84011*I.log.DAP_cm.2...Ht_m..)) %>% 
+  mutate(resid= fitted - exp(log.BIOM.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla5<- tibble(Modelo= "BA= 0.10*(D^2*H)^2.32", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+```
+
+
+```{r}
+# g
+
+modelo<- lm(log(BIOM) ~ I(log(DAP_cm^2*Ht_m*WD_p)), dmodel)
+
+a<- shapiro.test(resid(modelo))
+prueba<- broom::augment(modelo)
+
+prueba<- prueba %>% mutate(fitted= 
+                             exp(((anova(modelo)$"Mean Sq"[2])/2)+(-1.82526)+
+                                   0.83840*I.log.DAP_cm.2...Ht_m...WD_p..)) %>% 
+  mutate(resid= fitted - exp(log.BIOM.))
+
+#broom::tidy(modelo)
+
+RSE <- sqrt(sum(prueba$resid^2, na.rm = TRUE)/summary(modelo)$df[2])
+
+tabla6<- tibble(Modelo= "BA= 0.18*(D^2*H*WD)^2.31", 
+                Fc= round(broom::glance(modelo)$statistic, 4), 
+                valor.p= "***", 
+                Shapiro= round(a$p.value, 4),
+                R.squared= round(broom::glance(modelo)$r.squared, 4),
+                AIC= broom::glance(modelo)$AIC,
+                RSE= round(RSE, 4))
+```
+
+
+```{r}
+knitr::kable(rbind(tabla, tabla1, tabla2, tabla3, tabla4, tabla5, tabla5), 
+             format = "latex", caption = "Modelos de Biomasa")
+```
+
+
+## 6) Estimacón de volumen y biomasa en cinco localidades
+
+```{r}
+
+#V4= exp(-9.7530+0.9581*log(DAP^2*altura)))
+
+#BA= exp(-1.475058+1.17380*(DAP^2*WD))
+data<- read.csv2("biom_plots_parcial.csv")
+```
+
+```{r}
+# Estimacón de la altura
+
+#modelHD(data$DAP_cm, data$Altura_m)
+
+model1<- modelHD(data$DAP_cm, data$Altura_m, method = "log1")# mejor modelo por AIC
+
+model2<- modelHD(data$DAP_cm, data$Altura_m, method = "weibull")
+
+```
+
+```{r}
+data<- data %>% mutate(fitted= exp(model1$coefficients[1]+model1$RSElog/2)*
+                                     DAP_cm^model1$coefficients[2]) %>% 
+  mutate(Altura_m= if_else(!is.na(Altura_m), Altura_m, fitted))
+```
+
+```{r}
+#Volumen
+
+data1<- data %>% group_by(Localidad) %>% 
+  mutate(Vol= exp(-9.7530+0.9581*log((DAP_cm*100)^2*Altura_m))) %>% 
+  mutate(`Vol (m^3)/ha`= Vol*0.04)
+
+knitr::kable(data1 %>%  summarise(Media= mean(`Vol (m^3)/ha`),
+                     Desviacion= sd(`Vol (m^3)/ha`)), 
+             format = "latex", 
+             caption = "Volumen")
+```
+
+
+```{r}
+data2<- data %>% group_by(Localidad) %>% 
+  mutate(BA= exp(-1.475058+1.17380*log(DAP_cm^2*WD))) %>% 
+  mutate(`BA (Ton/ha)` = (25/1000)*BA)
+
+knitr::kable(data2 %>%  summarise(Media= mean(`BA (Ton/ha)`),
+                     Desviacion= sd(`BA (Ton/ha)`)) %>% 
+  mutate(`media contenido de C`= Media*0.5, 
+         `Sd contenido de C`= Desviacion*0.5), format = "latex", 
+  caption = "Contenido de Carbono")
+```
+
+# 7) Comparación entre localidades
+
+```{r, fig.cap= "Comparación de volumen por Localidad", fig.width= 6}
+anova<- aov(`Vol (m^3)/ha`~ Localidad, data= data1)
+
+a<- HSD.test(anova, trt = "Localidad", console = F)
+
+data1<- data1 %>% mutate(Grupo= if_else(Localidad == "Maceo", "a", 
+                                        if_else(Localidad == "Anori", "b", "ab")))
+
+ggplot(data1, mapping = aes(x= Localidad, y= `Vol (m^3)/ha`)) +
+  geom_boxplot(mapping = aes(fill= Grupo))
+```
+
+```{r, fig.cap= "Comparación de Biomasa por Localidad", fig.width= 6}
+anova<- aov(`BA (Ton/ha)` ~ Localidad, data= data2)
+
+a<- HSD.test(anova, trt = "Localidad", console = F)
+
+data2<- data2 %>% mutate(Grupo= if_else(Localidad== "Maceo", "a", 
+                                        if_else(Localidad == "Caicedo", "ab", "b")))
+
+ggplot(data2, mapping = aes(x= Localidad, y= `BA (Ton/ha)`)) +
+  geom_boxplot(mapping = aes(fill= Grupo))
+```
+
