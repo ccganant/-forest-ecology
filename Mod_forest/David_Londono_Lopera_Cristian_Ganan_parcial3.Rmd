@@ -227,6 +227,15 @@ dbiom1<- dbiom %>% mutate(CH= (Peso_verde_rodaja_kg-Peso_seco_rodaja_kg )/Peso_v
 dbiom1$BiomF[13]<- 0
 
 dbiom1$BiomF[12]<- 0
+
+
+dbiom2<- dbiom1 %>% mutate(bio_f2= WD_p*vol_biom*1000)
+
+with(dbiom2, t.test(BiomF, bio_f2))# No hay diferencia significativa entre los metodos
+#de cubicación  y contenido de humadad para hallar biomasa del fuste.
+
+#mean(with(dbiom2, 100*(bio_f2-BiomF)/BiomF))
+#sd(with(dbiom2, 100*(bio_f2-BiomF)/BiomF))
 ```
 
 ```{r}

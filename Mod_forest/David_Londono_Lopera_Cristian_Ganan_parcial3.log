@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  1 APR 2020 11:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  1 APR 2020 12:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2274,15 +2274,15 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 353.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 353.
 Package rerunfilecheck Info: File `David_Londono_Lopera_Cristian_Ganan_parcial3
 .out' has not changed.
-(rerunfilecheck)             Checksum: 23BA9A98D70A59E9D57BC12602835984;589.
+(rerunfilecheck)             Checksum: 6B8A8A9F908726C27BF6C3D44DC195A4;597.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 353.
  ) 
 Here is how much of TeX's memory you used:
- 34420 strings out of 492982
- 636358 string characters out of 6134896
- 731600 words of memory out of 5000000
+ 34423 strings out of 492982
+ 636421 string characters out of 6134896
+ 731609 words of memory out of 5000000
  37190 multiletter control sequences out of 15000+600000
- 610930 words of font info for 217 fonts, out of 8000000 for 9000
+ 611055 words of font info for 219 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,77p,10434b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/usr/share/t
@@ -2298,7 +2298,7 @@ dbch/md-chr7y.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/
 mdbch/md-chri7m.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
 b8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
 Output written on David_Londono_Lopera_Cristian_Ganan_parcial3.pdf (4 pages, 14
-4021 bytes).
+4110 bytes).
 PDF statistics:
  177 PDF objects out of 1000 (max. 8388607)
  146 compressed objects within 2 object streams
