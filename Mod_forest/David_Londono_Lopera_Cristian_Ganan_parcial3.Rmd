@@ -439,12 +439,13 @@ knitr::kable(rbind(tabla, tabla1, tabla2, tabla3, tabla4, tabla5, tabla6),
 
 
 ```{r}
-dval<- dval %>% mutate(V_g= exp(-1.737838+ 0.83840*log(DAP_cm^2*Ht_m*WD_p))) %>%
-  mutate(val_g= ((BIOM-V_g)/BIOM)*100)
+dval<- dval %>% mutate(V_g= exp(-1.737838+ 0.83840*log(DAP_cm^2*Ht_m*WD_p)), 
+                       V_e= exp(-1.447148+1.17380*log(DAP_cm^2*WD_p))) %>%
+  mutate(val_g= ((BIOM-V_g)/BIOM)*100, 
+         val_e= ((BIOM-V_e)/BIOM)*100)
 
-
-dval<- dval %>% summarise(Media_g= mean(val_g), sd_e= sd(val_g))
-dval
+dval<- dval %>% summarise(Media_g= mean(val_g), sd_g= sd(val_g), 
+                          Media_e= mean(val_e), sd_e= sd(val_e))
 
 knitr::kable(dval, format = "latex", 
              caption = "Validación de modelo Biomasa")
