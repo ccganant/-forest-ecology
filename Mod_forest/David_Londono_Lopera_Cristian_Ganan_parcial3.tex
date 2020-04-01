@@ -22,26 +22,22 @@
 
 \title{Parcial 3}
 
-\author[a]{David Londoño Lopera}
-\author[b]{Cristian Camilo Gañan}
+\author[]{}
 
-  \affil[a]{cc: 1035440879, Departamento de ciencias forestales, Univeridad Nacional de Colombia,
-Medellín}
-
-  \affil[b]{cc: 1059710617, Departamento de ciencias forestales, Univeridad Nacional de Colombia,
-Medellín}
 
 \setcounter{secnumdepth}{0}
 
 % Please give the surname of the lead author for the running footer
-\leadauthor{Gañan-Londoño}
+\leadauthor{}
 
-\doifooter{Depertamento de ciencias forestales}
-
-\pinpfootercontents{Medición forestal}
 % Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+ 
 
+\begin{abstract}
 
+\end{abstract}
+
+\dates{This version was compiled on \today} 
 
 % initially we use doi so keep for backwards compatibility
 % new name is doi_footer
@@ -55,7 +51,7 @@ Medellín}
 
 \maketitle
 \thispagestyle{firststyle}
-\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 
@@ -63,6 +59,8 @@ Medellín}
 \hypertarget{calculo-del-volumen-usando-la-ecuaciuxf3n-de-smalian}{%
 \section{1) Calculo del volumen usando la ecuación de
 Smalian}\label{calculo-del-volumen-usando-la-ecuaciuxf3n-de-smalian}}
+
+\[V_t= [\sum_{i=1}^{n}{(d_i^2+d_{i+1}^2)* (L_{i+1}-L_{i}})] * \frac{\pi}{8}\]
 
 \hypertarget{seleccuxf3n-de-muestras-aleatorias-para-construcciuxf3n-de-modelos}{%
 \section{2) Seleccón de muestras aleatorias para construcción de
@@ -122,7 +120,7 @@ Media3 & sd3 & Media4 & sd4\\
 
 se presentan los modelos
 
-\begin{center}\includegraphics{David_Londono_Lopera_Cristian_Ganan_parcial3_files/figure-latex/unnamed-chunk-21-1} \end{center}
+\begin{center}\includegraphics{David_Londono_Lopera_Cristian_Ganan_parcial3_files/figure-latex/unnamed-chunk-23-1} \end{center}
 
 \begin{table}
 
@@ -144,7 +142,26 @@ BA= 0.23*(D\textasciicircum{}2*WD)\textasciicircum{}3.23 & 161.7459 & *** & 0.00
 \hline
 BA= 0.10*(D\textasciicircum{}2*H)\textasciicircum{}2.32 & 111.2088 & *** & 0.0000 & 0.7932 & 35.46763 & 42.46070\\
 \hline
-BA= 0.10*(D\textasciicircum{}2*H)\textasciicircum{}2.32 & 111.2088 & *** & 0.0000 & 0.7932 & 35.46763 & 42.46070\\
+BA= 0.18*(D\textasciicircum{}2*H*WD)\textasciicircum{}2.31 & 91.9029 & *** & 0.0000 & 0.7998 & 31.26584 & 38.53990\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{ShadedResult}
+\begin{verbatim}
+#      Media_g     sd_e
+#  1 -11.85311 26.66373
+\end{verbatim}
+\end{ShadedResult}
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-25}Validación de modelo Biomasa}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+Media\_g & sd\_e\\
+\hline
+-11.85311 & 26.66373\\
 \hline
 \end{tabular}
 \end{table}
@@ -155,42 +172,26 @@ localidades}\label{estimacuxf3n-de-volumen-y-biomasa-en-cinco-localidades}}
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-28}Volumen}
+\caption{\label{tab:unnamed-chunk-29}Volumen del inventario}
 \centering
-\begin{tabular}[t]{l|r|r}
+\begin{tabular}[t]{r|r}
 \hline
-Localidad & Media & Desviacion\\
+Media & Desviacion\\
 \hline
-Anori & 61.70907 & 68.43634\\
-\hline
-Caicedo & 86.71960 & 121.75166\\
-\hline
-Maceo & 94.40046 & 131.60139\\
-\hline
-Porce & 74.75684 & 73.41319\\
-\hline
-Ventanas & 68.04883 & 92.18766\\
+77.58832 & 103.0507\\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-29}Contenido de Carbono}
+\caption{\label{tab:unnamed-chunk-30}Contenido de Carbono del iventario}
 \centering
-\begin{tabular}[t]{l|r|r|r|r}
+\begin{tabular}[t]{r|r}
 \hline
-Localidad & Media & Desviacion & media contenido de C & Sd contenido de C\\
+media contenido de C & Sd contenido de C\\
 \hline
-Anori & 2.847730 & 3.011185 & 1.423865 & 1.505592\\
-\hline
-Caicedo & 3.622761 & 4.816025 & 1.811381 & 2.408012\\
-\hline
-Maceo & 4.495417 & 6.309090 & 2.247709 & 3.154545\\
-\hline
-Porce & 2.860937 & 2.495276 & 1.430469 & 1.247638\\
-\hline
-Ventanas & 3.094142 & 4.779642 & 1.547071 & 2.389821\\
+2.175178 & 2.451563\\
 \hline
 \end{tabular}
 \end{table}
@@ -201,21 +202,27 @@ localidades}\label{comparaciuxf3n-entre-localidades}}
 
 \begin{figure}
 
-{\centering \includegraphics{David_Londono_Lopera_Cristian_Ganan_parcial3_files/figure-latex/unnamed-chunk-30-1} 
-
-}
-
-\caption{Comparación de volumen por Localidad}\label{fig:unnamed-chunk-30}
-\end{figure}
-
-\begin{figure}
-
 {\centering \includegraphics{David_Londono_Lopera_Cristian_Ganan_parcial3_files/figure-latex/unnamed-chunk-31-1} 
 
 }
 
-\caption{Comparación de Biomasa por Localidad}\label{fig:unnamed-chunk-31}
+\caption{Comparación de volumen por Localidad}\label{fig:unnamed-chunk-31}
 \end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{David_Londono_Lopera_Cristian_Ganan_parcial3_files/figure-latex/unnamed-chunk-32-1} 
+
+}
+
+\caption{Comparación de Biomasa por Localidad}\label{fig:unnamed-chunk-32}
+\end{figure}
+
+\(BA \ = \ b_0 + b_1*D+b_2*H\) \(BA \ = \ b_0+b_1(D^2*H)\)
+\(BA \ = \ b_0*D^{b_1}*H^{b_2}\)
+\(BA \ = \ b_0*D^{b_1}*H^{b_2}*WD^{b_3}\)
+\(BA \ = \ b_0*(D^2*WD)^{b_1}\) \(BA \ = \ b_0*(D^2*H)^{b_1}\)
+\(BA \ = \ b_0*(D^2*H*WD)^{b_1}\)
 
 %\showmatmethods
 

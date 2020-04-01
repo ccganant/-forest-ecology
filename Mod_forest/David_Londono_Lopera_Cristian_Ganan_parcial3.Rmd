@@ -27,6 +27,7 @@ smalian<- function(D, H){
 ```
 
 # 1) Calculo del volumen usando la ecuación de Smalian
+  $$V_t= [\sum_{i=1}^{n}{(d_i^2+d_{i+1}^2)* (L_{i+1}-L_{i}})] * \frac{\pi}{8}$$ 
 
 ```{r}
 data<- read.csv2("Parcial_3_volumen.csv")
@@ -73,6 +74,8 @@ los lineales no cumplen supuestos, mirar grafica de residuales para mirar tenden
 
 
 ```{r}
+
+#1
 modelo<- lm(smalian ~ DAP+ I(DAP^2) + altura + I(altura^2), data1)
 
 a<- shapiro.test(resid(modelo))
@@ -91,6 +94,7 @@ tabla<- tibble(Modelo= "V= 7.61e-01+(-1.30e-02*D+
 
 
 ```{r}
+#2
 modelo<- lm(smalian ~ I(DAP^2*altura), data1)
 
 a<- shapiro.test(resid(modelo))
@@ -106,6 +110,7 @@ tabla1<- tibble(Modelo= "V= 2.44e-02+3.72e-05*(D^2*H)",
 ```
 
 ```{r}
+#3
 modelo<- lm(log(smalian) ~ log(DAP) + log(altura), data1)
 
 a<- shapiro.test(resid(modelo))
@@ -130,6 +135,7 @@ tabla2<- tibble(Modelo= "V= 6.40e-04*D^6.15*H^3.28",
 ```
 
 ```{r}
+#4
 modelo<- lm(log(smalian) ~ log(I(DAP^2*altura)), data1)
 
 a<- shapiro.test(resid(modelo))
@@ -363,13 +369,6 @@ tabla4<- tibble(Modelo= "BA= 0.23*(D^2*WD)^3.23",
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
 
-
-ggplot(dbiom, mapping = aes(x= DAP_cm^2*WD_p, y= BIOM)) +
-  geom_point() +
-  geom_smooth(prueba, mapping = aes(x= exp(I.log.DAP_cm.2...WD_p..), 
-                                    y= fitted)) +
-  labs(y= "Biomasa (kg)")
-
 ```
 
 
@@ -403,6 +402,7 @@ tabla5<- tibble(Modelo= "BA= 0.10*(D^2*H)^2.32",
 ```{r}
 # g
 
+
 modelo<- lm(log(BIOM) ~ I(log(DAP_cm^2*Ht_m*WD_p)), dmodel)
 
 a<- shapiro.test(resid(modelo))
@@ -424,12 +424,30 @@ tabla6<- tibble(Modelo= "BA= 0.18*(D^2*H*WD)^2.31",
                 R.squared= round(broom::glance(modelo)$r.squared, 4),
                 AIC= broom::glance(modelo)$AIC,
                 RSE= round(RSE, 4))
+
+ggplot(dbiom, mapping = aes(x= DAP_cm^2*Ht_m*WD_p, y= BIOM)) +
+  geom_point() +
+  geom_smooth(prueba, mapping = aes(x= exp(I.log.DAP_cm.2...Ht_m...WD_p..), y= fitted)) +
+  labs(y= "Biomasa (kg)")
 ```
 
 
 ```{r}
-knitr::kable(rbind(tabla, tabla1, tabla2, tabla3, tabla4, tabla5, tabla5), 
+knitr::kable(rbind(tabla, tabla1, tabla2, tabla3, tabla4, tabla5, tabla6), 
              format = "latex", caption = "Modelos de Biomasa")
+```
+
+
+```{r}
+dval<- dval %>% mutate(V_g= exp(-1.737838+ 0.83840*log(DAP_cm^2*Ht_m*WD_p))) %>%
+  mutate(val_g= ((BIOM-V_g)/BIOM)*100)
+
+
+dval<- dval %>% summarise(Media_g= mean(val_g), sd_e= sd(val_g))
+dval
+
+knitr::kable(dval, format = "latex", 
+             caption = "Validación de modelo Biomasa")
 ```
 
 
@@ -439,7 +457,7 @@ knitr::kable(rbind(tabla, tabla1, tabla2, tabla3, tabla4, tabla5, tabla5),
 
 #V4= exp(-9.7530+0.9581*log(DAP^2*altura)))
 
-#BA= exp(-1.475058+1.17380*(DAP^2*WD))
+#BA= exp(-1.737838+ 0.83840*log(DAP_cm^2*Ht_m*WD_p))
 data<- read.csv2("biom_plots_parcial.csv")
 ```
 
@@ -467,23 +485,27 @@ data1<- data %>% group_by(Localidad) %>%
   mutate(Vol= exp(-9.7530+0.9581*log((DAP_cm*100)^2*Altura_m))) %>% 
   mutate(`Vol (m^3)/ha`= Vol*0.04)
 
-knitr::kable(data1 %>%  summarise(Media= mean(`Vol (m^3)/ha`),
+knitr::kable(as.tibble(data1) %>%  summarise(Media= mean(`Vol (m^3)/ha`),
                      Desviacion= sd(`Vol (m^3)/ha`)), 
              format = "latex", 
-             caption = "Volumen")
+             caption = "Volumen del inventario")
+
 ```
 
 
 ```{r}
 data2<- data %>% group_by(Localidad) %>% 
-  mutate(BA= exp(-1.475058+1.17380*log(DAP_cm^2*WD))) %>% 
+  mutate(BA= exp(-1.737838+ 0.83840*log(DAP_cm^2*Altura_m*WD))) %>% 
   mutate(`BA (Ton/ha)` = (25/1000)*BA)
 
-knitr::kable(data2 %>%  summarise(Media= mean(`BA (Ton/ha)`),
+knitr::kable(as.tibble(data2) %>%  summarise(Media= mean(`BA (Ton/ha)`),
                      Desviacion= sd(`BA (Ton/ha)`)) %>% 
   mutate(`media contenido de C`= Media*0.5, 
-         `Sd contenido de C`= Desviacion*0.5), format = "latex", 
-  caption = "Contenido de Carbono")
+         `Sd contenido de C`= Desviacion*0.5) %>% 
+    select(`media contenido de C`, `Sd contenido de C`), format = "latex", 
+  caption = "Contenido de Carbono del iventario")
+
+
 ```
 
 # 7) Comparación entre localidades
@@ -511,4 +533,13 @@ data2<- data2 %>% mutate(Grupo= if_else(Localidad== "Maceo", "a",
 ggplot(data2, mapping = aes(x= Localidad, y= `BA (Ton/ha)`)) +
   geom_boxplot(mapping = aes(fill= Grupo))
 ```
+
+
+$BA \ = \ b_0 + b_1*D+b_2*H$
+$BA \ = \ b_0+b_1(D^2*H)$
+$BA \ = \ b_0*D^{b_1}*H^{b_2}$
+$BA \ = \ b_0*D^{b_1}*H^{b_2}*WD^{b_3}$
+$BA \ = \ b_0*(D^2*WD)^{b_1}$
+$BA \ = \ b_0*(D^2*H)^{b_1}$
+$BA \ = \ b_0*(D^2*H*WD)^{b_1}$ 
 
