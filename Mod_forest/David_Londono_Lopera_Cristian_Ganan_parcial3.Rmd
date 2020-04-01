@@ -27,7 +27,9 @@ smalian<- function(D, H){
 ```
 
 # 1) Calculo del volumen usando la ecuación de Smalian
-  $$V_t= [\sum_{i=1}^{n}{(d_i^2+d_{i+1}^2)* (L_{i+1}-L_{i}})] * \frac{\pi}{8}$$ 
+
+Para el cálculo de volumen, se utilizó el volumen de fustes estimado por Smalian, el cual para una troza el volumen es igual a: $$V_t= (AB_1 \ + \ AB_2)*L$$  Esto se puede despejar como: $$\frac{\pi}{8} \ * \ L(d_1^2*d_2^2)$$ Ahora para un fuste completo sería: $$V_t= L*[\sum_{i=1}^{n}{d_i^2+d_{i+1}^2}] * \frac{\pi}{8}$$ Como se tenían longitudes ($L$) variables entonces la fórmula final queda como: $$V_t= [\sum_{i=1}^{n}{(d_i^2+d_{i+1}^2)* (L_{i+1}-L_{i}})] * \frac{\pi}{8}$$
+
 
 ```{r}
 data<- read.csv2("Parcial_3_volumen.csv")
@@ -56,6 +58,8 @@ data1<- cbind(data, data1)
 
 # 2) Seleccón de muestras aleatorias para construcción de modelos
 
+Al utilizar la función `sample()` entre $1$ y $100$, dió como resultado $32$, este número se utilizó para `set.seed()` con el fin de que sacara los mismos valores al seleccionar el $70 \%$ de los datos y su respectivo archivo de validación.
+
 ```{r}
 set.seed(32)
 nr<- sample(75, 52)
@@ -68,9 +72,14 @@ dval<- data1 %>% slice(nr)
 
 ## 3) Modelos de volumen
 
-El mejor modelo escogido es el 4, pues su $RSE$ es el menor de todos lo modelos.
+En la **Table 1** se tiene la comparación de los modelos de volumen a saber:
 
-los lineales no cumplen supuestos, mirar grafica de residuales para mirar tendencia log.
+  1) $$V \ = \ b_0 + b_1*D+b_2*D^2+b_3*H+b_4*H^2$$
+  2) $$V \ = \ b_0+b_1*(D^2*H)$$
+  3) $$V \ = \ b_0 * D^{b_1}*H^{b_2}$$
+  4) $$V \ = \ b_0*(D^2*H)^{b_1}$$
+
+Al comparar los modelos lineales, aunque es mejor el segundo al tener un RSE menor que el primero, se descartan ambos modelos debido a que ninguno es normal y ambos tienen problemas de heterocedasticidad, su gráfico de residuales tiene forma de “V” acostada lo cual sugiere errores con distribución exponencial o logarítmica . Con relación a los 2 modelos exponenciales se escoge el cuarto como el mejor, pues tiene un AIC y un RSE menores que los del tercero, en la **Fig.1** se muestra la gráfica del modelo, se muestra el buen ajuste que gráficamente se presenta, este refleja como el $volumen$ aumenta a medida que el $DAP$ y la $altura$  también lo hacen. En la **Table 2** se presenta la validación del modelo, es evidente como el modelo 4 es el mejor y por mucho pues la media y desviación estándar son mucho menores que las del modelo 3, señalando así errores bajos con dispersiones entre el valor real y el estimado.
 
 
 ```{r}
@@ -164,7 +173,7 @@ knitr::kable(rbind(tabla, tabla1, tabla2, tabla3), format = "latex",
              caption = "Comparación de modelos")
 ```
 
-```{r}
+```{r, fig.cap= "Modelo de Volumen"}
 ggplot(data1, mapping = aes(x= (DAP^2*altura), y= smalian)) +
   geom_point() +
   geom_smooth(prueba, mapping = aes(x= exp(log.I.DAP.2...altura..), y= fitted)) +
@@ -187,6 +196,15 @@ knitr::kable(dval, format = "latex",
 
 
 # 4) Calculo de biomasa
+
+Para calcular la biomasa, primero se halló el contenido de humedad de las rodajas de fuste, ramas y hojas por medio de la siguiente fórmula: 
+$$CH \ = \ \frac{Peso verde-Peso seco}{Peso verde}$$
+Después se determinó la biomasa aérea de cada uno de los componentes así:
+$$BA \ = \ P_{verde total}* (1 – CH)$$
+
+Cabe aclarar que para la biomasa del fuste completo, se juntaron las biomasas de
+cada troza.
+Finalmente se sumaron las biomasas obtenidas del fuste, ramas y hojas para así tener la biomasa total en $kg$.
 
 
 ```{r}
@@ -252,7 +270,25 @@ dval<- dbiom %>% slice(nr)
 
 # 5) Modelos de biomasa áerea
 
-se presentan los modelos
+Para poder aplicar los modelos de Biomasa, se calculó la densidad de la madera ($WD$),  ya que algunos modelos la requerían:
+$$\rho \ = \  \frac{Peso seco rodaja (Kg)}{ V(m^3)}$$
+$$V \ = \ Área rodaja (m^2) * Espesor rodaja (m)$$
+Después de hallar la biomasa total y la densidad de madera se seleccionaron 80% de los datos para ajustar el modelo, de tal forma que como el total eran $31$ entonces:
+$$31*0.80= 25 \ datos \ para \ el \ modelo$$
+Los modelos ajustados son los siguientes:
+
+  a) $$BA \ = \ b_0 + b_1*D+b_2*H$$
+  b) $$BA \ = \ b_0+b_1(D^2*H)$$
+  c) $$BA \ = \ b_0*D^{b_1}*H^{b_2}$$
+  d) $$BA \ = \ b_0*D^{b_1}*H^{b_2}*WD^{b_3}$$
+  e) $$BA \ = \ b_0*(D^2*WD)^{b_1}$$
+  f) $$BA \ = \ b_0*(D^2*H)^{b_1}$$
+  g) $$BA \ = \ b_0*(D^2*H*WD)^{b_1}$$ 
+  
+
+En la **Table 3** se muestran los modelos ajustados para la biomasa, los lineales se descartan pues no cumplen con los supuestos para este tipo de regresión, respecto a los exponenciales, el modelo **e** tiene el menor AIC entre todos los modelos exponenciales, sin embargo, al comparar el $RSE$, es evidente que el mejor modelo es el **g**, pues es el que presenta el menor valor,teniendo en cuenta que el $AIC$ es un estimador del error de predicción fuera de la muestra y el $RSE$ el error de los residuales, se adopta como mejor modelo al **g** pues tiene un error pequeño y un capacidad de predicción aceptable. En la **Table 4** se presenta la validación del modelo, a pesar de que el modelo **e** tiene una media menor que del **g**, este presenta una desviación muy alta en comparación con el **g** esto indica que el modelo **e** tiende a subestimar mucho pues su valor predicho se aleja en  buena medida del valor real.
+
+
 
 ```{r}
 # a
@@ -399,7 +435,7 @@ tabla5<- tibble(Modelo= "BA= 0.10*(D^2*H)^2.32",
 ```
 
 
-```{r}
+```{r, fig.cap= "Modelo de Biomasa"}
 # g
 
 
@@ -453,6 +489,10 @@ knitr::kable(dval, format = "latex",
 
 
 ## 6) Estimacón de volumen y biomasa en cinco localidades
+
+Se estimó el volumen y la biomasa de las parcelas, usando los modelos seleccionados anteriormente, en las siguientes localidades: Anorí, Caicedo, Maceo, Porce y Ventanas. Para hallar el contenido de carbono almacenado se multiplicó la biomasa por $0.5$, el cual es el factor de conversión del $IPCC$. 
+En la **Table 5** y **Table 6** se muestra la media y desviación estándar del volumen y del contenido de carbono, respectivamente, con relación al volumen se puede decir que es un valor promedio aceptable pues, según el modelo de escogido **Fig.1** la tasa de cambio del volumen respecto al $DAP$ y $altura$ tiende a ser constante, por ende, se presenta una relación directamente proporcional entre las variables; la misma situación ocurre con el contenido de carbono solo que en este caso, el modelo de biomasa **Fig.2** sugiere una curva un poco convexa que podría interpretarse como una acumulación de biomasa más rápida en estadios jóvenes de los bosques, con una leve caída al final pero sin dejar de aumentar a medida que el $DAP$ y la $altura$ lo hacen, este comportamiento hace que el valor del contenido de carbono tienda a ser constante. 
+
 
 ```{r}
 
@@ -511,6 +551,9 @@ knitr::kable(as.tibble(data2) %>%  summarise(Media= mean(`BA (Ton/ha)`),
 
 # 7) Comparación entre localidades
 
+Para el volumen hay diferencias significativas entre Anorí y Maceo (**Fig.3**), las demás localidades resultan ser iguales, es interesante mirar los puntos extremos que se presentan,  esto hace que las pruebas de tendencia central puedan verse perturbadas, causando quizás que en teoría los volúmenes sean iguales pero se diferencien por valores extremos; puede notarse también una relación dependiente entre el volumen y la biomasa, pues las mismas localidades que resultaron diferentes en cuanto a volumen también son diferentes en Biomasa (**Fig.4**), esto quizás se deba a que los muestreos hechos tuvieron ejemplares con grandes edades ,lo que los hace diferentes en cuanto al $DAP$ y $altura$ del resto, es común encontrar este tipo de comportamiento en lugares que han sido intervenidos y posteriormente abandonados.
+
+
 ```{r, fig.cap= "Comparación de volumen por Localidad", fig.width= 6}
 anova<- aov(`Vol (m^3)/ha`~ Localidad, data= data1)
 
@@ -536,11 +579,5 @@ ggplot(data2, mapping = aes(x= Localidad, y= `BA (Ton/ha)`)) +
 ```
 
 
-$BA \ = \ b_0 + b_1*D+b_2*H$
-$BA \ = \ b_0+b_1(D^2*H)$
-$BA \ = \ b_0*D^{b_1}*H^{b_2}$
-$BA \ = \ b_0*D^{b_1}*H^{b_2}*WD^{b_3}$
-$BA \ = \ b_0*(D^2*WD)^{b_1}$
-$BA \ = \ b_0*(D^2*H)^{b_1}$
-$BA \ = \ b_0*(D^2*H*WD)^{b_1}$ 
+
 
