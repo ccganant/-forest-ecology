@@ -122,6 +122,31 @@ ggplot(prep,mapping = aes(S_prep)) +
   facet_wrap(~Mes) #tendencia diaria
 ```
 
+
+<!--- Analisis de Temperatura --->
+
+```{r, fig.cap= "Tendencia de la temperatura mensual"}
+#ggplot(data, mapping = aes(`Temp (grados C)`)) +
+  #geom_density(mapping = aes(color= Mes))
+
+
+Temp<- data %>% group_by(Mes, Dia) %>% 
+  summarise(S_temp= mean(`Temp (grados C)`))
+
+ggplot(Temp, mapping = aes(S_temp))+
+  geom_density(mapping = aes(color= Mes))
+
+```
+
+
+```{r, fig.cap= "Temperatura media general"}
+ggplot(Temp, mapping = aes(x= Dia, y= S_temp)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
+```
+
+
 # Materiales y métodos
 
 ## Localización y descripción del área de estudio
