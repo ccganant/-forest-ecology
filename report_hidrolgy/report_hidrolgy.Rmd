@@ -126,12 +126,13 @@ ggplot(prep,mapping = aes(S_prep)) +
 <!--- Analisis de Temperatura --->
 
 ```{r, fig.cap= "Tendencia de la temperatura mensual"}
-#ggplot(data, mapping = aes(`Temp (grados C)`)) +
-  #geom_density(mapping = aes(color= Mes))
-
 
 Temp<- data %>% group_by(Mes, Dia) %>% 
   summarise(S_temp= mean(`Temp (grados C)`))
+
+ggplot(Temp, mapping = aes(x= Mes, y= S_temp)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
 
 ggplot(Temp, mapping = aes(S_temp))+
   geom_density(mapping = aes(color= Mes))
@@ -144,6 +145,52 @@ ggplot(Temp, mapping = aes(x= Dia, y= S_temp)) +
   geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
   scale_x_discrete(breaks = c(seq(1, 31, 3))) +
   geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
+```
+
+
+<!--- Analisis de Humedad relativa  --->
+
+```{r}
+Hr<- data %>% group_by(Mes, Dia) %>% 
+  summarise(Hr_p= mean(`Hume Rel (%)`))
+
+ggplot(Hr, mapping = aes(x= Mes, y= Hr_p)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(data$`Hume Rel (%)`), color= "blue")
+
+```
+
+```{r}
+ggplot(Hr, mapping = aes(Hr_p))+
+  geom_density(mapping = aes(color= Mes))
+
+```
+
+
+```{r}
+ggplot(Hr, mapping = aes(x= Dia, y= Hr_p)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(data$`Hume Rel (%)`), color= "blue")
+```
+
+<!--- Analisis de velocidad del viento--->
+
+```{r}
+
+Vw<- data %>% group_by(Mes, Dia) %>% 
+  summarise(Vw_p= mean(`Dir viento(gr)`))
+
+ggplot(Vw, mapping = aes(x= Mes, y= Vw_p)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(Vw$Vw_p), color= "blue")
+
+```
+
+
+```{r}
+ggplot(Vw, mapping = aes(Vw_p))+
+  geom_density(mapping = aes(color= Mes))
 ```
 
 
