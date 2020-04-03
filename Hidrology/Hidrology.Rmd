@@ -1,0 +1,313 @@
+---
+title: Bare Demo of IEEEtran.cls for IEEE Conferences
+affiliation:
+  ## use one only of the following
+  # author-columnar: true         ## one column per author
+  institution-columnar: true  ## one column per institution (multiple autors eventually)
+  # wide: true                  ## one column wide author/affiliation fields
+
+  #author:   ## A custom author ordering field that breaks institution grouping.
+  #  - name: Eldon Tyrell
+  #    mark: 4
+  #    email: eldon@starfleet-academy.star
+  #  - name: Michael Shell
+  #    mark: 1
+  #  - name: Roy Batty
+  #    mark: 4
+  #    email: roy@replicant.offworld
+  ## Authors cited in institution field are ignored when author field exists
+
+  #author_multiline: ## Put authors in a given order, with multiline possibility. Authors cited in institution are ignored if exists
+  #  - line:         ## Create a new author line
+  #    - name: Michael Shell
+  #      mark: 1
+  #    - name: Homer Simpson
+  #      mark: 2
+  #      email: homer@thesimsons.com
+  #    - name: Roy Batty
+  #      mark: 4
+  #      email: roy@replicant.offworld
+  #  - line:         ## Create a second author line
+  #    - name: Montgomery Scott
+  #      mark: 3
+  #    - name: Eldon Tyrell
+  #      mark: 4
+
+  institution:
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales 
+      location: Medellín, Antioquia
+      email: cacruzs@unal.edu.co
+      mark: 1
+      author:
+        - name: 	Camilo Andres Cruz Sanchez
+    - name: Universidad Nacional de Colombia
+      department: Area Curricular de Medio Ambiente 
+      location: Medellín, Antioquia
+      email: naalopezto@unal.edu.co
+      mark: 2
+      author:
+        - name: 	Natali Andrea Lopez Toro
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales 
+      location: Medellín, Antioquia
+      email: judleonto@unal.edu.co
+      mark: 3
+      author:
+        - name: 	Juan David Leon Torres
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales 
+      location: Medellín, Antioquia
+      email: ccganant@unal.edu.co
+      mark: 4
+      author:
+        - name: 	Cristian Camilo Gañan Tapasco
+keywords: ["keyword 1", "keyword 2"]
+abstract: |
+  The abstract goes here.
+  On multiple lines eventually.
+
+bibliography: mybibfile.bib
+output: rticles::ieee_article
+#citation_sorting: none   ## used as sorting option of the biblatex package (if selected)
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(readxl)
+library(tidyverse)
+library(lubridate)
+library(corrplot)
+library(agricolae)
+```
+
+# Introducción
+
+```{r, fig.cap= "Tendencia Diaría de precipitación"}
+data<- read_xlsx("Clima Páramo.xlsx")
+
+data<- data %>% mutate(Mes= as.factor(Mes), 
+                       Dia= as.factor(Dia))
+prep<- data %>% group_by(Mes, Dia) %>% 
+  summarise(S_prep= sum(`Preci (mm)`))
+  
+
+ggplot(prep , mapping = aes(x= Mes, y= S_prep)) +
+  geom_col(mapping = aes(fill= Dia)) #Tendencia diaria
+
+```
+
+```{r, include=FALSE, eval=FALSE}
+data$Hora<- ymd_hms(data$Hora)
+
+Prex<- function(x, Prep){
+  cant<- c()
+  int<- c()
+  for (i in 1:NROW(Prep)) {
+    if(){}
+  }
+}
+
+
+
+```
+
+
+
+```{r, fig.cap= "Tendencia Diaría de precipitación"}
+ggplot(prep,mapping = aes(S_prep)) +
+  geom_density(mapping = aes(color= Mes)) +
+  facet_wrap(~Mes) #tendencia diaria
+```
+
+
+<!--- Analisis de Temperatura --->
+
+```{r, fig.cap= "Tendencia de la temperatura mensual"}
+
+Temp<- data %>% group_by(Mes, Dia) %>% 
+  summarise(S_temp= mean(`Temp (grados C)`))
+
+ggplot(Temp, mapping = aes(x= Mes, y= S_temp)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
+
+ggplot(Temp, mapping = aes(S_temp))+
+  geom_density(mapping = aes(color= Mes))
+
+```
+
+
+```{r, fig.cap= "Temperatura media general"}
+ggplot(Temp, mapping = aes(x= Dia, y= S_temp)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
+```
+
+
+<!--- Analisis de Humedad relativa  --->
+
+```{r}
+Hr<- data %>% group_by(Mes, Dia) %>% 
+  summarise(Hr_p= mean(`Hume Rel (%)`))
+
+ggplot(Hr, mapping = aes(x= Mes, y= Hr_p)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(data$`Hume Rel (%)`), color= "blue")
+
+```
+
+```{r}
+ggplot(Hr, mapping = aes(Hr_p))+
+  geom_density(mapping = aes(color= Mes))
+
+```
+
+
+```{r}
+ggplot(Hr, mapping = aes(x= Dia, y= Hr_p)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(data$`Hume Rel (%)`), color= "blue")
+```
+
+<!--- Analisis de velocidad del viento--->
+
+```{r}
+
+Vw<- data %>% group_by(Mes, Dia) %>% 
+  summarise(Vw_p= mean(`Dir viento(gr)`))
+
+ggplot(Vw, mapping = aes(x= Mes, y= Vw_p)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(Vw$Vw_p), color= "blue")
+
+
+```
+
+
+```{r}
+ggplot(Vw, mapping = aes(Vw_p))+
+  geom_density(mapping = aes(color= Mes))
+```
+
+```{r}
+ggplot(Vw, mapping = aes(x= Dia, y= Vw_p)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(Vw$Vw_p), color= "blue")
+
+```
+
+
+<!--- Analisis de Radiación solar --->
+
+```{r}
+Rs<- data %>% group_by(Mes, Dia) %>% 
+    summarise(Rs_p= mean(`Rad solar (W/m²))`))
+
+ggplot(Rs, mapping = aes(x= Mes, y= Rs_p)) +
+  geom_jitter() +
+  geom_abline(slope = 0, intercept = mean(Rs$Rs_p, na.rm = TRUE), color= "blue")
+
+```
+
+
+```{r}
+ggplot(Rs, mapping = aes(Rs_p))+
+  geom_density(mapping = aes(color= Mes))
+```
+
+```{r}
+ggplot(Rs, mapping = aes(x= Dia, y= Rs_p)) +
+  geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
+  scale_x_discrete(breaks = c(seq(1, 31, 3))) +
+  geom_abline(slope = 0, intercept = mean(Rs$Rs_p, na.rm = TRUE), color= "blue")
+```
+
+
+```{r}
+data<- cbind(as.tibble(prep), as.tibble(Temp), as.tibble(Rs), as.tibble(Hr), as.tibble(Vw))
+
+data <- data[,-c(4,5,7,8, 10, 11, 13, 14)]
+
+data<- data %>% 
+    rename(`Preci (mm/mes)`= S_prep, `Temp (grados C/mes)`= S_temp, 
+         `Rad solar (W/m²)/mes)`= Rs_p, `Hume Rel (%)/mes`= Hr_p, 
+         `Vel viento (m/s)/mes`= Vw_p)
+```    
+<!--- Comparaciónes estadísticas --->
+
+```{r, eval= FALSE, include=FALSE}
+anova<- aov(`Preci (mm/mes)` ~ Mes, data = data)
+
+tukey<- HSD.test(anova, "Mes")
+
+grupo<- as.data.frame(tukey$groups)
+
+knitr::kable(grupo[-1,], format = "latex", 
+             caption = "comparacion de la precipitación")
+
+data<- data %>% arrange(sort(`Preci (mm/mes)`))
+
+
+```
+
+
+
+```{r, fig.cap= "Matrix de correlación para las variables climáticas"}
+data1<- data %>% select(-c(Mes, Dia))
+
+M<- cor(data1, use = "pairwise.complete.obs")
+corrplot(M, method = "color", type = "upper", addCoef.col = "black", 
+         tl.col = "black", tl.srt = 25)
+```
+
+
+
+```{r, fig.cap= "Temperatura vs Humedad relativa"}
+ggplot(data , mapping = aes(x= `Temp (grados C/mes)`, y= `Hume Rel (%)/mes`)) +
+  geom_point() + geom_smooth(se= FALSE)
+
+```
+
+
+```{r, fig.cap= "Temperatura vs Radiación solar"}
+ggplot(data , mapping = aes(x= `Temp (grados C/mes)`, y= `Rad solar (W/m²)/mes)`)) +
+  geom_point() + geom_smooth(se= FALSE)
+
+```
+
+```{r, fig.cap= "Precipitación vs Humedad relativa"}
+ggplot(data , mapping = aes(x=`Preci (mm/mes)`, y= `Hume Rel (%)/mes`)) +
+  geom_point() + geom_smooth(se= FALSE)
+```
+
+```{r, fig.cap= "Velocidad del viento vs Temperatura"}
+ggplot(data , mapping = aes(x= `Vel viento (m/s)/mes`, y= `Temp (grados C/mes)`))  +
+  geom_point() + geom_smooth(se= FALSE)
+```
+
+
+```{r, fig.cap= "Distribución empírica acumulada de precipitación"}
+ggplot(data, aes(x = `Temp (grados C/mes)`)) + 
+  stat_ecdf(geom = "step", pad = FALSE) +
+  ylab("Frecuencia acumulada")
+```
+
+
+# Materiales y métodos
+
+## Localización y descripción del área de estudio
+
+### 1) Levantamiento de información
+
+### 2) Procesamiento de los datos recolectados
+
+# Resultados y Discusión 
+
+# Conclusiones
