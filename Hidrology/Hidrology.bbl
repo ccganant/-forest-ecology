@@ -28,6 +28,11 @@ Hofstede, R., Calles, J., Polanco, R., Torres, F., Ulloa, J., Cerra, M., et~al.
 \newblock Los p\'aramos andinos qu\'e sabemos, estado de conocimiento sobre el
   impacto del cambio clim\'atico en el ecosistema p\'aramo.
 
+\bibitem[Jaramillo~Robledo, 2005]{jaramillo}
+Jaramillo~Robledo, A. (2005).
+\newblock {\em Clima andino y caf{\'e} en Colombia.}
+\newblock Number Doc. 21237) CO-BAC, Bogot{\'a}.
+
 \bibitem[Montenegro~D{\'\i}az, 2015]{montenegro2015estimacion}
 Montenegro~D{\'\i}az, P.~F. (2015).
 \newblock Estimaci{\'o}n de la radiaci{\'o}n solar y neta a partir de la
@@ -46,10 +51,10 @@ Ortiz, M. A. D.-G., Gonz{\'a}lez, J. D.~N., and L{\'o}pez, T.~S. (2005).
 \newblock P{\'a}ramos: hidrosistemas sensibles.
 \newblock {\em Revista de ingenier{\'\i}a}, (22):64--75.
 
-\bibitem[{R Core Team}, 2019]{Rs}
-{R Core Team} (2019).
-\newblock {\em R: A Language and Environment for Statistical Computing}.
-\newblock R Foundation for Statistical Computing, Vienna, Austria.
+\bibitem[Tob\'on, 2017]{tobon}
+Tob\'on, C. (2017).
+\newblock {\em Curso de hidrologia forestal}.
+\newblock Universidad Nacional de Colombia, Medell\'in, Antioquia.
 
 \bibitem[van~der Hammen, 1974]{van}
 van~der Hammen, T. (1974).

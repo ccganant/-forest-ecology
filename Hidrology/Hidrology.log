@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  5 APR 2020 23:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  6 APR 2020 03:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -656,30 +656,30 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count107
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 24.
+Package hyperref Info: Option `breaklinks' set `true' on input line 338.
  (./Hidrology.aux
-LaTeX Info: Redefining \. on input line 29.
-LaTeX Info: Redefining \% on input line 29.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
 )
 \openout1 = `Hidrology.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 357.
+LaTeX Font Info:    ... okay on input line 357.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 357.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -716,7 +716,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 43.
+Package hyperref Info: Link coloring OFF on input line 357.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -726,254 +726,190 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count114
 )
-LaTeX Info: Redefining \ref on input line 43.
-LaTeX Info: Redefining \pageref on input line 43.
-LaTeX Info: Redefining \nameref on input line 43.
+LaTeX Info: Redefining \ref on input line 357.
+LaTeX Info: Redefining \pageref on input line 357.
+LaTeX Info: Redefining \nameref on input line 357.
 
 (./Hidrology.out) (./Hidrology.out)
 \@outlinefile=\write3
 \openout3 = `Hidrology.out'.
 
-LaTeX Info: Redefining \. on input line 43.
-LaTeX Info: Redefining \% on input line 43.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 224.
+LaTeX Info: Redefining \. on input line 357.
+LaTeX Info: Redefining \% on input line 357.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 522.
 
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 224.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 522.
 
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 224
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 522
 .
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 224
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 522
 .
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 224.
+(Font)              <10> on input line 522.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 224.
+(Font)              <7> on input line 522.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 224.
+(Font)              <5> on input line 522.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
 
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 313.
+LaTeX Warning: Command \textquoteright invalid in math mode on input line 611.
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 354.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 652.
 
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [2]
+)
 
-Package natbib Warning: Citation `buytaert2006hidrologia' on page 3 undefined o
-n input line 378.
+Package natbib Warning: Citation `buytaert2006hidrologia' on page 2 undefined o
+n input line 676.
 
-<Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf, id=98, 453.695pt x 315.177
+[2]
+<Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf, id=97, 453.695pt x 315.177
 5pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf
 )
 <use Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf  us
-ed on input line 382.
+ed on input line 680.
 (pdftex.def)             Requested size: 252.0pt x 175.06024pt.
 
+
 Package natbib Warning: Citation `poveda2004hidroclimatologia' on page 3 undefi
-ned on input line 392.
+ned on input line 690.
 
 
 Package natbib Warning: Citation `buytaert2006hidrologia' on page 3 undefined o
-n input line 397.
+n input line 695.
 
-<Hidrology_files/figure-latex/unnamed-chunk-4-1.pdf, id=99, 459.7175pt x 313.17
-pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf
-)
-<use Hidrology_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-4-1.pdf  us
-ed on input line 399.
-(pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<Hidrology_files/figure-latex/unnamed-chunk-4-2.pdf, id=100, 453.695pt x 315.17
-75pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-4-2.pdf Graphic file (type pdf
-)
-<use Hidrology_files/figure-latex/unnamed-chunk-4-2.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-4-2.pdf  us
-ed on input line 400.
-(pdftex.def)             Requested size: 252.0pt x 175.06024pt.
-
-Overfull \hbox (10.0pt too wide) in paragraph at lines 399--401
-[][]
- []
-
-<Hidrology_files/figure-latex/unnamed-chunk-5-1.pdf, id=101, 453.695pt x 313.17
-pt>
+<Hidrology_files/figure-latex/unnamed-chunk-5-1.pdf, id=98, 453.695pt x 315.177
+5pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf
 )
 <use Hidrology_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-5-1.pdf  us
-ed on input line 404.
-(pdftex.def)             Requested size: 252.0pt x 173.94519pt.
-<Hidrology_files/figure-latex/unnamed-chunk-6-1.pdf, id=102, 459.7175pt x 313.1
-7pt>
+ed on input line 705.
+(pdftex.def)             Requested size: 252.0pt x 175.06024pt.
+<Hidrology_files/figure-latex/unnamed-chunk-6-1.pdf, id=99, 453.695pt x 313.17p
+t>
 File: Hidrology_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf
 )
 <use Hidrology_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-6-1.pdf  us
-ed on input line 410.
-(pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<Hidrology_files/figure-latex/unnamed-chunk-7-1.pdf, id=103, 453.695pt x 315.17
+ed on input line 711.
+(pdftex.def)             Requested size: 252.0pt x 173.94519pt.
+<Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf, id=102, 453.695pt x 315.17
 75pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf
-)
-<use Hidrology_files/figure-latex/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-7-1.pdf  us
-ed on input line 416.
-(pdftex.def)             Requested size: 252.0pt x 175.06024pt.
-<Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf, id=104, 453.695pt x 313.17
-pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf
 )
 <use Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf  us
-ed on input line 422.
-(pdftex.def)             Requested size: 252.0pt x 173.94519pt.
-<Hidrology_files/figure-latex/unnamed-chunk-9-1.pdf, id=105, 459.7175pt x 313.1
-7pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf
-)
-<use Hidrology_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-9-1.pdf  us
-ed on input line 428.
-(pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<Hidrology_files/figure-latex/unnamed-chunk-10-1.pdf, id=106, 453.695pt x 315.1
-775pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pd
-f)
-<use Hidrology_files/figure-latex/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-10-1.pdf  u
-sed on input line 434.
+ed on input line 728.
 (pdftex.def)             Requested size: 252.0pt x 175.06024pt.
-<Hidrology_files/figure-latex/unnamed-chunk-11-1.pdf, id=107, 453.695pt x 313.1
-7pt>
+<Hidrology_files/figure-latex/unnamed-chunk-11-1.pdf, id=103, 453.695pt x 315.1
+775pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-11-1.pdf  u
-sed on input line 440.
-(pdftex.def)             Requested size: 252.0pt x 173.94519pt.
-<Hidrology_files/figure-latex/unnamed-chunk-12-1.pdf, id=108, 459.7175pt x 313.
-17pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pd
-f)
-<use Hidrology_files/figure-latex/unnamed-chunk-12-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-12-1.pdf  u
-sed on input line 446.
-(pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<Hidrology_files/figure-latex/unnamed-chunk-13-1.pdf, id=109, 453.695pt x 315.1
-775pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pd
-f)
-<use Hidrology_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-13-1.pdf  u
-sed on input line 452.
+sed on input line 734.
 (pdftex.def)             Requested size: 252.0pt x 175.06024pt.
-<Hidrology_files/figure-latex/unnamed-chunk-14-1.pdf, id=110, 453.695pt x 313.1
-7pt>
+<Hidrology_files/figure-latex/unnamed-chunk-14-1.pdf, id=108, 453.695pt x 315.1
+775pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-14-1.pdf  u
-sed on input line 458.
-(pdftex.def)             Requested size: 252.0pt x 173.94519pt.
+sed on input line 755.
+(pdftex.def)             Requested size: 252.0pt x 175.06024pt.
 
 Package natbib Warning: Citation `buytaert2006hidrologia' on page 3 undefined o
-n input line 478.
+n input line 775.
 
 [3 <./Hidrology_files/figure-latex/unnamed-chunk-1-1.pdf> <./Hidrology_files/fi
 gure-latex/unnamed-chunk-5-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk
--4-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-4-2.pdf>] [4 <./Hidrolo
-gy_files/figure-latex/unnamed-chunk-6-1.pdf> <./Hidrology_files/figure-latex/un
-named-chunk-7-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf> <./
-Hidrology_files/figure-latex/unnamed-chunk-9-1.pdf> <./Hidrology_files/figure-l
-atex/unnamed-chunk-10-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-11-1
-.pdf>]
-<Hidrology_files/figure-latex/unnamed-chunk-17-1.pdf, id=203, 362.35374pt x 254
+-6-1.pdf>]
+<Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf, id=143, 362.35374pt x 254
 .9525pt>
-File: Hidrology_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type pd
-f)
-<use Hidrology_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-17-1.pdf  u
-sed on input line 491.
-(pdftex.def)             Requested size: 252.0pt x 177.3101pt.
-<Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf, id=204, 463.7325pt x 316.
-18124pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf  u
-sed on input line 497.
-(pdftex.def)             Requested size: 252.0pt x 171.82085pt.
-<Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf, id=205, 463.7325pt x 316.
+sed on input line 788.
+(pdftex.def)             Requested size: 252.0pt x 177.3101pt.
+<Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf, id=144, 463.7325pt x 316.
 18124pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf  u
-sed on input line 503.
+sed on input line 794.
 (pdftex.def)             Requested size: 252.0pt x 171.82085pt.
-<Hidrology_files/figure-latex/unnamed-chunk-20-1.pdf, id=206, 463.7325pt x 316.
+<Hidrology_files/figure-latex/unnamed-chunk-20-1.pdf, id=145, 463.7325pt x 316.
 18124pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-20-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-20-1.pdf  u
-sed on input line 509.
+sed on input line 800.
 (pdftex.def)             Requested size: 252.0pt x 171.82085pt.
-<Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf, id=207, 463.7325pt x 316.
+<Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf, id=146, 463.7325pt x 316.
 18124pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf  u
-sed on input line 515.
+sed on input line 806.
 (pdftex.def)             Requested size: 252.0pt x 171.82085pt.
-
-Underfull \vbox (badness 1983) has occurred while \output is active []
-
- [5 <./Hidrology_files/figure-latex/unnamed-chunk-12-1.pdf> <./Hidrology_files/
-figure-latex/unnamed-chunk-13-1.pdf> <./Hidrology_files/figure-latex/unnamed-ch
-unk-14-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-17-1.pdf>]
-<Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf, id=251, 463.7325pt x 316.
+<Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf, id=147, 463.7325pt x 316.
 18124pt>
 File: Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pd
 f)
 <use Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf>
 Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf  u
-sed on input line 540.
+sed on input line 812.
 (pdftex.def)             Requested size: 252.0pt x 171.82085pt.
- [6 <./Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf> <./Hidrology_files/
-figure-latex/unnamed-chunk-19-1.pdf> <./Hidrology_files/figure-latex/unnamed-ch
-unk-20-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-21-1.pdf> <./Hidrol
-ogy_files/figure-latex/unnamed-chunk-22-1.pdf>]
-<paramo3.png, id=307, 614.295pt x 794.97pt>
+
+Underfull \vbox (badness 1983) has occurred while \output is active []
+
+ [4 <./Hidrology_files/figure-latex/unnamed-chunk-8-1.pdf> <./Hidrology_files/f
+igure-latex/unnamed-chunk-11-1.pdf> <./Hidrology_files/figure-latex/unnamed-chu
+nk-14-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-18-1.pdf>]
+<Hidrology_files/figure-latex/unnamed-chunk-23-1.pdf, id=191, 463.7325pt x 316.
+18124pt>
+File: Hidrology_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pd
+f)
+<use Hidrology_files/figure-latex/unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: Hidrology_files/figure-latex/unnamed-chunk-23-1.pdf  u
+sed on input line 837.
+(pdftex.def)             Requested size: 252.0pt x 171.82085pt.
+ [5 <./Hidrology_files/figure-latex/unnamed-chunk-19-1.pdf> <./Hidrology_files/
+figure-latex/unnamed-chunk-20-1.pdf> <./Hidrology_files/figure-latex/unnamed-ch
+unk-21-1.pdf> <./Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf> <./Hidrol
+ogy_files/figure-latex/unnamed-chunk-23-1.pdf>]
+<paramo3.png, id=246, 614.295pt x 794.97pt>
 File: paramo3.png Graphic file (type png)
 <use paramo3.png>
-Package pdftex.def Info: paramo3.png  used on input line 582.
+Package pdftex.def Info: paramo3.png  used on input line 885.
 (pdftex.def)             Requested size: 252.0pt x 326.12177pt.
- (./Hidrology.bbl [7 <./paramo3.png (PNG copy)>])
+ (./Hidrology.bbl [6 <./paramo3.png (PNG copy)>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -988,45 +924,46 @@ Before submitting the final camera ready copy, remember to:
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 605.
-[8
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 917.
+[7
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 605.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 917.
  (./Hidrology.aux
-LaTeX Info: Redefining \. on input line 29.
-LaTeX Info: Redefining \% on input line 29.
+LaTeX Info: Redefining \. on input line 36.
+LaTeX Info: Redefining \% on input line 36.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 605.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 605.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 917.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 917.
 Package rerunfilecheck Info: File `Hidrology.out' has not changed.
 (rerunfilecheck)             Checksum: D07CAE25C7803A61CF5826C78D093395;1302.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 605.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 917.
  ) 
 Here is how much of TeX's memory you used:
- 11120 strings out of 492982
- 162222 string characters out of 6134896
- 241273 words of memory out of 5000000
- 14502 multiletter control sequences out of 15000+600000
+ 11084 strings out of 492982
+ 160400 string characters out of 6134896
+ 243624 words of memory out of 5000000
+ 14478 multiletter control sequences out of 15000+600000
  185774 words of font info for 107 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 28i,7n,30p,356b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,7n,30p,356b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share
-/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share/texmf/fonts/type1/public/lm
+ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm
 /lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf
 /fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmcs
 c10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type
-1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/
-lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/tex
-mf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Hidrology.pdf (8 pages, 627998 bytes).
+nts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb
+></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type
+1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/sh
+are/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt
+10.pfb>
+Output written on Hidrology.pdf (7 pages, 523173 bytes).
 PDF statistics:
- 390 PDF objects out of 1000 (max. 8388607)
- 304 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
- 157 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 122 words of extra memory for PDF output out of 10000 (max. 10000000)
 

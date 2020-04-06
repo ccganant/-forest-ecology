@@ -62,11 +62,9 @@ affiliation:
       mark: 4
       author:
         - name: 	Cristian Camilo Gañan Tapasco
-keywords: ["keyword 1", "keyword 2"]
+keywords: ["Páramo", "Relaciónes climáticas", "Temperatura", "Velocidad del viento", "Precipitación"]
 abstract: |
-  Los páramos son ecosistemas muy complejos e importantes por el papel que juegan en la regulación y conservación del recurso hídrico, estos ecosistemas de alta montaña son el lugar donde nacen múltiples canales que alimentan a los grandes ríos, nuestro país es rico en estos ecosistemas pues casi la mitad de todos los páramos se encuentran en nuestro país, específicamente sobre las tres cordilleras andinas. En el  departamento de Boyacá  se encuentra el páramo La Rusia que es el lugar de donde se han tomado los datos climáticos para este artículo. En este  se analizan los datos de  precipitación, temperatura, humedad relativa, radiación solar, velocidad y dirección del viento  tomados de una estación climática de este páramo y registrados durante  un periodo de 6 meses cada 15 minutos, además también se estudian  los datos en tiempo real de de Humedad relativa y temperatura tomados de dos sensores HOBO en periodos de un minuto, los cuales se registraron durante aproximadamente los 4 días en que se llevó a cabo la práctica de campo.                                         
-  Los páramos son ecosistemas muy complejos e importantes por el papel que juegan en la regulación y conservación del recurso hídrico por lo cual se hace necesario entender el comportamiento de las variables climáticas que se presenta en ellos y es por esto que se realiza un estudio en el páramo de La Rusia donde se toman datos de precipitación, humedad relativa, temperatura, radiación solar, velocidad y dirección del viento para 6 meses del año 2019 a través de una estación climatológica que hace parte de un complejo de estaciones climáticas que ha venido instalando el equipo de trabajo del Dr. Mark Mulligan de Kings College y dos sensores HOBO con los cuales se midieron temperatura y humedad relativa a través del páramo durante cuatro días del mes de abril. Datos con los cuales se hicieron relaciones entre las diferentes variables climáticas por medio del software R los cuales mostraron correlaciones positivas para la humedad relativa y precipitación(0.38) y correlaciones negativas entre la radiación y humedad relativa(-0.81). Para los datos de los sensores se realizó un modelo kriging ordinario de primer orden y transformación logarítmica por medio del software Arcgis, el cual mostró una disminución en la temperatura a medida que se aumentaba la altitud, pero no con una relación lineal sino que era fluctuante. 
-
+  Los páramos son ecosistemas muy complejos e importantes por el papel que juegan en la regulación y conservación del recurso hídrico por lo cual se hace necesario entender el comportamiento de las variables climáticas que se presenta en ellos, es por esto que se realiza un estudio en el páramo de La Rusia donde se toman datos de precipitación, humedad relativa, temperatura, radiación solar y velocidad del viento para 6 meses del año 2019 a través de una estación climatológica que hace parte de un complejo de estaciones climáticas que ha venido instalando el equipo de trabajo del Dr. Mark Mulligan de Kings College y dos sensores HOBO con los cuales se midieron temperatura y humedad relativa a través del páramo durante cuatro días del mes de abril. Datos con los cuales se hicieron relaciones entre las diferentes variables climáticas por medio del software R los cuales mostraron correlaciones positivas para la humedad relativa y precipitación(0.38) y correlaciones negativas entre la radiación y humedad relativa(-0.81). Para los datos de los sensores se realizó un modelo kriging ordinario de primer orden y transformación logarítmica por medio del software Arcgis, el cual mostró una disminución en la temperatura a medida que se aumentaba la altitud, pero no con una relación lineal sino que era fluctuante. 
 
 bibliography: mybibfile.bib
 output: rticles::ieee_article
@@ -148,7 +146,7 @@ Prex<- function(x, Prep){
 
 ```
 
-En la **Fig.2**, se observa la variación de la temperatura alrededor del promedio de los seis meses de $9.2^{\circ}C$ con una temperatura máxima de $19.5^{\circ}C$ y una mínima de $1.6^{\circ}C$, sin embargo la fluctuación de mayor densidad se encuentra entre los $8^{\circ}C$ y $10^{\circ}C$. La variación diurna de la temperatura resulta del ciclo de insolación superficial \cite{poveda2004hidroclimatologia}, la cual es mayor entre las 11:00 a.m. y la 1:00 p.m. Debido a su localización cercana a la línea ecuatorial, la radiación solar diaria es casi constante todo el año. Esta constancia resulta en una baja variabilidad estacional en temperatura media del aire, en contraste con el ciclo diario, el cual es totalmente marcado \cite{buytaert2006hidrologia}.
+En la **Fig.2**, se observa la variación de la temperatura alrededor del promedio de los seis meses de $9.2^{\circ}C$ con una temperatura máxima de $19.5^{\circ}C$ y una mínima de $1.6^{\circ}C$, sin embargo la fluctuación de mayor densidad se encuentra entre los $8^{\circ}C$ y $10^{\circ}C$. La variación diurna de la temperatura resulta del ciclo de insolación superficial \cite{poveda2004hidroclimatologia}, la cual es mayor entre las 11:00 a.m. y la 1:00 p.m. Debido a su localización cercana a la línea ecuatorial, la radiación solar diaria es casi constante todo el año. Esta constancia resulta en una baja variabilidad estacional en temperatura media del aire, en contraste con el ciclo diario, el cual es totalmente marcado \cite{buytaert2006hidrologia}; en la **Fig.3** se muestra distribución de la temperatura a lo largo del periodo de medición, es notable una `normal`, de esto es fácil deducir que los valores tienden a un valor medio, es decir, que generalmente los valores de temperatura estarán en el rango de $9 a 10^{\circ}$, hay ocasiones como en el mes 1 en donde la variable tiende a un valor más bajo de temperatura.
 
 ```{r, fig.cap= "Tendencia Diaría de precipitación", include=FALSE, eval=FALSE}
 ggplot(prep,mapping = aes(S_prep)) +
@@ -159,7 +157,7 @@ ggplot(prep,mapping = aes(S_prep)) +
 
 <!--- Analisis de Temperatura --->
 
-```{r, fig.cap= "Tendencia de la temperatura mensual"}
+```{r, fig.cap= "Tendencia de la temperatura mensual", eval=TRUE, include=FALSE}
 
 Temp<- data %>% group_by(Mes, Dia) %>% 
   summarise(S_temp= mean(`Temp (grados C)`))
@@ -168,13 +166,16 @@ ggplot(Temp, mapping = aes(x= Mes, y= S_temp)) +
   geom_jitter() +
   geom_abline(slope = 0, intercept = mean(data$`Temp (grados C)`), color= "blue")
 
+```
+
+```{r, fig.cap= "Distribución de la temperatura"}
 ggplot(Temp, mapping = aes(S_temp))+
   geom_density(mapping = aes(color= Mes))
-
 ```
 
 
-```{r, fig.cap= "Temperatura media general"}
+
+```{r, fig.cap= "Tendencia de la temperatura mensual"}
 ggplot(Temp, mapping = aes(x= Dia, y= S_temp)) +
   geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
   scale_x_discrete(breaks = c(seq(1, 31, 3))) +
@@ -184,7 +185,7 @@ ggplot(Temp, mapping = aes(x= Dia, y= S_temp)) +
 
 <!--- Analisis de Humedad relativa  --->
 
-```{r, fig.cap= "Analisis de Humedad relativa "}
+```{r, fig.cap= "Analisis de Humedad relativa ", include=FALSE, eval=TRUE}
 Hr<- data %>% group_by(Mes, Dia) %>% 
   summarise(Hr_p= mean(`Hume Rel (%)`))
 
@@ -194,14 +195,16 @@ ggplot(Hr, mapping = aes(x= Mes, y= Hr_p)) +
 
 ```
 
-```{r, fig.cap= "Analisis de Humedad relativa "}
+En la **Fig.4** se presenta la distribución de la humedad relativa, esta es parecida a una `Fisher` sin  embargo no tiene relación con el caso pues no se está comparando poblaciońes, más bien parece haber la tendencia a que en el páramo haya una alta humedad relativa centrada en valores $> \ 90 \%$ lo cual es relacionable con la variable anterior pues a mayor temperatura del aire hay mayor capacidad en retener humedad \cite{jaramillo}, se puede inferir entonces que la temperatura del páramo es fría solo con mirar su humedad relativa, este comportamiento está presente en los datos pues hay un valor bajo de temperatura con un alto porcentaje de humedad.
+
+```{r, fig.cap= "Distribución de la Humedad relativa "}
 ggplot(Hr, mapping = aes(Hr_p))+
   geom_density(mapping = aes(color= Mes))
 
 ```
 
 
-```{r, fig.cap= "Analisis de Humedad relativa "}
+```{r, fig.cap= "Analisis de Humedad relativa ", include=FALSE, eval=FALSE}
 ggplot(Hr, mapping = aes(x= Dia, y= Hr_p)) +
   geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
   scale_x_discrete(breaks = c(seq(1, 31, 3))) +
@@ -210,7 +213,7 @@ ggplot(Hr, mapping = aes(x= Dia, y= Hr_p)) +
 
 <!--- Analisis de velocidad del viento--->
 
-```{r, fig.cap= "Analisis de velocidad del viento"}
+```{r, fig.cap= "Analisis de velocidad del viento", eval=TRUE, include=FALSE}
 
 Vw<- data %>% group_by(Mes, Dia) %>% 
   summarise(Vw_p= mean(`Dir viento(gr)`))
@@ -223,12 +226,12 @@ ggplot(Vw, mapping = aes(x= Mes, y= Vw_p)) +
 ```
 
 
-```{r, fig.cap= "Analisis de velocidad del viento"}
+```{r, fig.cap= "Distribución de la velocidad del viento"}
 ggplot(Vw, mapping = aes(Vw_p))+
   geom_density(mapping = aes(color= Mes))
 ```
 
-```{r, fig.cap= "Analisis de velocidad del viento"}
+```{r, fig.cap= "Analisis de velocidad del viento", include=FALSE, eval=FALSE}
 ggplot(Vw, mapping = aes(x= Dia, y= Vw_p)) +
   geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
   scale_x_discrete(breaks = c(seq(1, 31, 3))) +
@@ -237,9 +240,12 @@ ggplot(Vw, mapping = aes(x= Dia, y= Vw_p)) +
 ```
 
 
+
+En la **Fig.5** se muestra la distribución de la velocidad del viento, los valores medios oscilan entre $50$ y $100 \frac{m}{s}$, este parámetro es relacionado con la precipitación pues si hay grandes vientos estos pueden desplazar las masas de aire disminuyendo la probabilidad del evento \cite{tobon}, por ejemplo, el mes 2 fue el que tuvo menor precipitación la velocidad del viento para esa fecha es variable lo cual no explicaría la baja precipitación en ese mes, sin embargo, al mirar la **Fig.6** distribución de la radiación solar, es fácil ver como en la fecha el sol no fue constante lo que favoreció a su vez que la humedad relativa presenta los valores más pequeños en todo el registro, las masas de aire entonces se calientan cuando hay una temperatura mayor por ende más radiación solar, estas ascienden y la velocidad del viento puede o no llevarlas a otro lugar controlando así la precipitación en el sitio \cite{tobon}.
+
 <!--- Analisis de Radiación solar --->
 
-```{r, fig.cap= "Radiación solar media"}
+```{r, fig.cap= "Radiación solar media", include=FALSE, eval=TRUE}
 Rs<- data %>% group_by(Mes, Dia) %>% 
     summarise(Rs_p= mean(`Rad solar (W/m²))`))
 
@@ -250,12 +256,12 @@ ggplot(Rs, mapping = aes(x= Mes, y= Rs_p)) +
 ```
 
 
-```{r, fig.cap= "Radiación solar media"}
+```{r, fig.cap= "Distribución de la radiación solar media"}
 ggplot(Rs, mapping = aes(Rs_p))+
   geom_density(mapping = aes(color= Mes))
 ```
 
-```{r, fig.cap= "Radiación solar media"}
+```{r, fig.cap= "Radiación solar media", include=FALSE, eval=FALSE}
 ggplot(Rs, mapping = aes(x= Dia, y= Rs_p)) +
   geom_jitter(mapping = aes(color= Mes)) + facet_wrap(~Mes) + 
   scale_x_discrete(breaks = c(seq(1, 31, 3))) +
@@ -291,9 +297,9 @@ data<- data %>% arrange(sort(`Preci (mm/mes)`))
 ```
 
 
-En la **Fig.12** se puede observar la correlación para las distintas variables climáticas, presentando así una correlación positiva entre la precipitación y humedad relativa ($0.38$), esto puede darse ya que en épocas de lluvia la humedad relativa es constantemente alta y tiende a la saturación en eventos de precipitación y además suele presentarse el fenómeno de niebla. \cite{morales2019atlas}, dato que se puede corroborar en la **Fig.15** que muestra la relación entre precipitación y humedad relativa, que presenta una línea de tendencia con un aumento muy rápido en la humedad relativa mientras inicia la precipitación y luego se mantiene constante en el evento de lluvia tendiendo a la saturación del ambiente.
-Lo mismo ocurre con las variables de radiación solar y temperatura que tienen una correlación positiva de $0.52$, la cual puede darse por el gran aumento de insolación solar y temperatura que se presenta a medio día en el páramo ya que se encuentra muy cerca de la línea ecuatorial y recibe una gran radiación diaria todo el año mientras se tenga un cielo despejado \cite{buytaert2006hidrologia}. Esto se puede ver en la **Fig.14** que muestra la relación entre temperatura y radiación solar, donde la línea de tendencia muestra una relación directa en el aumento de la radiación y temperatura. 
-Caso contrario cuando se analiza la correlación entre radiación solar y humedad relativa ($-0.81$) o temperatura y humedad relativa ($-0.25$), obteniendo valores negativos; esto se pudo evidenciar en campo, pues mientras la temperatura era más alta el aire se sentía mucho más seco. Como se puede ver en la **Fig.13** que muestra la relación entre temperatura vs humedad relativa, donde la línea de tendencia disminuye a medida que la temperatura aumenta. 
+En la **Fig.7** se puede observar la correlación para las distintas variables climáticas, presentando así una correlación positiva entre la precipitación y humedad relativa ($0.38$), esto puede darse ya que en épocas de lluvia la humedad relativa es constantemente alta y tiende a la saturación en eventos de precipitación y además suele presentarse el fenómeno de niebla. \cite{morales2019atlas}, dato que se puede corroborar en la **Fig.10** que muestra la relación entre precipitación y humedad relativa, que presenta una línea de tendencia con un aumento muy rápido en la humedad relativa mientras inicia la precipitación y luego se mantiene constante en el evento de lluvia tendiendo a la saturación del ambiente.
+Lo mismo ocurre con las variables de radiación solar y temperatura que tienen una correlación positiva de $0.52$, la cual puede darse por el gran aumento de insolación solar y temperatura que se presenta a medio día en el páramo ya que se encuentra muy cerca de la línea ecuatorial y recibe una gran radiación diaria todo el año mientras se tenga un cielo despejado \cite{buytaert2006hidrologia}. Esto se puede ver en la **Fig.9** que muestra la relación entre temperatura y radiación solar, donde la línea de tendencia muestra una relación directa en el aumento de la radiación y temperatura. 
+Caso contrario cuando se analiza la correlación entre radiación solar y humedad relativa ($-0.81$) o temperatura y humedad relativa ($-0.25$), obteniendo valores negativos; esto se pudo evidenciar en campo, pues mientras la temperatura era más alta el aire se sentía mucho más seco. Como se puede ver en la **Fig.8** que muestra la relación entre temperatura vs humedad relativa, donde la línea de tendencia disminuye a medida que la temperatura aumenta. 
 
 
 ```{r, fig.cap= "Matrix de correlación para las variables climáticas"}
@@ -329,19 +335,20 @@ ggplot(data , mapping = aes(x= `Vel viento (m/s)/mes`, y= `Temp (grados C/mes)`)
   geom_point() + geom_smooth(se= FALSE)
 ```
 
-En la **Fig.13** se puede observar la reacción que se encontró para los parámetros climáticos temperatura y humedad relativa durante el periodo del que se tienen los datos.
-La gráfica de dispersión ilustra un comportamiento inverso entre las dos variables con una línea de tendencia que en general es decreciente, a medida que comienza a ascender la temperatura la humedad relativa  comienza  a descender lo que es normal pues a medida que el ambiente se torna más caliente, el ambiente se torna más seco lo que en un páramo está sujeto a la estacionalidad, pues la humedad relativa es variable y estacional \cite{hofstede2017p}, así  en épocas de lluvia habrá mayor humedad relativa que en épocas secas o de verano, la variación de este factor está estrechamente ligada a los fenómenos de niebla que en un páramo pueden presentarse con mayor o menor frecuencia dentro de un periodo de tiempo. En síntesis la gráfica no se sale del comportamiento normal de estos dos parámetros climatológicos (humedad relativa y temperatura), debido a que estos son normalmente inversos, cabe destacar que la humedad relativa extrañamente baja a valores menores de 70 lo que es característico de estos ecosistemas. \cite{hofstede2017p}
+En la **Fig.8** se puede observar la reacción que se encontró para los parámetros climáticos temperatura y humedad relativa durante el periodo del que se tienen los datos.
+La gráfica de dispersión ilustra un comportamiento inverso entre las dos variables con una línea de tendencia que en general es decreciente, a medida que comienza a ascender la temperatura la humedad relativa  comienza  a descender lo que es normal pues a medida que el ambiente se torna más caliente, el aire se torna más seco lo que en un páramo está sujeto a la estacionalidad, pues la humedad relativa es variable y estacional \cite{hofstede2017p}, así  en épocas de lluvia habrá mayor humedad relativa que en épocas secas o de verano, la variación de este factor está estrechamente ligada a los fenómenos de niebla que en un páramo pueden presentarse con mayor o menor frecuencia dentro de un periodo de tiempo. En síntesis la gráfica no se sale del comportamiento normal de estos dos parámetros climatológicos (humedad relativa y temperatura), debido a que estos son normalmente inversos, cabe destacar que la humedad relativa extrañamente baja a valores menores de 70 lo que es característico de estos ecosistemas. \cite{hofstede2017p}
 
+En la **Fig.12** se observa la distribución empírica acumulada de la temperatura, es evidente notar que la probabilidad de encontrar temperaturas menores a $11^{\circ}C$ es alta, lo contrario pasa con valores muy bajos del parámetro, es poco probable encontrar valores cercanos a cero de hecho los valores más comunes giran en torno al rango de $8$ a $11^{\circ}C$.
 
-```{r, fig.cap= "Distribución empírica acumulada de precipitación"}
+```{r, fig.cap= "Distribución empírica acumulada de temperatura"}
 ggplot(data, aes(x = `Temp (grados C/mes)`)) + 
   stat_ecdf(geom = "step", pad = FALSE) +
   ylab("Frecuencia acumulada")
 ```
 
-En la **Fig.14** se observa la relación entre la temperatura y la radiación solar para el páramo La Rusia, de la gráfica se deduce que estos dos parámetros son generalmente directamente proporcionales pues en la mayoría del tiempo a medida que la temperatura aumenta la radiación solar comienza también a aumentar, la radiación solar empieza a aumentar a mayor medida mientras lo hace también la temperatura y es que esto mientras se tengan las condiciones necesarias (como un cielo despejado) es normal en un páramo pues debido a su altitud y cercanía con el ecuador la radiación solar que reciben estos ecosistemas es alta mientras no haya nubosidad \cite{montenegro2015estimacion}.
+En la **Fig.9** se observa la relación entre la temperatura y la radiación solar, de la gráfica se deduce que estos dos parámetros son casi siempre directamente proporcionales pues en la mayoría del tiempo a medida que la temperatura aumenta la radiación solar comienza también a aumentar,  y es que esto mientras se tengan las condiciones necesarias (como un cielo despejado) es normal en un páramo pues debido a su altitud y cercanía con el ecuador la radiación solar que reciben estos ecosistemas es alta mientras no haya nubosidad \cite{montenegro2015estimacion}.
 
-En la **Fig.10**  se muestra el modelo de temperatura construido a partir de los datos del sensor HOBO, cabe la pena aclarar que este es un aproximación y no es un modelo que ajuste bien los datos, es válido decir esto dada la cantidad de puntos utilizados ($8$) son pocos pues se tomaron las coordenadas de los instrumentos instalados. Se puede notar el gradiente mostrado en el mapa, sugiere la variabilidad de la temperatura en el páramo; los rangos mostrados difieren en aproximadamente $3^{\circ}C$, al mirar este comportamiento, se procedió a verificar si la altura tenía influencia  en la temperatura, lo esperado sería que este parámetro tuviera influencia \cite{basantes}, para determinar la relación se hace un test de correlación arrojando un resultado de $-0.46$ lo cual indica que mientras una variable aumenta la otra disminuye, sin embargo, el mismo valor en sí es deja en duda es una relación lineal, pues se encontró un $R^2$ de $0.22$, lo que demuestra que si bien hay relación en entre los parámetros esta puede fluctuar y no ser constante, es decir, pueden haber lugares altos pero con temperaturas más altas de lo normal, este comportamiento no sigue descrito por \cite{van} la tasa de cambio en el promedio de temperatura con respecto a la altitud, está típicamente entre $0.6$ y $0.7^{\circ}C$ $100 \ m-1$, esto se explica quizás por que la subida de temperatura, causada por el efecto invernadero de varios gases antropogénicos de los cuales el CO2 es el más conocido, es el proceso fundamental global del cambio climático, esto viene acompañado de otros efectos secundarios \cite{buyta} los cuales no serán tratados acá.
+En la **Fig.13**  se muestra el modelo de temperatura construido a partir de los datos del sensor HOBO, cabe la pena aclarar que este es un aproximación y no es un modelo que ajuste bien los datos, es válido decir esto dada la cantidad de puntos utilizados ($8$), son pocos, pues se tomaron las coordenadas de los instrumentos instalados. Se puede notar el gradiente mostrado en el mapa, sugiere la variabilidad de la temperatura en el páramo; los rangos mostrados difieren en aproximadamente $3^{\circ}C$, al mirar este comportamiento, se procedió a verificar si la altura tenía influencia  en la temperatura, lo esperado sería que este parámetro tuviera influencia \cite{basantes}, para determinar la relación se hace un test de correlación arrojando un resultado de $-0.46$ lo cual indica que mientras una variable aumenta la otra disminuye, sin embargo, el mismo valor en sí es deja enduda si es una relación lineal, pues se encontró un $R^2$ de $0.22$, lo que demuestra que si bien hay relación en entre los parámetros esta puede fluctuar y no ser constante, es decir, pueden haber lugares altos pero con temperaturas más altas de lo normal, este comportamiento no sigue descrito por \cite{van} la tasa de cambio en el promedio de temperatura con respecto a la altitud, está típicamente entre $0.6$ y $0.7^{\circ}C$ $100 \ m-1$, esto tiene explicación pues la subida de temperatura, causada por el efecto invernadero de varios gases antropogénicos de los cuales el CO2 es el más conocido, es el proceso fundamental global del cambio climático, esto viene acompañado de otros efectos secundarios \cite{buyta} los cuales no serán tratados acá.
 
 \begin{figure}
 \centering
@@ -351,6 +358,9 @@ En la **Fig.10**  se muestra el modelo de temperatura construido a partir de los
 
 # Conclusiones
 
-El clima en el páramo de La Rusia presenta la variabilidad esperada con su temperatura máxima de $19.5^{\circ}C$ a medio día y una mínima de $1.6^{\circ}C$ en la madrugada, una humedad relativa constantemente alta en excepción del tiempo donde se tiene la temperatura más alta haciendo de este un páramo muy húmedo, que si se tiene una buena regeneración del ecosistema con unos suelos ricos en porosidad y óptimos en infiltración, ayudado de la vegetación, puede ser muy importante para la captura de agua y alimentación de los acuíferos subterráneos y ríos, proporcionando así una buena oferta hídrica. Por lo que se hace necesario estudios más detallados para la conservación de estos ecosistemas sobre todo en un país como Colombia que tiene la mitad de páramos del mundo en el cual cae la responsabilidad en sus ciudadanos para un manejo óptimo y sostenible.
+Las variables climáticas están íntimamente relacionadas, una depende la otra como un ciclo que necesita de su entorno, las influencias pueden variar de manera positiva o negativa, es decir, que si una aumenta la otra disminuye o viceversa, es urgente entonces prestar atención a fenómenos como el cambio climático que modifica algunas variables del ambiente, esto repercute en el entorno alterando las fases naturales y llevando consigo la disminución de la calidad de vida para todos los seres vivos.
+
+El clima en el páramo de La Rusia presenta la variabilidad esperada con su temperatura máxima de $19.5^{\circ}C$ a medio día y una mínima de $1.6^{\circ}C$ en la madrugada, una humedad relativa constantemente alta en excepción del tiempo donde se tiene la temperatura más elevada haciendo de este un páramo muy húmedo, que si se tiene una buena regeneración del ecosistema con unos suelos ricos en porosidad y óptimos en infiltración, ayudado de la vegetación, puede ser muy importante para la captura de agua y alimentación de los acuíferos subterráneos y ríos, proporcionando así una buena oferta hídrica. Por lo que se hace necesario estudios más detallados para la conservación de estos ecosistemas sobre todo en un país como Colombia que tiene la mitad de páramos del mundo en el cual cae la responsabilidad en sus ciudadanos para un manejo óptimo y sostenible.
+
 
 
