@@ -1,15 +1,65 @@
-\begin{thebibliography}{1}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\begin{thebibliography}{}
 
-\bibitem[Feynman and {Vernon Jr.}(1963)]{Feynman1963118}
-R.P Feynman and F.L {Vernon Jr.}
-\newblock The theory of a general quantum system interacting with a linear
-  dissipative system.
-\newblock \emph{Annals of Physics}, 24:\penalty0 118--173, 1963.
-\newblock \doi{10.1016/0003-4916(63)90068-X}.
+\bibitem[Balasubramanian, 2017]{Bala}
+Balasubramanian, A. (2017).
+\newblock Climate data management.
+
+\bibitem[Basantes and Garc{\'\i}a, 2018]{basantes}
+Basantes, A. C.~N. and Garc{\'\i}a, E.~H. (2018).
+\newblock Altitud, variables clim{\'a}ticas y tiempo de permanencia de las
+  personas en plazas de ecuador.
+\newblock {\em urbe. Revista Brasileira de Gest{\~a}o Urbana}, 10(2):414--425.
+
+\bibitem[Buytaert et~al., 2014]{buyta}
+Buytaert, W., Sevink, J., Cuesta, F., et~al. (2014).
+\newblock Cambio clim{\'a}tico: la nueva amenaza para los p{\'a}ramos.
+\newblock {\em Avances en investigaci{\'o}n para la conservaci{\'o}n de los
+  p{\'a}ramos andinos. CONDESAN, Lima}.
+
+\bibitem[Cabrera and Ram{\'\i}rez, 2014]{cabrera}
+Cabrera, M. and Ram{\'\i}rez, W. (2014).
+\newblock {\em Restauraci{\'o}n ecol{\'o}gica de los p{\'a}ramos de Colombia}.
+\newblock Instituto de Investigaci{\'o}n de Recursos Biol{\'o}gicos Alexander
+  von Humboldt.
+
+\bibitem[Hofstede et~al., 2017]{hofstede2017p}
+Hofstede, R., Calles, J., Polanco, R., Torres, F., Ulloa, J., Cerra, M., et~al.
+  (2017).
+\newblock Los p\'aramos andinos qu\'e sabemos, estado de conocimiento sobre el
+  impacto del cambio clim\'atico en el ecosistema p\'aramo.
+
+\bibitem[Montenegro~D{\'\i}az, 2015]{montenegro2015estimacion}
+Montenegro~D{\'\i}az, P.~F. (2015).
+\newblock Estimaci{\'o}n de la radiaci{\'o}n solar y neta a partir de la
+  temperatura en ecosistemas de p{\'a}ramo y comparaci{\'o}n con sensores a
+  nivel del suelo.
+
+\bibitem[Morales-Rivas et~al., 2019]{morales2019atlas}
+Morales-Rivas, M., Otero~Garcia, J., Hammen, T. v.~d., Torres~Perdig{\'o}n, A.,
+  Cadena~Vargas, C.~E., Pedraza~Pe{\~n}aloza, C.~A., Rodr{\'\i}guez~Eraso, N.,
+  Franco~Aguilera, C.~A., Betancourth~Su{\'a}rez, J.~C., Olaya~Ospina, {\'E}.,
+  et~al. (2019).
+\newblock Atlas de p{\'a}ramos de colombia.
+
+\bibitem[Ortiz et~al., 2005]{ortizparamos}
+Ortiz, M. A. D.-G., Gonz{\'a}lez, J. D.~N., and L{\'o}pez, T.~S. (2005).
+\newblock P{\'a}ramos: hidrosistemas sensibles.
+\newblock {\em Revista de ingenier{\'\i}a}, (22):64--75.
+
+\bibitem[{R Core Team}, 2019]{Rs}
+{R Core Team} (2019).
+\newblock {\em R: A Language and Environment for Statistical Computing}.
+\newblock R Foundation for Statistical Computing, Vienna, Austria.
+
+\bibitem[van~der Hammen, 1974]{van}
+van~der Hammen, T. (1974).
+\newblock The pleistocene changes of vegetation and climate in tropical south
+  america.
+\newblock {\em Journal of Biogeography}, pages 3--26.
+
+\bibitem[Vanegas, 1998]{paramos}
+Vanegas, M.~V. (1998).
+\newblock Paramos estrategia acuifera y paisajistica de gran valor ecologico.
+\newblock {\em Respuestas}, 3(1):38--42.
 
 \end{thebibliography}
