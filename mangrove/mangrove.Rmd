@@ -1,0 +1,93 @@
+---
+title: Bare Demo of IEEEtran.cls for IEEE Conferences
+affiliation:
+  institution-columnar: true  
+
+  institution:
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales
+      location: Medelín, Antioquia
+      email: ccganant@unal.edu.co
+      mark: 1
+      author:
+        - name: Cristian Camilo Gañan
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales
+      location: Medellín, Antioquia
+      email: cacruzs@unal.edu.co
+      mark: 2
+      author:
+        - name: Camilo Andres Cruz Sanchez
+    - name: Universidad Nacional de Colombia
+      department: Departamento de Ciencias Forestales
+      location: Medellín, Antioquia
+      mark: 3
+      author:
+        - name: Juan Pablo Caicedo Garcia
+          email: jpcaicedog@unal.edu.co
+
+keywords: ["keyword 1", "keyword 2"]
+abstract: |
+  The abstract goes here.
+  On multiple lines eventually.
+
+bibliography: mybibfile.bib
+output: rticles::ieee_article
+#citation_sorting: none   ## used as sorting option of the biblatex package (if selected)
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      warning = FALSE, 
+                      message = FALSE)
+
+library(tidyverse)
+library(readxl)
+library(BiodiversityR)
+library(BIOMASS)
+library(modelr)
+```
+
+# Introducción
+
+# Métodos
+
+# Resultados y discusión
+
+```{r}
+data<- rbind(read_xls("Grupo2.xls", sheet = "62"), 
+             read_xls("Grupo2.xls", sheet = "69"), 
+             read_xls("Grupo2.xls", sheet = "70"))
+
+data<- data %>% mutate(Parcela= as.factor(Parcela), 
+                       `No. Arbol`= as.factor(`No. Arbol`), 
+                       Especie= as.factor(Especie))
+```
+
+<!--- Margalef--->
+
+```{r}
+data %>% group_by(Parcela) %>% 
+  summarise(Margalef= (length(unique(Especie))-1)/log(NROW(Especie)))
+```
+
+<!--- Shannon --->
+
+```{r}
+index<- data %>% group_by(Parcela, Especie) %>% 
+  summarise(sp= length(Especie)) %>% 
+  spread(Especie, sp) %>% 
+  mutate_all(funs(replace(., is.na(.), 0)))
+
+as.tibble(index) %>% select(-c(Parcela)) %>% 
+  diversity(., index = "shannon")
+
+```
+
+<!--- Modelos ---->
+
+```{r}
+data %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram() + facet_wrap(~Parcela) +
+  geom_line(color= "blue", stat = "density")
+```
