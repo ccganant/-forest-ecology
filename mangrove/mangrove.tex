@@ -485,26 +485,124 @@ keyword 1; keyword 2
 \hypertarget{introducciuxf3n}{%
 \section{Introducción}\label{introducciuxf3n}}
 
+\onecolumn[]
+
+Los estudios de diversidad han sido catalogados desde el punto de vista
+científico como una ayuda enorme para entender la dinámica de los
+distintos ecosistemas, también como sinónimo de ``variedad de vida''
+(1). Existen dos áreas principales en las cuales los estudios y medidas
+de diversidad han tenido una gran aplicación, se pueden ver entonces
+desde el punto de vista de la conservación la cual está basada en que
+las comunidades ricas en especies son mejores que las pobres en estas, y
+desde el punto de vista de la supervisión ambiental donde se tienen en
+cuenta los efectos adversos en la reducción de la diversidad o en un
+cambio de forma de la distribución de abundancia de las especies (2). En
+los agrosistemas mantener o restaurar altos niveles de diversidad,
+aumenta su resistencia al cambio climático, apoya la provisión
+equilibrada de servicios ecosistémicos y contribuye a la conectividad
+del hábitat (3). La diversidad como una medida tangible es obtenida por
+medio de diversos índices que además de dar un valor de la diversidad en
+cualquier comunidad también expresa comportamientos en las comunidades
+tales como la riqueza, dominancia, la equidad, la abundancia relativa,
+similitud y disimilitud, entre otros(4). Por otra parte, Robert H.
+Whittaker (1972)(5) formalizó matemáticamente el concepto de diversidad
+de especies y planteó tres componentes cuantificables: alfa (α), beta
+(β) y gamma (γ), los cuales son importantes a la hora de querer conocer
+y diferenciar la diversidad y estructura de distintas comunidades, los
+índices alfa han sido importantes en conocer la diversidad dentro de una
+comunidad (En este caso parcela), los beta para conocer y comparar la
+diversidad entre varias comunidades y corroborar el reemplazamiento de
+especies entre una comunidad y otra (En el caso del estudio parcelas),
+generalmente, la diversidad alfa se evalúa con la riqueza de especies
+presentes en una comunidad y la diversidad beta con índices que miden la
+disimilitud en la composición de especies entre las comunidades (7).
+
+La importancia de la determinación de los diferentes índices, está en
+diferenciar entre tipos de bosques y conocer los diferentes cambios
+ambientales para explicar el reemplazamiento de especies y el cambio en
+la estructura de los mismos, se entiende que la estructura de los
+bosques está relacionada con la diversidad, pero también con condiciones
+ambientales como el clima y el suelo(8), y que dicha estructura tiende a
+responder a las exigencias de las especies(10) que hacen que esta cambie
+continuamente(9), entonces conocer las diferentes diversidades de estos
+tipos de bosques y compararlas da una idea acerca de qué tan diversos
+son y cual de ellos representa una mayor complejidad estructural
+teniendo en cuenta su diversidad y factores bióticos y abióticos que la
+controlan. La estructura
+
 \hypertarget{muxe9todos}{%
 \section{Métodos}\label{muxe9todos}}
 
 \hypertarget{resultados-y-discusiuxf3n}{%
 \section{Resultados y discusión}\label{resultados-y-discusiuxf3n}}
 
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-2}indices alfa}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Parcela & Margalef & Shannon & Simpson & Fisher\\
+\hline
+62 & 0.2227848 & 0.0616067 & 0.0222194 & 2.042935\\
+\hline
+69 & 1.1476553 & 1.1471140 & 0.6213018 & 6.370040\\
+\hline
+70 & 0.5824134 & 0.3795349 & 0.1789802 & 3.945655\\
+\hline
+\end{tabular}
+\end{table}
+
 \begin{verbatim}
-## # A tibble: 3 x 2
-##   Parcela Margalef
-##   <fct>      <dbl>
-## 1 62         0.223
-## 2 69         1.15 
-## 3 70         0.582
+## # A tibble: 1 x 3
+##   `62-69` `62-70` `69-70`
+##     <dbl>   <dbl>   <dbl>
+## 1       0       0       0
 \end{verbatim}
 
 \begin{verbatim}
-## [1] 0.06160671 1.14711400 0.37953493
+##     1   2
+## 2 0.0    
+## 3 0.8 0.0
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 13.66667
 \end{verbatim}
 
 \includegraphics{mangrove_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 9 x 5
+##   Especie                        DR     AR    FR    IVI
+##   <fct>                       <dbl>  <dbl> <dbl>  <dbl>
+## 1 Laguncularia racemosa      1.93    1.52  18.2   21.6 
+## 2 Montrichardia arborescens  6.96   17.7    9.09  33.7 
+## 3 Pachira cf. aquatica       4.52    3.54   9.09  17.1 
+## 4 Pelliciera rhizophorae     0.159   0.505  9.09   9.76
+## 5 Prioria copaifera          0.0740  0.505  9.09   9.67
+## 6 Pterocarpus officinalis   41.5    16.2    9.09  66.8 
+## 7 Raphia taedigera           7.12    1.01   9.09  17.2 
+## 8 Rhizophora mangle         37.5    58.6   18.2  114.  
+## 9 Tabebuia chrysantha        0.214   0.505  9.09   9.81
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  datam$Count
+## W = 0.79812, p-value = 0.008887
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-3.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-4.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-5.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-6.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-7.pdf}
 
 \end{document}
 
