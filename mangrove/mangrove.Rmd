@@ -46,16 +46,11 @@ library(readxl)
 library(BiodiversityR)
 library(BIOMASS)
 library(modelr)
+
+source("distri.R")
 ```
 
 # Introducción
-
-\onecolumn[]
-
-Los estudios de diversidad han sido catalogados desde el punto de vista científico como una ayuda enorme para entender la dinámica de los distintos ecosistemas, también como sinónimo de “variedad de vida” (1). Existen dos áreas principales en las cuales los estudios y medidas de diversidad han tenido una gran aplicación, se pueden ver entonces desde el punto de vista de la conservación la cual está basada en que las comunidades ricas en especies son mejores que las pobres en estas, y desde el punto de vista de la supervisión ambiental donde se tienen en cuenta los efectos adversos en la reducción de la diversidad o en un cambio de forma de la distribución de abundancia de las especies (2). En los agrosistemas mantener o restaurar altos niveles de diversidad, aumenta su resistencia al cambio climático, apoya la provisión equilibrada de servicios ecosistémicos y contribuye a la conectividad del hábitat (3). 
-La diversidad como una medida tangible es obtenida por medio de diversos índices que además de dar un valor de la diversidad en cualquier comunidad también expresa comportamientos en las comunidades tales como la riqueza, dominancia, la equidad, la abundancia relativa, similitud y disimilitud, entre otros(4). Por otra parte, Robert H. Whittaker (1972)(5) formalizó matemáticamente el concepto de diversidad de especies y planteó tres componentes cuantificables: alfa (α), beta (β) y gamma (γ), los cuales son importantes a la hora de querer conocer y diferenciar la diversidad y estructura de distintas comunidades, los índices alfa han sido importantes en conocer la diversidad dentro de una comunidad (En este caso parcela), los beta para conocer y comparar la diversidad entre varias comunidades y corroborar el reemplazamiento de especies entre una comunidad y otra (En el caso del estudio parcelas), generalmente, la diversidad alfa se evalúa con la riqueza de especies presentes en una comunidad y la diversidad beta con índices que miden la disimilitud en la composición de especies entre las comunidades (7).
-
-La importancia de la determinación de los diferentes índices, está en diferenciar entre  tipos de bosques y conocer  los diferentes cambios ambientales para explicar el reemplazamiento de especies y el cambio en la estructura de los mismos, se entiende que la estructura de los bosques está relacionada con la diversidad, pero también con condiciones ambientales como el clima y el suelo(8), y que dicha estructura tiende a responder a las exigencias de las especies(10) que hacen que esta cambie continuamente(9), entonces conocer las diferentes diversidades de estos tipos de bosques y compararlas da una idea acerca de qué tan diversos son y cual de ellos representa una mayor complejidad estructural teniendo en cuenta su diversidad y factores bióticos y abióticos que la controlan. La estructura 
 
 
 # Métodos
@@ -177,7 +172,7 @@ ggplot(curve.tot, aes(index, sp)) +
 <!--- IVI ---->
 
 ```{r}
-data %>%group_by(Especie, Parcela) %>% mutate(AB= pi/4*(Diametro/100)^2) %>% 
+knitr::kable(data %>%group_by(Especie, Parcela) %>% mutate(AB= pi/4*(Diametro/100)^2) %>% 
   summarise(FA= length(unique(Especie)), 
             DR= sum(AB), 
             AR= length(Especie)) %>%
@@ -188,7 +183,8 @@ data %>%group_by(Especie, Parcela) %>% mutate(AB= pi/4*(Diametro/100)^2) %>%
   mutate(FR= (FA/sum(FA))*100, 
          DR= (DR/sum(DR))*100, 
          AR= (AR/sum(AR))*100) %>% 
-  mutate(IVI= DR+AR+FR) %>% select(-c(FA))
+  mutate(IVI= DR+AR+FR) %>% select(-c(FA)) %>% 
+    arrange(IVI), format = "latex", caption = "IVI")
   
 
 ```
@@ -199,46 +195,157 @@ data %>%group_by(Especie, Parcela) %>% mutate(AB= pi/4*(Diametro/100)^2) %>%
 
 
 
-<!--- Modelos ---->
+<!--- Modelos Diametros ---->
 
 ```{r}
 # Parecla 62
-
-data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_density(stat = "density") + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,14,1.5))
-
 
 x<- data %>% filter(Parcela == "62")
 a<- hist(x$Diametro, breaks = seq(0,15,1.5))
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
-shapiro.test(datam$Count)
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+bn.d<-data.frame(d=c(rep(0,0),rep(1.5,1),rep(3,0),rep(4.5,24),rep(6,18),
+rep(7.5,25), rep(9,9), rep(10.5,7),rep(12,3), rep(13.5,2), rep(15, 0)))
+
+est<- MASS::fitdistr(bn.d$d, "gamma")
+
+data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,14,1.5))
 
 
-datam %>% filter(Count != 0) %>% ggplot(., mapping = aes(x= Clase, y= Count)) + 
-  geom_point() + geom_smooth(se = FALSE)
+```
 
 
 
-# Parcela 69
-data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Diametro)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,42,1.5))
+```{r}
 
 x<- data %>% filter(Parcela == "69")
 a<- hist(x$Diametro, breaks = seq(0,42,1.5))
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
 
 
-# Parcela 70
-data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Diametro)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,27,1.5))
+bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,26),rep(6,11),
+rep(7.5,4), rep(9,2), rep(10.5,2),rep(12,5), rep(13.5,3), rep(15, 0), rep(21,2),rep(22.5,2),rep(24,4),rep(25.5,2),rep(27,1),
+rep(28.5,0), rep(30,1), rep(31.5,2),rep(33,1), rep(34.5,0), rep(36, 0), rep(37.5, 0), 
+rep(39,0), rep(40.5, 1), rep(42,0)))
 
+est<- MASS::fitdistr(bn.d$d, "gamma")
+
+data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,1.5))
+
+```
+
+
+```{r}
 
 x<- data %>% filter(Parcela == "70")
 a<- hist(x$Diametro, breaks = seq(0,27,1.5))
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
+
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,4),rep(6,5),
+rep(7.5,2), rep(9,4), rep(10.5,1),rep(12,2), rep(13.5,0), rep(15, 2), rep(16.5,2),rep(18,3),rep(19.5,1),rep(21,2),rep(22.5,2),
+rep(24,0), rep(25.5,1), rep(27,0)))
+
+est<- MASS::fitdistr(data$Diametro, "gamma")
+
+data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,1.5))
 ```
+
+
+
+<!--- modelos alturas --->
+
+```{r}
+x<- data %>% filter(Parcela == "62")
+a<- hist(x$Altura, breaks = seq(0,11,1.5))
+datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
+
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+bn.d<-data.frame(d=c(rep(0,0),rep(1.5,2),rep(3,15),rep(4.5,29),rep(6,29),
+rep(7.5,9), rep(9,5), rep(10.5,7)))
+
+est<- MASS::fitdistr(bn.d$d, "gamma")
+
+data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) +scale_x_continuous(breaks = seq(0,20,1.5)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)
+```
+
+
+```{r}
+x<- data %>% filter(Parcela == "69")
+a<- hist(x$Altura, breaks = seq(0,24,1.5))
+datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
+
+
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+
+bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,26),rep(6,11),
+rep(7.5,4), rep(9,2), rep(10.5,2),rep(12,5), rep(13.5,3), rep(15, 0), rep(21,2),rep(22.5,2),rep(24,4),rep(25.5,2),rep(27,1),
+rep(28.5,0), rep(30,1), rep(31.5,2),rep(33,1), rep(34.5,0), rep(36, 0), rep(37.5, 0), 
+rep(39,0), rep(40.5, 1), rep(42,0)))
+
+est<- MASS::fitdistr(data$Altura, "gamma")
+
+data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + scale_x_continuous(breaks = seq(0,23,1.5)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)
+```
+
+
+```{r}
+x<- data %>% filter(Parcela == "70")
+a<- hist(x$Altura, breaks = seq(0,17,1.5))
+datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
+
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,4),rep(6,5),
+rep(7.5,2), rep(9,4), rep(10.5,1),rep(12,2), rep(13.5,0), rep(15, 2), rep(16.5,2),rep(18,3),rep(19.5,1),rep(21,2),rep(22.5,2),
+rep(24,0), rep(25.5,1), rep(27,0)))
+
+est<- MASS::fitdistr(data$Altura, "weibull")
+
+data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Altura, y= dweibull(Altura, shape = est$estimate[1], scale = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,1.5))
+
+```
+
+
+

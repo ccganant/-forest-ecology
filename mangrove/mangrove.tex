@@ -485,51 +485,6 @@ keyword 1; keyword 2
 \hypertarget{introducciuxf3n}{%
 \section{Introducción}\label{introducciuxf3n}}
 
-\onecolumn[]
-
-Los estudios de diversidad han sido catalogados desde el punto de vista
-científico como una ayuda enorme para entender la dinámica de los
-distintos ecosistemas, también como sinónimo de ``variedad de vida''
-(1). Existen dos áreas principales en las cuales los estudios y medidas
-de diversidad han tenido una gran aplicación, se pueden ver entonces
-desde el punto de vista de la conservación la cual está basada en que
-las comunidades ricas en especies son mejores que las pobres en estas, y
-desde el punto de vista de la supervisión ambiental donde se tienen en
-cuenta los efectos adversos en la reducción de la diversidad o en un
-cambio de forma de la distribución de abundancia de las especies (2). En
-los agrosistemas mantener o restaurar altos niveles de diversidad,
-aumenta su resistencia al cambio climático, apoya la provisión
-equilibrada de servicios ecosistémicos y contribuye a la conectividad
-del hábitat (3). La diversidad como una medida tangible es obtenida por
-medio de diversos índices que además de dar un valor de la diversidad en
-cualquier comunidad también expresa comportamientos en las comunidades
-tales como la riqueza, dominancia, la equidad, la abundancia relativa,
-similitud y disimilitud, entre otros(4). Por otra parte, Robert H.
-Whittaker (1972)(5) formalizó matemáticamente el concepto de diversidad
-de especies y planteó tres componentes cuantificables: alfa (α), beta
-(β) y gamma (γ), los cuales son importantes a la hora de querer conocer
-y diferenciar la diversidad y estructura de distintas comunidades, los
-índices alfa han sido importantes en conocer la diversidad dentro de una
-comunidad (En este caso parcela), los beta para conocer y comparar la
-diversidad entre varias comunidades y corroborar el reemplazamiento de
-especies entre una comunidad y otra (En el caso del estudio parcelas),
-generalmente, la diversidad alfa se evalúa con la riqueza de especies
-presentes en una comunidad y la diversidad beta con índices que miden la
-disimilitud en la composición de especies entre las comunidades (7).
-
-La importancia de la determinación de los diferentes índices, está en
-diferenciar entre tipos de bosques y conocer los diferentes cambios
-ambientales para explicar el reemplazamiento de especies y el cambio en
-la estructura de los mismos, se entiende que la estructura de los
-bosques está relacionada con la diversidad, pero también con condiciones
-ambientales como el clima y el suelo(8), y que dicha estructura tiende a
-responder a las exigencias de las especies(10) que hacen que esta cambie
-continuamente(9), entonces conocer las diferentes diversidades de estos
-tipos de bosques y compararlas da una idea acerca de qué tan diversos
-son y cual de ellos representa una mayor complejidad estructural
-teniendo en cuenta su diversidad y factores bióticos y abióticos que la
-controlan. La estructura
-
 \hypertarget{muxe9todos}{%
 \section{Métodos}\label{muxe9todos}}
 
@@ -572,37 +527,100 @@ Parcela & Margalef & Shannon & Simpson & Fisher\\
 
 \includegraphics{mangrove_files/figure-latex/unnamed-chunk-4-1.pdf}
 
-\begin{verbatim}
-## # A tibble: 9 x 5
-##   Especie                        DR     AR    FR    IVI
-##   <fct>                       <dbl>  <dbl> <dbl>  <dbl>
-## 1 Laguncularia racemosa      1.93    1.52  18.2   21.6 
-## 2 Montrichardia arborescens  6.96   17.7    9.09  33.7 
-## 3 Pachira cf. aquatica       4.52    3.54   9.09  17.1 
-## 4 Pelliciera rhizophorae     0.159   0.505  9.09   9.76
-## 5 Prioria copaifera          0.0740  0.505  9.09   9.67
-## 6 Pterocarpus officinalis   41.5    16.2    9.09  66.8 
-## 7 Raphia taedigera           7.12    1.01   9.09  17.2 
-## 8 Rhizophora mangle         37.5    58.6   18.2  114.  
-## 9 Tabebuia chrysantha        0.214   0.505  9.09   9.81
-\end{verbatim}
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-5}IVI}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Especie & DR & AR & FR & IVI\\
+\hline
+Prioria copaifera & 0.0740325 & 0.5050505 & 9.090909 & 9.669992\\
+\hline
+Pelliciera rhizophorae & 0.1592520 & 0.5050505 & 9.090909 & 9.755212\\
+\hline
+Tabebuia chrysantha & 0.2139538 & 0.5050505 & 9.090909 & 9.809913\\
+\hline
+Pachira cf. aquatica & 4.5224882 & 3.5353535 & 9.090909 & 17.148751\\
+\hline
+Raphia taedigera & 7.1183030 & 1.0101010 & 9.090909 & 17.219313\\
+\hline
+Laguncularia racemosa & 1.9272294 & 1.5151515 & 18.181818 & 21.624199\\
+\hline
+Montrichardia arborescens & 6.9604198 & 17.6767677 & 9.090909 & 33.728096\\
+\hline
+Pterocarpus officinalis & 41.5065473 & 16.1616162 & 9.090909 & 66.759073\\
+\hline
+Rhizophora mangle & 37.5177740 & 58.5858586 & 18.181818 & 114.285451\\
+\hline
+\end{tabular}
+\end{table}
 
 \includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-1.pdf}
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-2.pdf}
 
 \begin{verbatim}
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  datam$Count
-## W = 0.79812, p-value = 0.008887
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  21.6  87.0   1.08e98    62.1   18.3
 \end{verbatim}
 
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-3.pdf}
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-4.pdf}
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-5.pdf}
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-6.pdf}
-\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-7.pdf}
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  95.0    78   5.29e20    271.   41.3
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  18.8    31   2.26e31    18.1   28.9
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-8-2.pdf}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  22.9  85.1   5.42e86    44.3   14.1
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  39.8  55.0   3.01e16    119.   26.3
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{verbatim}
+## # A tibble: 1 x 5
+##   Gamma  Beta Lognormal Weibull Chitab
+##   <dbl> <dbl>     <dbl>   <dbl>  <dbl>
+## 1  28.5  23.8   1.88e32    26.0   19.7
+\end{verbatim}
+
+\includegraphics{mangrove_files/figure-latex/unnamed-chunk-11-2.pdf}
 
 \end{document}
 
