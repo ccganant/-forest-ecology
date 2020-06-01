@@ -1,0 +1,230 @@
+\begin{thebibliography}{33}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{ACOSTA \emph{et~al.}()ACOSTA, ARAUJO, and ITURRE}]{F}
+ACOSTA V, ARAUJO P, ITURRE M (????).
+\newblock \enquote{Caracteres estructurales de las masas. C{\'a}tedra de
+  Sociolog{\'\i}a vegetal y Fitogeograf{\'\i}a forestal. Facultad de Ciencias
+  Forestales, Universidad Nacional de Santiago del Estero. Argentina: 2006,
+  p{\'a}g. 9-19.}
+
+\bibitem[{Agis \emph{et~al.}(2016)Agis, Castro, Mart{\'\i}nez, and
+  Uma{\~n}a}]{P}
+Agis AJ, Castro NDH, Mart{\'\i}nez JL, Uma{\~n}a MR (2016).
+\newblock \enquote{Diversidad y estructura de la selva mediana subperennifolia
+  de Acapulco, Gro., M{\'e}xico.}
+\newblock \emph{Revista Iberoamericana de las Ciencias Biol{\'o}gicas y
+  Agropecuarias: CIBA}, \textbf{5}(10), 1--20.
+
+\bibitem[{Ali \emph{et~al.}(2019)Ali, Lin, He, Kong, Yu, and Jiang}]{H}
+Ali A, Lin SL, He JK, Kong FM, Yu JH, Jiang HS (2019).
+\newblock \enquote{Climate and soils determine aboveground biomass indirectly
+  via species diversity and stand structural complexity in tropical forests.}
+\newblock \emph{Forest ecology and management}, \textbf{432}, 823--831.
+
+\bibitem[{Arroyo \emph{et~al.}(2014)Arroyo, Bravo, Llin{\'a}s, and
+  Mu{\~n}oz}]{AJ}
+Arroyo I, Bravo LC, Llin{\'a}s H, Mu{\~n}oz FL (2014).
+\newblock \enquote{Poisson and Gamma Distributions: A Discrete and Continuous
+  Relati.}
+\newblock \emph{Prospectiva}, \textbf{12}(1), 99--107.
+
+\bibitem[{Calder{\'o}n-Patr{\'o}n \emph{et~al.}(2012)Calder{\'o}n-Patr{\'o}n,
+  Moreno, and Zuria}]{O}
+Calder{\'o}n-Patr{\'o}n JM, Moreno CE, Zuria I (2012).
+\newblock \enquote{La diversidad beta: medio siglo de avances.}
+\newblock \emph{Revista mexicana de biodiversidad}, \textbf{83}(3), 879--891.
+
+\bibitem[{Col{\'o}n \emph{et~al.}(2013)Col{\'o}n, Su{\'a}rez-Villasmil,
+  Polanco, and Barreto-Pittol}]{AI}
+Col{\'o}n EG, Su{\'a}rez-Villasmil LM, Polanco L, Barreto-Pittol EM (2013).
+\newblock \enquote{DISTRIBUCI{\'O}N GEOGR{\'A}FICA Y VARIACI{\'O}N FOLIAR DE
+  Montrichardia arborescens EN VENEZUELA.}
+\newblock \emph{ACTA BIOLOGICA VENEZUELICA}, \textbf{33}, 1--2.
+
+\bibitem[{Colwell \emph{et~al.}(2005)Colwell, Chao, Chazdon, and Shen}]{S}
+Colwell RK, Chao A, Chazdon RL, Shen TJ (2005).
+\newblock \enquote{Un nuevo m{\'e}todo estad{\'\i}stico para la evaluaci{\'o}n
+  de la similitud en la composici{\'o}n de especies con datos de incidencia y
+  abundancia.}
+\newblock In \emph{Sobre diversidad biol{\'o}gica: el significado de las
+  diversidades alfa, beta y gamma}, pp. 85--96. GORFI.
+
+\bibitem[{Escalante(2003)}]{X}
+Escalante T (2003).
+\newblock \enquote{?` Cu{\'a}ntas especies hay? Los estimadores no
+  param{\'e}tricos de Chao.}
+\newblock \emph{Elementos}, \textbf{52}, 53--56.
+
+\bibitem[{Garcia-de Jesus \emph{et~al.}(2016)Garcia-de Jesus, Moreno,
+  Angel~Moron, Castellanos, and Pavon}]{G}
+Garcia-de Jesus S, Moreno CE, Angel~Moron M, Castellanos I, Pavon NP (2016).
+\newblock \enquote{Integrating taxonomic structure in the analysis of the alpha
+  and beta diversity of Melolonthidae scarabs in the Transmexican Volcanic
+  Belt.}
+\newblock \emph{REVISTA MEXICANA DE BIODIVERSIDAD}, \textbf{87}(3), 1033--1044.
+
+\bibitem[{Garc{\'\i}a-Morales \emph{et~al.}(2011)Garc{\'\i}a-Morales, Moreno,
+  and Bello-Guti{\'e}rrez}]{W}
+Garc{\'\i}a-Morales R, Moreno CE, Bello-Guti{\'e}rrez J (2011).
+\newblock \enquote{Renovando las medidas para evaluar la diversidad en
+  comunidades ecol{\'o}gicas: el n{\'u}mero de especies efectivas de
+  murci{\'e}lagos en el sureste de Tabasco, M{\'e}xico.}
+\newblock \emph{Therya}, \textbf{2}(3), 205--215.
+
+\bibitem[{Gaston and Williams(1996)}]{A}
+Gaston K, Williams P (1996).
+\newblock \enquote{A biology of numbers and difference.}
+\newblock \emph{London, UK}.
+
+\bibitem[{Gregorius and Gillet(2008)}]{M}
+Gregorius HR, Gillet EM (2008).
+\newblock \enquote{Generalized Simpson-diversity.}
+\newblock \emph{Ecological modelling}, \textbf{211}(1-2), 90--96.
+
+\bibitem[{Guariguata \emph{et~al.}(2002)Guariguata, Kattan, Guariguata
+  \emph{et~al.}}]{Z}
+Guariguata MR, Kattan GH, Guariguata MR, \emph{et~al.} (2002).
+\newblock \emph{Ecolog{\'\i}a y conservaci{\'o}n de bosques neotropicales}.
+\newblock 574.52642 E25.
+
+\bibitem[{Guerra-Castro \emph{et~al.}(2011)Guerra-Castro, Cruz-Motta, and
+  Conde}]{E}
+Guerra-Castro E, Cruz-Motta JJ, Conde JE (2011).
+\newblock \enquote{Cuantificaci{\'o}n de la diversidad de especies incrustantes
+  asociadas a las ra{\'\i}ces de Rhizophora mangle L. en el Parque Nacional
+  Laguna de la Restinga.}
+\newblock \emph{Interciencia}, \textbf{36}(12), 923--930.
+
+\bibitem[{Jimenez and Hortal(2003)}]{AA}
+Jimenez VA, Hortal J (2003).
+\newblock \enquote{Las curvas de acumulaci{\'o}n de especies y la necesidad de
+  evaluar la callidad de los inventario biol{\'o}gicos.}
+
+\bibitem[{L{\'o}pez and Duque(2010)}]{R}
+L{\'o}pez W, Duque {\'A} (2010).
+\newblock \enquote{Patrones de diversidad alfa en tres fragmentos de bosques
+  montanos en la regi{\'o}n norte de los Andes, Colombia.}
+\newblock \emph{Revista de Biolog{\'\i}a Tropical}, \textbf{58}(1), 483--498.
+
+\bibitem[{Magurran(1989)}]{B}
+Magurran AE (1989).
+\newblock \enquote{Diversidad ecol{\'o}gica y su medici{\'o}n.}
+\newblock \emph{Technical report}.
+
+\bibitem[{Medianero \emph{et~al.}(2003)Medianero, Valderrama, and Barrios}]{Q}
+Medianero E, Valderrama A, Barrios H (2003).
+\newblock \enquote{Diversidad de insectos minadores de hojas y formadores de
+  agallas en el dosel y sotobosque del bosque tropical.}
+\newblock \emph{Acta zool{\'o}gica mexicana}, (89), 153--168.
+
+\bibitem[{Medina \emph{et~al.}(2007)Medina, Cuevas, and Lugo}]{AG}
+Medina E, Cuevas E, Lugo A (2007).
+\newblock \enquote{Nutrient and salt relations of Pterocarpus officinalis L. in
+  coastal wetlands of the Caribbean: assessment through leaf and soil
+  analyses.}
+\newblock \emph{Trees}, \textbf{21}(3), 321--327.
+
+\bibitem[{Moreno(2001)}]{N}
+Moreno CE (2001).
+\newblock \enquote{ORCYT-UNESCO Oficina Regional de Ciencia y Tecnolog{\'\i}a
+  para Am{\'e}rica Latina y el Caribe, UNESCO. Sociedad Entomol{\'o}gica
+  Aragonesa (SEA).}
+
+\bibitem[{Moreno \emph{et~al.}(2011)Moreno, Barrag{\'a}n, Pineda, and
+  Pav{\'o}n}]{V}
+Moreno CE, Barrag{\'a}n F, Pineda E, Pav{\'o}n NP (2011).
+\newblock \enquote{Rean{\'a}lisis de la diversidad alfa: alternativas para
+  interpretar y comparar informaci{\'o}n sobre comunidades ecol{\'o}gicas.}
+\newblock \emph{Revista mexicana de biodiversidad}, \textbf{82}(4), 1249--1261.
+
+\bibitem[{Negiz and Ozkan(2019)}]{C}
+Negiz M, Ozkan K (2019).
+\newblock \enquote{Reproducing a Component Diversity {\.I}ndex for Regional
+  Biodiversity Assessments.}
+
+\bibitem[{Odum \emph{et~al.}(2006)Odum, Ortega, Teresatr \emph{et~al.}}]{D}
+Odum EP, Ortega A, Teresatr M, \emph{et~al.} (2006).
+\newblock \emph{Fundamentos de ecologia}.
+\newblock 574.5 O35.
+
+\bibitem[{Oreja \emph{et~al.}(2010{\natexlab{a}})Oreja, de~la
+  Fuente-D{\'\i}az-Ordaz, Hern{\'a}ndez-Sant{\'\i}n, Buzo-Franco, and
+  Bonache-Regidor}]{AB}
+Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
+  Buzo-Franco D, Bonache-Regidor C (2010{\natexlab{a}}).
+\newblock \enquote{Evaluaci{\'o}n de estimadores no param{\'e}tricos de la
+  riqueza de especies. Un ejemplo con aves en {\'a}reas verdes de la ciudad de
+  Puebla, M{\'e}xico.}
+\newblock \emph{Animal biodiversity and conservation}, pp. 31--45.
+
+\bibitem[{Oreja \emph{et~al.}(2010{\natexlab{b}})Oreja, de~la
+  Fuente-D{\'\i}az-Ordaz, Hern{\'a}ndez-Sant{\'\i}n, Buzo-Franco, and
+  Bonache-Regidor}]{Y}
+Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
+  Buzo-Franco D, Bonache-Regidor C (2010{\natexlab{b}}).
+\newblock \enquote{Evaluaci{\'o}n de estimadores no param{\'e}tricos de la
+  riqueza de especies. Un ejemplo con aves en {\'a}reas verdes de la ciudad de
+  Puebla, M{\'e}xico.}
+\newblock \emph{Animal biodiversity and conservation}, pp. 31--45.
+
+\bibitem[{Pla(2006)}]{L}
+Pla L (2006).
+\newblock \enquote{Biodiversidad: Inferencia basada en el {\'\i}ndice de
+  Shannon y la riqueza.}
+\newblock \emph{Interciencia}, \textbf{31}(8), 583--590.
+
+\bibitem[{Rivera-Ocasio \emph{et~al.}(2007)Rivera-Ocasio, Aide, and
+  Rios-L{\'o}pez}]{AH}
+Rivera-Ocasio E, Aide TM, Rios-L{\'o}pez N (2007).
+\newblock \enquote{The effects of salinity on the dynamics of a Pterocarpus
+  officinalis forest stand in Puerto Rico.}
+\newblock \emph{Journal of Tropical Ecology}, \textbf{23}(5), 559--568.
+
+\bibitem[{Smith \emph{et~al.}(2007)Smith, Smith, and Rom{\'a}n}]{I}
+Smith RL, Smith TM, Rom{\'a}n ES (2007).
+\newblock \emph{Ecolog{\'\i}a}.
+\newblock 577 577 SMI 2007 S6E2 2007. Pearson Educaci{\'o}n Madrid, Espa{\~n}a.
+
+\bibitem[{Soler \emph{et~al.}(2012)Soler, Berroter{\'a}n, Gil, and Acosta}]{U}
+Soler P, Berroter{\'a}n JL, Gil J, Acosta R (2012).
+\newblock \enquote{{\'I}ndice valor de importancia, diversidad y similaridad
+  flor{\'\i}stica de especies le{\~n}osas en tres ecosistemas de los llanos
+  centrales de Venezuela.}
+\newblock \emph{Agronom{\'\i}a Trop}, \textbf{62}(1-4), 25--37.
+
+\bibitem[{Somerfield \emph{et~al.}(2008)Somerfield, Clarke, and Warwick}]{K}
+Somerfield P, Clarke K, Warwick R (2008).
+\newblock \enquote{Simpson index.}
+\newblock Elsevier.
+
+\bibitem[{Soto and Jim{\'e}nez(1982)}]{AD}
+Soto R, Jim{\'e}nez JA (1982).
+\newblock \enquote{An{\'a}lisis fison{\'o}mico estructural del manglar de
+  Puerto Soley, La Cruz, Guanacaste, Costa Rica.}
+\newblock \emph{Revista de Biologia Tropical}, \textbf{30}(2), 161--168.
+
+\bibitem[{Urrego \emph{et~al.}(2009)Urrego, Polan{\'\i}a, Buitrago, Cuartas,
+  and Lema}]{J}
+Urrego LE, Polan{\'\i}a J, Buitrago MF, Cuartas LF, Lema A (2009).
+\newblock \enquote{Distribution of mangroves along environmental gradients on
+  San Andres Island (Colombian Caribbean).}
+\newblock \emph{Bulletin of Marine Science}, \textbf{85}(1), 27--43.
+
+\bibitem[{Zarco-Espinosa \emph{et~al.}(2010)Zarco-Espinosa,
+  Valdez-Hern{\'a}ndez, {\'A}ngeles-P{\'e}rez, and Castillo-Acosta}]{T}
+Zarco-Espinosa VM, Valdez-Hern{\'a}ndez J, {\'A}ngeles-P{\'e}rez G,
+  Castillo-Acosta O (2010).
+\newblock \enquote{Estructura y diversidad de la vegetaci{\'o}n arb{\'o}rea del
+  Parque Estatal Agua Blanca, Macuspana, Tabasco.}
+\newblock \emph{Universidad y ciencia}, \textbf{26}(1), 1--17.
+
+\end{thebibliography}

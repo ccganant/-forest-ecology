@@ -26,10 +26,9 @@ affiliation:
         - name: Juan Pablo Caicedo Garcia
           email: jpcaicedog@unal.edu.co
 
-keywords: ["keyword 1", "keyword 2"]
+keywords: ["Diversidad", "Zonación", "Similitud", "Manglar", "Bosque aluvial"]
 abstract: |
-  The abstract goes here.
-  On multiple lines eventually.
+  La diversidad siendo uno de los parámetros más importantes que se usan para entender la dinámica de los ecosistemas y como está afecta a la estructura de los bosques y la dinámica de sus comunidades, a partir de esto se analizó la diversidad y el cambio en la estructuras de 3 parcelas circulares (62, 69 y 70) de $500 \ m^2$ ubicadas en el Urabá Antioqueño, con el fin de  identificar si hacen parte de la misma comunidad o no; se utilizaron los índices de diversidad alfa y beta, y diferentes modelos como de riqueza esperada, de Valor de importancia y diámetricos . Según los resultados de los índices alfa se pudo llegar a la conclusión de que la parcela 69 tiene la mayor diversidad según las pruebas de Shannon, Simpson y Alfha; de igual forma se encontró que la parcela 69 es diferente a las parcelas 62 y 70 por medio de los índices beta (Morisita y Sorensen), por lo tanto se podría pensar que existe una zonación a través de las 3 parcelas, ubicando a la 62 y 70 más cercanas a la costa. Además se determinó que la especie con más peso en el índice de valor de importancia para las tres parcelas  fue *Rhizophora Mangle*, con una riqueza esperada según Jacknife de 14 especies. 
 
 bibliography: mybibfile.bib
 output: rticles::ieee_article
@@ -52,10 +51,48 @@ source("distri.R")
 
 # Introducción
 
+Los estudios de diversidad han sido catalogados desde el punto de vista científico como una ayuda enorme para entender la dinámica de los distintos ecosistemas, también como sinónimo de “variedad de vida” \cite{A}. Existen dos áreas principales en las cuales los estudios y medidas de diversidad han tenido una gran aplicación, se pueden ver entonces desde el punto de vista de la conservación la cual está basada en que las comunidades ricas en especies son mejores que las pobres en estas, y desde el punto de vista de la supervisión ambiental donde se tienen en cuenta los efectos adversos en la reducción de la diversidad o en un cambio de forma de la distribución de abundancia de las especies\cite{B}. En los agrosistemas mantener o restaurar altos niveles de diversidad, aumenta su resistencia al cambio climático, apoya la provisión equilibrada de servicios ecosistémicos y contribuye a la conectividad del hábitat \cite{C}.
+
+La diversidad como una medida tangible es obtenida por medio de diversos índices que además de dar un valor de la diversidad en cualquier comunidad también expresa comportamientos en las comunidades tales como la riqueza, dominancia, la equidad, la abundancia relativa, similitud y disimilitud, entre otros; los cuales son importantes de conocer, ya pueden decir que tan resistente puede ser la comunidad a periodos de tensión como hídricos, de temperatura, enfermedades o cualquier otra causada de forma natural o antrópica\cite{D}. Por otra parte, \cite{E} formalizó matemáticamente el concepto de diversidad de especies y planteó tres componentes cuantificables: alfa ($\alpha$), beta ($\beta$) y gamma ($\gamma$), los cuales son importantes a la hora de querer conocer y diferenciar la diversidad y estructura de distintas comunidades, los índices alfa han sido importantes en conocer la diversidad dentro de una comunidad (En este caso parcela), los beta para conocer y comparar la diversidad entre varias comunidades y corroborar el reemplazamiento de especies entre una comunidad y otra  (parcelas para este estudio), generalmente, la diversidad alfa se evalúa con la riqueza de especies presentes en una comunidad y la diversidad beta con índices que miden la disimilitud en la composición de especies entre las comunidades \cite{G}.
+
+La importancia de la determinación de los diferentes índices, está en diferenciar entre  tipos de bosques y conocer  los diferentes cambios ambientales para explicar el reemplazamiento de especies y el cambio en la estructura de los mismos, se entiende que la estructura de los bosques está relacionada con la diversidad, pero también con condiciones ambientales como el clima y el suelo\cite{H}, y que dicha estructura tiende a responder a las exigencias de las especies \cite{J} que hacen que esta cambie continuamente \cite{I}, entonces conocer las diferentes diversidades de los tipos de bosques y compararlas da una idea acerca de qué tan diversos son y cual de ellos representa una mayor complejidad estructural teniendo en cuenta su diversidad y factores bióticos y abióticos que la controlan. La estructura observada en cada situación particular es la mejor respuesta del ecosistema a sus propias características \cite{F}.
+
+En este artículo se tiene como objetivo comparar la diversidad entre parcelas que vienen de dos tipos de bosques en el Urabá Antioqueño (manglares y bosques inundables), como esta afecta en la estructura de la comunidad, con la ayuda de distribuciones de diámetro y altura, para conocer la estructura que maneja y su distribución de  especies, para poder decidir si las diferentes parcelas en estudio pertenecen a una misma comunidad o si se encuentran en comunidades diferentes, todo con la ayuda de los diferentes índices de diversidad y componentes de la estructura. Además de análisis como el índice de valor de importancia(IVI) que ayudan a cuantificar la importancia de las diferentes especies en las parcelas, y otros  que nos permitirán realizar esta comparación y entender la zonación, es decir el cambio que presentan las especies más importantes a lo largo de un gradiente de las condiciones ambientales, teniendo en cuenta las preferencias ecológicas de dichas especies.
+
 
 # Métodos
 
+Las parcelas que se comparan en el presente estudio fueron tomadas de una base de datos realizada por Urrego, Molina y Suárez tomadas dos tipos de bosques (Manglares y bosques Aluviales)  en el Urabá Antioqueño con el fin de determinar la variabilidad de la vegetación a lo largo de las costas, por medio de la evaluación de la estructura, composición florística y atributos ambientales de los manglares. Según los autores\cite{AB} el trabajo de campo se realizó de septiembre de 2009 a enero. 2010, y se trazaron 87 parcelas circulares de 500 m2 para muestreo. En cada parcela,  se midió el diámetro a la altura del pecho (DAP) y altura total de todos los árboles con DAP superior a 5 cm, e identificando cada árbol para los individuos con DAP entre 2.5 y 5 cm, para las parcelas muestreadas por tipo de manglar se basaron en una exploración de muestreo previo (se establecieron cinco parcelas y se midieron en cada tipo de bosque). Además se tomaron datos de salinidad e inundación de cada parcela. En este estudio solo se tendrán en cuenta las parcelas 62, 69 y 70, para la cuales se hallaron índices para diversidad Alfa y Beta con el fin de comparar la diversidad entre las parcelas ya mencionadas. Para el cálculo de la diversidad alfa se utilizaron los índices de diversidad de Shannon, La diversidad de Simpson (1-D), la diversidad alfa de fisher y el índice de riqueza de Margalef y para el cálculo de diversidad Beta se usaron los índices de Sorensen  y Morishita. Cálculos que fueron realizados a través del software R versión 3.6.1
+
+Las parcelas que se comparan en el presente estudio fueron tomadas de una base de datos realizada por Urrego, Molina y Suárez tomadas dos tipos de bosques (Manglares y bosques Aluviales)  en el Urabá Antioqueño con el fin de determinar la variabilidad de la vegetación a lo largo de las costas, por medio de la evaluación de la estructura, composición florística y atributos ambientales de los manglares. Según los autores\cite{AB} el trabajo de campo se realizó de septiembre de 2009 a enero. 2010, y se trazaron 87 parcelas circulares de 500 m2 para muestreo. En cada parcela,  se midió el diámetro a la altura del pecho (DAP) y altura total de todos los árboles con DAP superior a 5 cm, e identificando cada árbol para los individuos con DAP entre 2.5 y 5 cm, para las parcelas muestreadas por tipo de manglar se basaron en una exploración de muestreo previo (se establecieron cinco parcelas y se midieron en cada tipo de bosque). Además se tomaron datos de salinidad e inundación de cada parcela. 
+En este estudio solo se tendrán en cuenta las parcelas 62, 69 y 70, para la cuales se hallaron índices para diversidad Alfa y Beta con el fin de comparar la diversidad entre las parcelas ya mencionadas. Para el cálculo de la diversidad alfa se utilizaron los índices de diversidad de Shannon, La diversidad de Simpson (1-D), la diversidad alfa de fisher y el índice de riqueza de Margalef y para el cálculo de diversidad Beta se usaron los índices de Sorensen  y Morishita. Cálculos que fueron realizados a través del software R versión 3.6.1
+
+**Índices de diversidad alfa.**
+Las medidas de diversidad más ampliamente usadas son los índices de la teoría de la información. Estos índices se basan en la lógica de que la diversidad o la información, en un sistema natural pueden ser medidos de un modo similar a la información contenida en un código o mensaje. Algunos de estos índices derivados de la teoría de la información son los índices de Shannon y Simpson \cite{B}.
+**Margalef.** El índice de riqueza de especies de Margalef transforma el número de especies por muestra a una proporción a las cuales las especies son añadidas por expansión de la muestra\cite{N}, es decir, a mayor número de muestras se espera mayor riqueza de especies. Para el cálculo se usa $S-1/Ln(N)=Dmr$, Donde $Dmr=0$ indica que solo existe una especie en la muestra.\cite{N}. 
+**Shannon y Simpson.** El índice de Shannon refleja la heterogeneidad de una comunidad sobre la base de dos factores: el número de especies presentes y su abundancia relativa. La diversidad máxima (Hmax= lnS) se alcanza cuando todas las especies están igualmente presentes. Un índice de homogeneidad asociado a esta medida de diversidad puede calcularse como el cociente H/Hmax=H/lnS, que será 1 si todas las especies que componen la comunidad tienen igual probabilidad \cite{L}. La definición más simple del índice de Simpson es la probabilidad de que dos individuos extraídos al azar de una comunidad pertenezcan a la misma especie\cite{K}, es una medida de dominio, pero también puede ser convertido en medida de diversidad restándole a su resultado 1, este se puede establecer como la probabilidad de que dos especies tomadas al azar de una comunidad sean diferentes, entonces el criterio de diversidad está determinado por el número de pares de individuos que difieren en especie\cite{M}, el índice está fuertemente recargado hacia las especies más raras de la muestra\cite{B}.
+**Alfa de fisher.** Es un modelo de abundancia a partir de una serie logarítmica que solo toma en cuenta el número de especies (S) y el número total de individuos(N)\cite{P}. Este índice funciona mejor con datos donde todas las especies tienen una baja abundancia\cite{Q}. el alfa de Fisher es una herramienta muy eficaz para estimar la magnitud de las diferencias esperadas en términos de la riqueza entre regiones con tamaños de muestra más grandes, con base en un número limitado de individuos.\cite{R}. Para este caso se tomó un número de 100 individuos. 
+
+**Índices beta.**
+El concepto de diversidad β tiene gran relevancia en ecología y biogeografía para comprender, cuantificar y valorar la diversidad biológica, y puede considerarse como un concepto clave para entender el funcionamiento de los ecosistemas, para la conservación de la biodiversidad y para el manejo de los ecosistemas \cite{O}, Whitaker la define como "la magnitud de cambio en la composición de las especies a lo largo de un gradiente ambiental o entre diferentes comunidades en un paisaje" (Whittaker, 1977). La forma más sencilla de medir la diversidad Beta es mediante el uso de coeficientes de similaridad \cite{B}, entre estos se pueden encontrar los índices de Sorensen y Morisita-Horn que son medidas cuantitativas que tienen en cuenta la abundancia relativa. En virtud de que la similitud es una construcción cualitativa humana, no tiene una definición matemática precisa. No obstante, el medir ‘la similitud’ depende de índices cuantitativos diseñados para el propósito, y en la práctica, podemos esperar que los índices de la similitud cumplan con criterios razonables para su comportamiento matemático \cite{S}
+
+**Riqueza esperada.** 
+Cuando se hacen inventarios forestales con el fin de determinar la biodiversidad de algún tipo de sistema, siempre se tiene el problema de no muestrear la cantidad total de especies que se pueden encontrar en dicho espacio, y al mismo tiempo para poder comparar entre comunidades se necesitan las mismas muestras en ambos sitios, por lo tanto  la rarefacción se impuso como un método ampliamente utilizado \cite{Z}, y por otra parte los métodos no paramétricos como el Jacknife \cite{AA} para dar solución a este problema y determinar la riqueza esperada de algún lugar en estudio.  
+**Jacknife.** Modelo usado para la estimación de la riqueza\cite{X}, se basa en el número de especies raras y existen dos modelos Jack 1 y Jack 2, para este estudio se usa solo Jack 1 que tiene en cuenta el número de especies presentes en una sola unidad de muestreo\cite{Y} 
+**Rarefacción.** Es un  método que se usa para obtener las especies esperadas. Es importante ya que se estima en base a un numero estandar de muestras, es decir teniendo en cuenta que todas las comunidades estudiadas tuvieran el mismo número de individuos.\cite{B}
+
+**Número efectivo de especies.** 
+Los números efectivos de especies (medidas de diversidad verdadera) permiten obtener una interpretación intuitiva y fácilmente comparable de la diversidad de especies.\cite{V}. Una de las principales ventajas del cálculo del número de especies efectivas es la facilidad con la cual podemos evaluar directamente la magnitud de los cambios en la diversidad entre comunidades.\cite{W}, lo cual no es posible con los índices tradicionalmente utilizados. Desde el enfoque de la ecología, la diversidad de especies es una propiedad relacionada con la estructura de las comunidades, que puede definirse como el recíproco de un promedio de las abundancias relativas de las especies. El valor de este recíproco es el número máximo posible de especies que podrían coexistir en una comunidad, si todas ellas tuvieran la misma abundancia, es decir, el número efectivo de especies en la comunidad \cite{W}. Se halla con la fórmula propuesta por Jost, que cambia según el valor del parámetro q determina qué tanto influyen las especies comunes o las especies raras en la medida de la diversidad, y puede tomar cualquier valor que el usuario estime apropiado. Si q = 0 el valor de la ecuación equivale a la riqueza de especies, si q = 1 es equivalente al exponencial del índice de Shannon, y si q=2 es equivalente al índice de dominancia de Simpson. 
+
+**Medidas para entender el comportamiento de la estructura.** 
+***Índice de valor de importancia(IVI)***. Desarrollado por  Curtis & McIntosh\cite{T}, es un índice que permite comparar el peso o valor ecológico relativo de las especies dentro de la comunidad y consiste en la sumatoria de los valores relativos de densidad, frecuencia y dominancia.\cite{U}. Se asumió una sola comunidad entre las tres parcelas para este índice. 
+
+***Modelos de distribución diamétrica.*** Las distribuciones diamétricas son las relaciones del diámetro con sus frecuencia absoluta respectiva, son muy importantes para la caracterización de por ejemplo los diferentes interacciones  entre especies de luz y de sombra, así como irregularidades debidas a la historia del bosque, a la geomorfología, a la topografía y al comportamiento de algunas especies (AE), en este sentido, se eligieron algunas de los modelos más conocidos para ajustar los datos, Weibull, Gamma, Log-normal y Beta.
+
+
 # Resultados y discusión
+
+Se quiere y se necesita medir la diversidad porque, como en cualquier ciencia, las medidas permiten describir los componentes del sistema bajo estudio, hacer comparaciones entre sistemas y porque representan la materia prima para generar teorías \cite{U}
 
 ```{r}
 data<- rbind(read_xls("Grupo2.xls", sheet = "62"), 
@@ -99,55 +136,37 @@ x3<- 0.3634532*(log(1+100/0.3634532))
 knitr::kable(cbind(tab, tibble(Shannon= sha, Simpson= sim, Fisher= c(x3, x,x2))), format = "latex", caption = "indices alfa")
 ```
 
+En la **Tabla 1** se pueden observar los resultados de los diferentes índices para la diversidad alfa, los cuales dan una cuantificación de la diversidad por separado de cada parcela en el estudio. En el índice de riqueza de Margalef se puede observar que estas tres parcelas tienen una baja riqueza de especies, ya que cuentan con un valor por debajo de 2 \cite{B},sin embargo se pueden comparar entre ellas siendo la parcela 69 con mayor diversidad; esta tendencia a una a baja riqueza de especies en estas diferentes parcelas, era de esperarse ya que son comunidades que tienen unas restricciones ambientales importantes, ya sea por la salinidad en los manglares\cite{AD} o por los periodos de inundación a los que se ven sometidos los bosques aluviales, de igual forma a la tendencia que tienen estos tipos de bosques (manglares) a formar rodales puros de especies; en este caso se puede evidenciar con los datos que la parcela 62, la cual tiene una riqueza de especies muy baja y una diversidad dada por el índice de simpson igualmente baja (Alta dominancia) es debido a la alta presencia y dominancia de la especie *Rhizophora Mangle*, según \cite{Z}, en los manglares la especie mejor conocida es el mangle rojo (*Rhizophora Mangle*) por lo tanto se puede pensar que la parcela 62 hace referencia a un bosque que posiblemente es el que está expuesto a una salinidad más alta de las tres parcelas, estando más cerca a la costa y se podría catalogar como manglar.
+
+Teniendo en cuenta lo anterior con la realización de los demás índices de diversidad (Shannon, Simpson y alfa de fisher)(**Tabla 1**) se puede verificar que la diversidad aumenta (sin ser alta) según el alfa fisher desde la parcela 62 que es la de más baja diversidad, hacia la parcela 70 y terminando con la parcela 69, esto debido al mayor número de especies y una dominancia no tan marcada en esta última parcela, comprobando así que entre el índice de alfa y el índice de dominancia de Simpson hay una relación inversa, es decir, a mayor índice de diversidad alfa menor índice de dominancia de simpson, como se puede ver en la **Tabla 1**, la parcela 69 cuenta con el índice más alto de alfa de fisher(6,37) y el índice más bajo de dominancia de Simpson(1-0,62=0,38) entre las tres parcelas. Esto concuerda con lo expuesto en el libro de ecología de Guariguata donde se dice que las comunidades más heterogéneas en ecosistemas en contacto directo con el agua, se encuentran más alejados del mar y a veces en los bordes mismos de los rodales puros. Con lo cual se puede intuir que la parcela 69 es la que más alejada de la acción salobre del agua, algo que afirma esta idea es la presencia de la especie *Pterocarpus officinalis*, una especie que es común en bosques inundables que no tienen contacto con el efecto salobre del mar \cite{Y}, por lo tanto se puede decir que la parcela 69 es la parcela que se podría catalogar en el estudio como bosque aluvial o inundable.
+
+
 <!--- Diversidad Beta--->
 
 ```{r}
-
-#Morhsita
-index<- gather(index, "Spp", "N", -Parcela)
-
-spread(index, Parcela, N) %>% mutate(sp1= `62`*`69`, 
-                                     sp2= `62`*`70`, 
-                                     sp3= `70`*`69`, 
-                                     s1= `62`^2, 
-                                     s2= `69`^2, 
-                                     s3= `70`^2) %>% 
-  mutate(sp1c= s1/sum(s1),
-         sp2c= s2/sum(s2), 
-         sp3c= s3/sum(s3)) %>% 
-  summarise(`62-69`= 2*sum(sp1)/((sum(sp1c)+sum(sp2c))*sum(s1)*sum(s2)), 
-            `62-70`= 2*sum(sp1)/((sum(sp1c)+sum(sp3c))*sum(s1)*sum(s3)), 
-            `69-70`= 2*sum(sp3)/((sum(sp2c)+sum(sp3c))*sum(s2)*sum(s3)))
-
-#Sorensen
-
-index<- data %>% group_by(Parcela, Especie) %>% 
-  summarise(sp= length(Especie)) %>% 
-  spread(Especie, sp) %>% 
-  mutate_all(funs(replace(., is.na(.), 0)))
-
-1-(as.tibble(index) %>% select(-c(Parcela)) %>% vegdist(., binary = TRUE))
-
-
-
+knitr::kable(tibble(Comparación= c("62 vs 70", "69 vs 70", "62 vs 69"), 
+       `Morisita-Horn (%)`= c(99.44, 0, 0), 
+       Sorensen= c(0.80, 0, 0)), caption = "Índices Beta", format = "latex")
 
 ```
+
+
+En la **Tabla 2** se pueden observar los índices de diversidad Beta para la comparación de las tres parcelas, según esto se puede decir que la parcela 62 y la 70 son muy similares, llegando a pensar que son de la misma comunidad, ya que el índice de Morisita arroja un resultado del 99.43 $\%$ de similitud. Caso totalmente contrario en las comparaciones restantes(69 vs 70 y 62 vs 69) donde Morisita arroja un valor de similitud del 0 $\%$ lo que puede atribuirse a que entre  estas parcelas no hay especies en común. Se puede llegar a la misma conclusión si se analiza el índice de Sorensen que mide la similitud de 0 a 1 donde 0 indica que las parcelas  no tienen ninguna similitud; para la comparación entre la parcela 62 y 70 arroja un resultado de 0.80, teniendo concordancia con el índice de Morisita, caso mismo ocurre en las otras comparaciones donde el resultado es de 0. Con estos datos se puede afirmar que la parcela 62 es igual a la parcela 70  y que la parcela 69 es totalmente diferente a estas dos parcelas. Por lo tanto se podría concluir que la parcela 70 y 62 hacen parte del manglar. Adicional a esto se puede confirmar esta idea ya que las especies de la parcela 70 son comunes en ecosistemas de manglar, incluyendo la especie *Pelliciera rhizophorae* \cite{Y} que no se encuentra en la parcela 62. 
+Por último se puede concluir que la parcela 69 hace parte de una comunidad diferente a la que pertenece la parcela 62 y 70, catalogandola como bosque aluvial, no solo por los resultados en los índices Beta (Morisita y sorensen) si no también por las especies pertenecientes a dicha parcela que son comunes de un bosque aluvial\cite{Y}.
 
 <!--- Especies esperadas --->
 
 ```{r}
-#Jacknife
-index<- gather(index, "Spp", "N", -Parcela)
+knitr::kable(tibble(Índice= c("q= 0", "q= 1", "q= 2"), 
+        `Parcela 62`= c(2, 1.06, 0.97), 
+        `Parcela 69`= c(6, 3.14, 0.37), 
+        `Parcela 70`= c(3, 1.46, 0.82)), format = "latex", caption = "Índices de especies efectivas")
 
-#spread(index, Parcela, N) %>% mutate(k= `62`+ `69` + `70`)
+```
 
-
-#numero de spp esperadas
-
-9+((3-1)/3)*7
-
-
+```{r, fig.cap= "Rarefacción"}
 # Rarefacción
+index<- gather(index, "Spp", "N", -Parcela)
 
 index<- index %>% group_by(Spp) %>% summarise(n= sum(N)) %>% spread(Spp, n)
 
@@ -184,24 +203,25 @@ knitr::kable(data %>%group_by(Especie, Parcela) %>% mutate(AB= pi/4*(Diametro/10
          DR= (DR/sum(DR))*100, 
          AR= (AR/sum(AR))*100) %>% 
   mutate(IVI= DR+AR+FR) %>% select(-c(FA)) %>% 
-    arrange(IVI), format = "latex", caption = "IVI")
+    arrange(IVI), format = "latex", caption = "Índice de valor de importancia")
   
 
 ```
 
+En la **Tabla 4** se muestra el IVI para todas las especies de las tres parcelas en estudio, organizado en orden descendente, colocando a la especie *Rhizophora Mangle* como la más importante de las 3 parcelas aunque no se encuentre en una de ellas(parcela 69), esto puede atribuirse a la gran dominancia que presenta en las parcelas 62 y 70. Las otras 2 especies más importantes según el IVI fueron: *Pterocarpus Officinalis* y *Montrichardia arborescens*, especies que solo se encuentran en la parcela 69, esto puede explicarse por la gran dominancia que tiene en esta parcela en comparación a las demás especies de la comunidad, también puede atribuirse a la zonación que se presenta en la comunidad de las tres parcelas, empezando con una mayor dominancia de *Rhizophora Mangle* en las parcelas 62 y 70 que tienen unas condiciones de salinidad de 2.2 ppm y 4.6 ppm respectivamente y ausencia en la parcela 69. Esto puede deberse a que esta especie soporta ambientes con alta salinidad e inundación \cite{AF}, y presenta adaptaciones a estas condiciones, como las raíces fúlcreas, presencia de neumatóforos (Rhizophora mangle, Instituto nacional forestal de México) y lenticelas en las raíces para el intercambio gaseoso de las plantas. Luego avanzando en el paisaje por medio de las parcelas, se encuentra que  *Pterocarpus Officinalis* tiene una mayor dominancia en la parcela 69 que cuenta con un nivel de salinidad de 0.8 ppm,  esta especie es un árbol de hoja perenne de contrafuerte grande y relativamente tolerante a la sal \cite{AG}, según \cite{AH}es particularmente vulnerable al aumento de la salinidad, pues incrementa las tasas de mortalidad de adultos al tiempo que reduce el crecimiento, el reclutamiento y la nodulación de la raíz; y finalmente la especie *Montrichardia arborescens* que es la tercera especie más importante de la comunidad de las tres parcelas con un IVI de 33.7, que a pesar de que su dominancia relativa (6.9) es baja respecto a las otras dos especies mencionadas anteriormente, lo que puede darse a que *Montrichardia arborescens* habita en ambientes donde la influencia del mar es baja(poca salinidad) e inundaciones temporales\cite{AI}, aunque según \cite{AI} esta especie presenta adaptaciones morfologicas y fisiologicas que le permiten crecer en las condiciones de la parcela 69(baja salinidad e inundación moderada).
+Se puede ver que los diferentes tipos de salinidad de las parcelas explican la distribución de las especies y su zonación en la comunidad que iría desde la parcela 70, seguido por la 62 y finalmente con la 69. ya que unas especies están adaptadas a ambientes más salinos (las de las  parcelas 62 y 70) y otras están adaptadas a lugares con una salinidad baja (las de la parcela 69). 
 
-<!--- Numero de spp efectivas--->
 
 
 
 
 <!--- Modelos Diametros ---->
 
-```{r}
+```{r, eval=TRUE, include=FALSE}
 # Parecla 62
 
 x<- data %>% filter(Parcela == "62")
-a<- hist(x$Diametro, breaks = seq(0,15,1.5))
+a<- hist(x$Diametro, breaks = seq(0,15,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
 datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
@@ -213,28 +233,29 @@ datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", 
 bn.d<-data.frame(d=c(rep(0,0),rep(1.5,1),rep(3,0),rep(4.5,24),rep(6,18),
 rep(7.5,25), rep(9,9), rep(10.5,7),rep(12,3), rep(13.5,2), rep(15, 0)))
 
-est<- MASS::fitdistr(bn.d$d, "gamma")
+est<- MASS::fitdistr(x$Diametro, "gamma")
 
-data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+
+d<- data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
   geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,14,1.5))
+  scale_x_continuous(breaks = seq(0,14,3)) + theme(legend.position="none")
 
 
 ```
 
 
+```{r, eval=TRUE, include=FALSE}
 
-```{r}
-
-x<- data %>% filter(Parcela == "69")
-a<- hist(x$Diametro, breaks = seq(0,42,1.5))
+x1<- data %>% filter(Parcela == "69")
+a<- hist(x1$Diametro, breaks = seq(0,42,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
-datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
-                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 1.5)[2], 
-                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 1.5)[2], 
-                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
-                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
+
+datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 5)[2], 
+                    Beta= adjust(Clas = Clase, Count = Count, distr = "Beta", interval = 5)[2], 
+                    Lognormal= adjust(Clas = Clase, Count = Count, distr = "Lognormal", interval = 5)[2], 
+                    Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 5)[2], 
+                    Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 5)[1])
 
 
 bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,26),rep(6,11),
@@ -242,19 +263,20 @@ rep(7.5,4), rep(9,2), rep(10.5,2),rep(12,5), rep(13.5,3), rep(15, 0), rep(21,2),
 rep(28.5,0), rep(30,1), rep(31.5,2),rep(33,1), rep(34.5,0), rep(36, 0), rep(37.5, 0), 
 rep(39,0), rep(40.5, 1), rep(42,0)))
 
-est<- MASS::fitdistr(bn.d$d, "gamma")
+est1<- MASS::fitdistr(x1$Diametro,  "gamma")
 
-data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,42,1.5))
+
+b<- data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est1$estimate[1], rate = est1$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,3)) + theme(legend.position="none") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
 
 
-```{r}
+```{r, eval=TRUE, include=FALSE}
 
-x<- data %>% filter(Parcela == "70")
-a<- hist(x$Diametro, breaks = seq(0,27,1.5))
+x2<- data %>% filter(Parcela == "70")
+a<- hist(x2$Diametro, breaks = seq(0,27,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
 datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
@@ -267,20 +289,20 @@ bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,4),rep(6,5),
 rep(7.5,2), rep(9,4), rep(10.5,1),rep(12,2), rep(13.5,0), rep(15, 2), rep(16.5,2),rep(18,3),rep(19.5,1),rep(21,2),rep(22.5,2),
 rep(24,0), rep(25.5,1), rep(27,0)))
 
-est<- MASS::fitdistr(data$Diametro, "gamma")
+est2<- MASS::fitdistr(x2$Diametro, "weibull")
 
-data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dgamma(Diametro, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,42,1.5))
+
+c<- data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Diametro, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Diametro, y= dweibull(Diametro, shape = est2$estimate[1], scale = est2$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,3)) + theme(legend.position="none")
+
 ```
-
-
 
 <!--- modelos alturas --->
 
-```{r}
-x<- data %>% filter(Parcela == "62")
-a<- hist(x$Altura, breaks = seq(0,11,1.5))
+```{r, eval=TRUE, include=FALSE}
+x3<- data %>% filter(Parcela == "62")
+a<- hist(x3$Altura, breaks = seq(0,11,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
 datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
@@ -289,19 +311,23 @@ datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", 
                     Weibull= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[2], 
                     Chitab= adjust(Clas = Clase, Count = Count, distr = "Weibull", interval = 1.5)[1])
 
-bn.d<-data.frame(d=c(rep(0,0),rep(1.5,2),rep(3,15),rep(4.5,29),rep(6,29),
+bn.d3<-data.frame(d=c(rep(0,0),rep(1.5,2),rep(3,15),rep(4.5,29),rep(6,29),
 rep(7.5,9), rep(9,5), rep(10.5,7)))
 
-est<- MASS::fitdistr(bn.d$d, "gamma")
+est3<- MASS::fitdistr(bn.d3$d, "gamma")
 
-data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) +scale_x_continuous(breaks = seq(0,20,1.5)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)
+e<- data %>% filter(Parcela == "62") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) +scale_x_continuous(breaks = seq(0,20,3)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est3$estimate[1], rate = est3$estimate[2])), se= FALSE) + facet_wrap(~Parcela) + theme(legend.position="none")
+
+ggplot(x3, mapping = aes(x= Diametro, y= Altura)) +
+  geom_point() + geom_smooth(se= FALSE, method = "lm")
+
 ```
 
 
-```{r}
-x<- data %>% filter(Parcela == "69")
-a<- hist(x$Altura, breaks = seq(0,24,1.5))
+```{r, eval=TRUE, include=FALSE}
+x4<- data %>% filter(Parcela == "69")
+a<- hist(x4$Altura, breaks = seq(0,24,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
 
@@ -317,16 +343,19 @@ rep(7.5,4), rep(9,2), rep(10.5,2),rep(12,5), rep(13.5,3), rep(15, 0), rep(21,2),
 rep(28.5,0), rep(30,1), rep(31.5,2),rep(33,1), rep(34.5,0), rep(36, 0), rep(37.5, 0), 
 rep(39,0), rep(40.5, 1), rep(42,0)))
 
-est<- MASS::fitdistr(data$Altura, "gamma")
+est4<- MASS::fitdistr(x4$Altura, "gamma")
+f<- data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + scale_x_continuous(breaks = seq(0,23,3)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est4$estimate[1], rate = est4$estimate[2])), se= FALSE) + facet_wrap(~Parcela) + theme(legend.position="none")
 
-data %>% filter(Parcela == "69") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + scale_x_continuous(breaks = seq(0,23,1.5)) + geom_smooth(mapping = aes(x= Altura, y= dgamma(Altura, shape = est$estimate[1], rate = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)
+ggplot(x4, mapping = aes(x= Diametro, y= Altura)) +
+  geom_point() + geom_smooth(se= FALSE)
+
 ```
 
 
-```{r}
-x<- data %>% filter(Parcela == "70")
-a<- hist(x$Altura, breaks = seq(0,17,1.5))
+```{r, eval=TRUE, include=FALSE}
+x5<- data %>% filter(Parcela == "70")
+a<- hist(x5$Altura, breaks = seq(0,17,1.5), plot = FALSE)
 datam<- as.tibble(cbind(Clase= a$breaks, Count= a$counts))
 
 datam %>% summarise(Gamma= adjust(Clas = Clase, Count = Count, distr = "Gamma", interval = 1.5)[2], 
@@ -339,13 +368,25 @@ bn.d<- data.frame(d=c(rep(0,0),rep(1.5,0),rep(3,0),rep(4.5,4),rep(6,5),
 rep(7.5,2), rep(9,4), rep(10.5,1),rep(12,2), rep(13.5,0), rep(15, 2), rep(16.5,2),rep(18,3),rep(19.5,1),rep(21,2),rep(22.5,2),
 rep(24,0), rep(25.5,1), rep(27,0)))
 
-est<- MASS::fitdistr(data$Altura, "weibull")
+est5<- MASS::fitdistr(x5$Altura, "weibull")
 
-data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
-  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Altura, y= dweibull(Altura, shape = est$estimate[1], scale = est$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
-  scale_x_continuous(breaks = seq(0,42,1.5))
+g<- data %>% filter(Parcela == "70") %>% ggplot(., mapping = aes(x= Altura, y= ..density..)) +
+  geom_histogram(binwidth = 1.5, mapping = aes(col= "red")) + geom_smooth(mapping = aes(x= Altura, y= dweibull(Altura, shape = est5$estimate[1], scale = est5$estimate[2])), se= FALSE) + facet_wrap(~Parcela)+
+  scale_x_continuous(breaks = seq(0,42,3)) + theme(legend.position="none")
+
+ggplot(x5, mapping = aes(x= Diametro, y= Altura)) +
+  geom_point() + geom_smooth(se= FALSE, method = "lm")
 
 ```
 
+```{r, fig.cap= "Distribuciónes diamétricas y de alturas"}
+library(cowplot)
+plot_grid(d,b,c,e,f,g)
+```
+
+En la **Fig. 2** se muestran las distribuciones de diametro (D) y altura (A), todas estas ajustaron a un modelo tipo “gamma” excepto la parcela 70 que se comportó mejor como “weibull” para ambos casos respectivamente, es evidente notar que hay alturas y diámetros pequeños para todas las parcelas, sin embargo hay ciertos valores variables que sugieren diferentes tipos de regeneración, donde la más temprana se presenta en la parcela 62 pues hay hay una acumulación en los rangos de 6 a 9 cm para D y unos pocos son más grandes algo parecido ocurre con A, esto quiere decir en este caso que el comportamiento es parecido a un bosque coetáneo común en plantaciones, esto puede atribuirse a la gran dominancia de **Rhizophora Mangle** si bien no es una plantación las características de dominancia hace que el comportamiento en cuanto  a D y A sea parecido, la misma situación ocurre en la parcela 70  pero acá el patrón es más evidente en la distribución de A, parece ser que en este punto de regeneración hay una preferencia de las spp por aumentar de diametro que en altura (ver anexo 1), lo que podría indicar que no hay competencia por luz. La tendencia descrita anteriormente no se cumple con la parcela 69 pues acá hay más variabilidad en los parámetros de altura y diametro, lo que puede indicar la formación de estratos (ver anexo 2) es notable la asimetría positiva que presentan las distribuciones, muy propias de un modelo “gamma” \cite{AJ}, la poca frecuencia que tienen los tamaños grandes indica que hay acceso a la luz para todas las spp, lo que precisamente hace pensar en estratos del bosque, muchos árboles pequeños y unos pocos altos o emergentes. Según esto, es posible intuir que a mayor dominancia de una spp la probabilidad de encontrar estratos en el bosque será menor.
+
+
+\href{http://www.scielo.org.co/pdf/prosp/v12n1/v12n1a12.pdf}{anexo}
 
 
