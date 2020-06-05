@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{42}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -24,6 +24,13 @@ Agis AJ, Castro NDH, Mart{\'\i}nez JL, Uma{\~n}a MR (2016).
 \newblock \emph{Revista Iberoamericana de las Ciencias Biol{\'o}gicas y
   Agropecuarias: CIBA}, \textbf{5}(10), 1--20.
 
+\bibitem[{Alfaro and Pizarro-Araya(2017)}]{AT}
+Alfaro FM, Pizarro-Araya J (2017).
+\newblock \enquote{Estimaci{\'o}n de la riqueza de cole{\'o}pteros epigeos de
+  la Reserva Nacional Ping{\"u}ino de Humboldt (Regiones de Atacama y Coquimbo,
+  Chile).}
+\newblock \emph{Gayana (Concepci{\'o}n)}, \textbf{81}(2), 39--51.
+
 \bibitem[{Ali \emph{et~al.}(2019)Ali, Lin, He, Kong, Yu, and Jiang}]{H}
 Ali A, Lin SL, He JK, Kong FM, Yu JH, Jiang HS (2019).
 \newblock \enquote{Climate and soils determine aboveground biomass indirectly
@@ -37,11 +44,25 @@ Arroyo I, Bravo LC, Llin{\'a}s H, Mu{\~n}oz FL (2014).
   Relati.}
 \newblock \emph{Prospectiva}, \textbf{12}(1), 99--107.
 
+\bibitem[{Bacaro \emph{et~al.}(2016)Bacaro, Altobelli, Cameletti, Ciccarelli,
+  Martellos, Palmer, Ricotta, Rocchini, Scheiner, Tordoni \emph{et~al.}}]{AM}
+Bacaro G, Altobelli A, Cameletti M, Ciccarelli D, Martellos S, Palmer MW,
+  Ricotta C, Rocchini D, Scheiner SM, Tordoni E, \emph{et~al.} (2016).
+\newblock \enquote{Incorporating spatial autocorrelation in rarefaction
+  methods: Implications for ecologists and conservation biologists.}
+\newblock \emph{Ecological indicators}, \textbf{69}, 233--238.
+
 \bibitem[{Calder{\'o}n-Patr{\'o}n \emph{et~al.}(2012)Calder{\'o}n-Patr{\'o}n,
   Moreno, and Zuria}]{O}
 Calder{\'o}n-Patr{\'o}n JM, Moreno CE, Zuria I (2012).
 \newblock \enquote{La diversidad beta: medio siglo de avances.}
 \newblock \emph{Revista mexicana de biodiversidad}, \textbf{83}(3), 879--891.
+
+\bibitem[{Castroverde(2007)}]{AQ}
+Castroverde EDM (2007).
+\newblock \emph{Evaluaci{\'o}n y predicci{\'o}n de la biodiversidad: un modelo
+  con araneidos en el Parque Natural del Cad{\'\i}-Moixer{\'o}}.
+\newblock Ph.D. thesis.
 
 \bibitem[{Col{\'o}n \emph{et~al.}(2013)Col{\'o}n, Su{\'a}rez-Villasmil,
   Polanco, and Barreto-Pittol}]{AI}
@@ -50,19 +71,29 @@ Col{\'o}n EG, Su{\'a}rez-Villasmil LM, Polanco L, Barreto-Pittol EM (2013).
   Montrichardia arborescens EN VENEZUELA.}
 \newblock \emph{ACTA BIOLOGICA VENEZUELICA}, \textbf{33}, 1--2.
 
-\bibitem[{Colwell \emph{et~al.}(2005)Colwell, Chao, Chazdon, and Shen}]{S}
-Colwell RK, Chao A, Chazdon RL, Shen TJ (2005).
-\newblock \enquote{Un nuevo m{\'e}todo estad{\'\i}stico para la evaluaci{\'o}n
-  de la similitud en la composici{\'o}n de especies con datos de incidencia y
-  abundancia.}
-\newblock In \emph{Sobre diversidad biol{\'o}gica: el significado de las
-  diversidades alfa, beta y gamma}, pp. 85--96. GORFI.
+\bibitem[{Conafor()}]{AF}
+Conafor (????).
+\newblock \enquote{Rhizophora mangle (L.) C.DC.}
+\newblock \emph{Technical report}, Conafor.
+
+\bibitem[{Cuyckens \emph{et~al.}(2015)Cuyckens, Malizia, and Blundo}]{AO}
+Cuyckens GAE, Malizia LR, Blundo C (2015).
+\newblock \enquote{Composici{\'o}n, diversidad y estructura de comunidades de
+  {\'a}rboles en un gradiente altitudinal de selvas subtropicales de
+  monta{\~n}a (Serran{\'\i}as de Zapla, Jujuy, Argentina).}
+\newblock \emph{Madera y bosques}, \textbf{21}(3), 137--148.
 
 \bibitem[{Escalante(2003)}]{X}
 Escalante T (2003).
 \newblock \enquote{?` Cu{\'a}ntas especies hay? Los estimadores no
   param{\'e}tricos de Chao.}
 \newblock \emph{Elementos}, \textbf{52}, 53--56.
+
+\bibitem[{Fairbanks and McGwire(2004)}]{AN}
+Fairbanks DH, McGwire KC (2004).
+\newblock \enquote{Patterns of floristic richness in vegetation communities of
+  California: regional scale analysis with multi-temporal NDVI.}
+\newblock \emph{Global Ecology and Biogeography}, \textbf{13}(3), 221--235.
 
 \bibitem[{Garcia-de Jesus \emph{et~al.}(2016)Garcia-de Jesus, Moreno,
   Angel~Moron, Castellanos, and Pavon}]{G}
@@ -109,11 +140,23 @@ Jimenez VA, Hortal J (2003).
 \newblock \enquote{Las curvas de acumulaci{\'o}n de especies y la necesidad de
   evaluar la callidad de los inventario biol{\'o}gicos.}
 
+\bibitem[{Lema(2003)}]{AE}
+Lema A (2003).
+\newblock \enquote{Elementos estad{\'\i}sticos de dasometr{\'\i}a y
+  medici{\'o}n forestal.}
+\newblock \emph{Medell{\'\i}n, Colombia: Silvano Ltda}.
+
 \bibitem[{L{\'o}pez and Duque(2010)}]{R}
 L{\'o}pez W, Duque {\'A} (2010).
 \newblock \enquote{Patrones de diversidad alfa en tres fragmentos de bosques
   montanos en la regi{\'o}n norte de los Andes, Colombia.}
 \newblock \emph{Revista de Biolog{\'\i}a Tropical}, \textbf{58}(1), 483--498.
+
+\bibitem[{L{\'o}pez-G{\'o}mez and Williams-Linera(2006)}]{AU}
+L{\'o}pez-G{\'o}mez AM, Williams-Linera G (2006).
+\newblock \enquote{Evaluaci{\'o}n de m{\'e}todos no param{\'e}tricos para la
+  estimaci{\'o}n de riqueza de especies de plantas le{\~n}osas en cafetales.}
+\newblock \emph{Botanical Sciences}, (78), 7--15.
 
 \bibitem[{Magurran(1989)}]{B}
 Magurran AE (1989).
@@ -158,7 +201,7 @@ Odum EP, Ortega A, Teresatr M, \emph{et~al.} (2006).
 
 \bibitem[{Oreja \emph{et~al.}(2010{\natexlab{a}})Oreja, de~la
   Fuente-D{\'\i}az-Ordaz, Hern{\'a}ndez-Sant{\'\i}n, Buzo-Franco, and
-  Bonache-Regidor}]{AB}
+  Bonache-Regidor}]{Y}
 Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
   Buzo-Franco D, Bonache-Regidor C (2010{\natexlab{a}}).
 \newblock \enquote{Evaluaci{\'o}n de estimadores no param{\'e}tricos de la
@@ -168,19 +211,13 @@ Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
 
 \bibitem[{Oreja \emph{et~al.}(2010{\natexlab{b}})Oreja, de~la
   Fuente-D{\'\i}az-Ordaz, Hern{\'a}ndez-Sant{\'\i}n, Buzo-Franco, and
-  Bonache-Regidor}]{Y}
+  Bonache-Regidor}]{AS}
 Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
   Buzo-Franco D, Bonache-Regidor C (2010{\natexlab{b}}).
 \newblock \enquote{Evaluaci{\'o}n de estimadores no param{\'e}tricos de la
   riqueza de especies. Un ejemplo con aves en {\'a}reas verdes de la ciudad de
   Puebla, M{\'e}xico.}
 \newblock \emph{Animal biodiversity and conservation}, pp. 31--45.
-
-\bibitem[{Pla(2006)}]{L}
-Pla L (2006).
-\newblock \enquote{Biodiversidad: Inferencia basada en el {\'\i}ndice de
-  Shannon y la riqueza.}
-\newblock \emph{Interciencia}, \textbf{31}(8), 583--590.
 
 \bibitem[{Rivera-Ocasio \emph{et~al.}(2007)Rivera-Ocasio, Aide, and
   Rios-L{\'o}pez}]{AH}
@@ -201,16 +238,18 @@ Soler P, Berroter{\'a}n JL, Gil J, Acosta R (2012).
   centrales de Venezuela.}
 \newblock \emph{Agronom{\'\i}a Trop}, \textbf{62}(1-4), 25--37.
 
-\bibitem[{Somerfield \emph{et~al.}(2008)Somerfield, Clarke, and Warwick}]{K}
-Somerfield P, Clarke K, Warwick R (2008).
-\newblock \enquote{Simpson index.}
-\newblock Elsevier.
-
 \bibitem[{Soto and Jim{\'e}nez(1982)}]{AD}
 Soto R, Jim{\'e}nez JA (1982).
 \newblock \enquote{An{\'a}lisis fison{\'o}mico estructural del manglar de
   Puerto Soley, La Cruz, Guanacaste, Costa Rica.}
 \newblock \emph{Revista de Biologia Tropical}, \textbf{30}(2), 161--168.
+
+\bibitem[{Urrego \emph{et~al.}(2014)Urrego, Molina, and Su{\'a}rez}]{AB}
+Urrego L, Molina E, Su{\'a}rez J (2014).
+\newblock \enquote{Environmental and anthropogenic influences on the
+  distribution, structure, and floristic composition of mangrove forests of the
+  Gulf of Urab{\'a} (Colombian Caribbean).}
+\newblock \emph{Aquatic Botany}, \textbf{114}, 42--49.
 
 \bibitem[{Urrego \emph{et~al.}(2009)Urrego, Polan{\'\i}a, Buitrago, Cuartas,
   and Lema}]{J}
@@ -218,6 +257,22 @@ Urrego LE, Polan{\'\i}a J, Buitrago MF, Cuartas LF, Lema A (2009).
 \newblock \enquote{Distribution of mangroves along environmental gradients on
   San Andres Island (Colombian Caribbean).}
 \newblock \emph{Bulletin of Marine Science}, \textbf{85}(1), 27--43.
+
+\bibitem[{wabo(1999)}]{AL}
+wabo E (1999).
+\newblock \emph{Estructura y densidad}.
+\newblock Universidad Nacional de La Plata.
+
+\bibitem[{Wan and He(2020)}]{AK}
+Wan P, He R (2020).
+\newblock \enquote{Canopy structure and understory light characteristics of a
+  natural Quercus aliena var. acuteserrata forest in China northwest: Influence
+  of different forest management methods.}
+\newblock \emph{Ecological Engineering}, \textbf{153}, 105901.
+
+\bibitem[{Whittaker and RH(1977)}]{AP}
+Whittaker RH, RH W (1977).
+\newblock \enquote{Evolution of species diversity in land communities.}
 
 \bibitem[{Zarco-Espinosa \emph{et~al.}(2010)Zarco-Espinosa,
   Valdez-Hern{\'a}ndez, {\'A}ngeles-P{\'e}rez, and Castillo-Acosta}]{T}
