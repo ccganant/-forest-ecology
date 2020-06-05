@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  4 JUN 2020 19:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  4 JUN 2020 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -803,12 +803,8 @@ File: mangrove_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-6-1.pdf  use
 d on input line 512.
 (pdftex.def)             Requested size: 252.0pt x 170.18445pt.
-
-
-Package natbib Warning: Citation `AR' on page 6 undefined on input line 530.
-
-[6 <./mangrove_files/figure-latex/unnamed-chunk-6-1.pdf>]
-<mangrove_files/figure-latex/unnamed-chunk-14-1.pdf, id=237, 459.7175pt x 313.1
+ [6 <./mangrove_files/figure-latex/unnamed-chunk-6-1.pdf>]
+<mangrove_files/figure-latex/unnamed-chunk-14-1.pdf, id=238, 459.7175pt x 313.1
 7pt>
 File: mangrove_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf
 )
@@ -816,7 +812,7 @@ File: mangrove_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-14-1.pdf  us
 ed on input line 591.
 (pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<mangrove_files/figure-latex/unnamed-chunk-15-1.pdf, id=238, 462.72874pt x 313.
+<mangrove_files/figure-latex/unnamed-chunk-15-1.pdf, id=239, 462.72874pt x 313.
 17pt>
 File: mangrove_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf
 )
@@ -824,9 +820,9 @@ File: mangrove_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-15-1.pdf  us
 ed on input line 597.
 (pdftex.def)             Requested size: 252.0pt x 170.5524pt.
- (./mangrove.bbl
-[7 <./mangrove_files/figure-latex/unnamed-chunk-14-1.pdf> <./mangrove_files/fig
-ure-latex/unnamed-chunk-15-1.pdf>]
+
+(./mangrove.bbl [7 <./mangrove_files/figure-latex/unnamed-chunk-14-1.pdf> <./ma
+ngrove_files/figure-latex/unnamed-chunk-15-1.pdf>]
 Underfull \hbox (badness 2119) in paragraph at lines 69--73
 []\T1/lmr/m/n/12 Colón EG, Suárez-Villasmil LM, Po-lan-co L,
  []
@@ -866,9 +862,6 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-
-Package natbib Warning: There were undefined citations.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 637.
 [9]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 637.
@@ -883,10 +876,10 @@ Package rerunfilecheck Info: File `mangrove.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 637.
  ) 
 Here is how much of TeX's memory you used:
- 11159 strings out of 492982
- 158682 string characters out of 6134896
+ 11158 strings out of 492982
+ 158678 string characters out of 6134896
  245387 words of memory out of 5000000
- 14531 multiletter control sequences out of 15000+600000
+ 14530 multiletter control sequences out of 15000+600000
  186038 words of font info for 111 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  28i,9n,30p,210b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -900,10 +893,10 @@ onts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pf
 b></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/typ
 e1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmri12.pfb>
-Output written on mangrove.pdf (9 pages, 335577 bytes).
+Output written on mangrove.pdf (9 pages, 335417 bytes).
 PDF statistics:
- 340 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
+ 341 PDF objects out of 1000 (max. 8388607)
+ 302 compressed objects within 4 object streams
  67 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
