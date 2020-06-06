@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{44}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -127,13 +127,11 @@ Guariguata MR, Kattan GH, Guariguata MR, \emph{et~al.} (2002).
 \newblock \emph{Ecolog{\'\i}a y conservaci{\'o}n de bosques neotropicales}.
 \newblock 574.52642 E25.
 
-\bibitem[{Guerra-Castro \emph{et~al.}(2011)Guerra-Castro, Cruz-Motta, and
-  Conde}]{E}
-Guerra-Castro E, Cruz-Motta JJ, Conde JE (2011).
-\newblock \enquote{Cuantificaci{\'o}n de la diversidad de especies incrustantes
-  asociadas a las ra{\'\i}ces de Rhizophora mangle L. en el Parque Nacional
-  Laguna de la Restinga.}
-\newblock \emph{Interciencia}, \textbf{36}(12), 923--930.
+\bibitem[{Hill(1973)}]{AV}
+Hill MO (1973).
+\newblock \enquote{Diversity and evenness: a unifying notation and its
+  consequences.}
+\newblock \emph{Ecology}, \textbf{54}(2), 427--432.
 
 \bibitem[{Jimenez and Hortal(2003)}]{AA}
 Jimenez VA, Hortal J (2003).
@@ -219,6 +217,12 @@ Oreja JG, de~la Fuente-D{\'\i}az-Ordaz A, Hern{\'a}ndez-Sant{\'\i}n L,
   Puebla, M{\'e}xico.}
 \newblock \emph{Animal biodiversity and conservation}, pp. 31--45.
 
+\bibitem[{Pla(2006)}]{L}
+Pla L (2006).
+\newblock \enquote{Biodiversidad: Inferencia basada en el {\'\i}ndice de
+  Shannon y la riqueza.}
+\newblock \emph{Interciencia}, \textbf{31}(8), 583--590.
+
 \bibitem[{Rivera-Ocasio \emph{et~al.}(2007)Rivera-Ocasio, Aide, and
   Rios-L{\'o}pez}]{AH}
 Rivera-Ocasio E, Aide TM, Rios-L{\'o}pez N (2007).
@@ -269,6 +273,11 @@ Wan P, He R (2020).
   natural Quercus aliena var. acuteserrata forest in China northwest: Influence
   of different forest management methods.}
 \newblock \emph{Ecological Engineering}, \textbf{153}, 105901.
+
+\bibitem[{Whittaker(1972)}]{E}
+Whittaker RH (1972).
+\newblock \enquote{Evolution and measurement of species diversity.}
+\newblock \emph{Taxon}, \textbf{21}(2-3), 213--251.
 
 \bibitem[{Whittaker and RH(1977)}]{AP}
 Whittaker RH, RH W (1977).
