@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  5 JUN 2020 20:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.1)  6 JUN 2020 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,39 +786,39 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 367.
  [4]
-<mangrove_files/figure-latex/unnamed-chunk-5-1.pdf, id=178, 440.64626pt x 248.9
+<mangrove_files/figure-latex/unnamed-chunk-5-1.pdf, id=177, 440.64626pt x 248.9
 3pt>
 File: mangrove_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 
 <use mangrove_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-5-1.pdf  use
-d on input line 482.
+d on input line 484.
 (pdftex.def)             Requested size: 252.0pt x 142.35876pt.
-<mangrove_files/figure-latex/unnamed-chunk-6-1.pdf, id=185, 463.7325pt x 313.17
+ [5 <./mangrove_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<mangrove_files/figure-latex/unnamed-chunk-6-1.pdf, id=200, 463.7325pt x 313.17
 pt>
 File: mangrove_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 
 <use mangrove_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-6-1.pdf  use
-d on input line 508.
+d on input line 510.
 (pdftex.def)             Requested size: 252.0pt x 170.18445pt.
- [5 <./mangrove_files/figure-latex/unnamed-chunk-5-1.pdf>] [6 <./mangrove_files
-/figure-latex/unnamed-chunk-6-1.pdf>]
-<mangrove_files/figure-latex/unnamed-chunk-14-1.pdf, id=242, 459.7175pt x 313.1
+ [6 <./mangrove_files/figure-latex/unnamed-chunk-6-1.pdf>]
+<mangrove_files/figure-latex/unnamed-chunk-14-1.pdf, id=241, 459.7175pt x 313.1
 7pt>
 File: mangrove_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type pdf
 )
 <use mangrove_files/figure-latex/unnamed-chunk-14-1.pdf>
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-14-1.pdf  us
-ed on input line 598.
+ed on input line 600.
 (pdftex.def)             Requested size: 252.0pt x 171.6706pt.
-<mangrove_files/figure-latex/unnamed-chunk-15-1.pdf, id=243, 462.72874pt x 313.
+<mangrove_files/figure-latex/unnamed-chunk-15-1.pdf, id=242, 462.72874pt x 313.
 17pt>
 File: mangrove_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type pdf
 )
 <use mangrove_files/figure-latex/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: mangrove_files/figure-latex/unnamed-chunk-15-1.pdf  us
-ed on input line 604.
+ed on input line 606.
 (pdftex.def)             Requested size: 252.0pt x 170.5524pt.
 
 (./mangrove.bbl [7 <./mangrove_files/figure-latex/unnamed-chunk-14-1.pdf> <./ma
@@ -857,18 +857,18 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 644.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 646.
 [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 644.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 646.
  (./mangrove.aux
 LaTeX Info: Redefining \. on input line 30.
 LaTeX Info: Redefining \% on input line 30.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 644.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 644.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 646.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 646.
 Package rerunfilecheck Info: File `mangrove.out' has not changed.
 (rerunfilecheck)             Checksum: 4D9550ABC13A9375039DCB2DBC49123A;423.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 644.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 646.
  ) 
 Here is how much of TeX's memory you used:
  11166 strings out of 492982
@@ -877,7 +877,7 @@ Here is how much of TeX's memory you used:
  14536 multiletter control sequences out of 15000+600000
  186038 words of font info for 111 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 28i,9n,30p,354b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,9n,30p,354b,475s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}</usr/share
 /texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm
@@ -889,10 +889,10 @@ b></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/typ
 e1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/l
 m/lmri12.pfb>
-Output written on mangrove.pdf (9 pages, 358477 bytes).
+Output written on mangrove.pdf (9 pages, 358556 bytes).
 PDF statistics:
- 349 PDF objects out of 1000 (max. 8388607)
- 309 compressed objects within 4 object streams
+ 348 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
  69 named destinations out of 1000 (max. 500000)
  45 words of extra memory for PDF output out of 10000 (max. 10000000)
 
