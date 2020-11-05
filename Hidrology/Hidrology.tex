@@ -94,11 +94,11 @@
 %\usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \citep{} output to follow that of the IEEE. Loading the cite package will
+% \cite{} output to follow that of the IEEE. Loading the cite package will
 % result in citation numbers being automatically sorted and properly
 % "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
 % cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \citep will automatically add leading space, if needed. Use cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
 % noadjust option (cite.sty V3.8 and later) if you want to turn this off
 % such as if a citation ever needs to be enclosed in parenthesis.
 % cite.sty is already installed on most LaTeX systems. Be sure and use
@@ -221,21 +221,21 @@
 %\else
 %  \usepackage[caption=false,font=footnotesize]{subfig}
 %\fi
-% subFigura.sty, written by Steven Douglas Cochran, is the modern replacement
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
 % for subfigure.sty, the latter of which is no longer maintained and is
 % incompatible with some LaTeX packages including fixltx2e. However,
-% subFigura.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
 % which will override IEEEtran.cls' handling of captions and this will result
 % in non-IEEE style figure/table captions. To prevent this problem, be sure
-% and invoke subFigura.sty's "caption=false" package option (available since
-% subFigura.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
 % handling of captions.
 % Note that the Computer Society format requires a larger sans serif font
 % than the serif footnote size font used in traditional IEEE formatting
-% and thus the need to invoke different subFigura.sty package options depending
+% and thus the need to invoke different subfig.sty package options depending
 % on whether compsoc mode has been enabled.
 %
-% The latest version and documentation of subFigura.sty can be obtained at:
+% The latest version and documentation of subfig.sty can be obtained at:
 % http://www.ctan.org/pkg/subfig
 
 
@@ -324,12 +324,6 @@
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
 \usepackage[unicode=true]{hyperref}
-\usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{natbib}
-\bibliographystyle{jss}
 
 \hypersetup{
             pdftitle={Análisis de variables climáticas del páramo la Rusia en el municipio de Duitama, departamento de Boyacá},
@@ -532,14 +526,14 @@ El páramo es uno de los ecosistemas más importantes para la captura de
 agua, éste se encuentra presente en un \(99 \%\) en la Cordillera de los
 Andes, en la Sierra Nevada de Santa Marta y Costa Rica, pero también
 existen páramos en África, Indonesia y Papua Nueva Guinea
-\citep{cabrera}. Es por esto que los páramos ubicados en la Cordillera de
+\cite{cabrera}. Es por esto que los páramos ubicados en la Cordillera de
 los Andes han sido definidos como extensas zonas en la cima de la
 cordilleras, entre el bosque andino y el límite inferior de las nieves
-perpetuas \citep{cabrera}, haciendo privilegiados a los pocos países en
+perpetuas \cite{cabrera}, haciendo privilegiados a los pocos países en
 el mundo que cuentan con este tipo de ecosistema por la riqueza acuífera
 que ellos representan. Para el caso de Colombia en el que se encuentra
 el \(49 \%\) de los páramos del mundo, ocupando el \(1.7 \%\) del
-territorio nacional con aproximadamente \(34\) páramos \citep{cabrera}.
+territorio nacional con aproximadamente \(34\) páramos \cite{cabrera}.
 De estos, según el Ministerio de Ambiente el departamento de Boyacá
 cuenta con el \(18.7 \%\) del total nacional. El complejo de páramos
 Guantiva- La Rusia está presente en \(16\) municipios de este
@@ -557,9 +551,9 @@ la alta montaña colombiana corresponde a bosque alto andino (\(3000\) a
 \(3200 \ msnm\)), páramo bajo o subpáramo (entre \(3200\) y \(3500\) o
 \(3600 \ msnm\)), páramo propiamente dicho (entre \(3500\) o \(3600\) y
 \(4100 \ msnm\)) y superpáramo (entre \(4100\) y \(4500 \ msnm\))
-\citep{ortizparamos}. Diferentes autores confirman que el clima en los
+\cite{ortizparamos}. Diferentes autores confirman que el clima en los
 páramos realmente es muy variado, aunque se presenten condiciones de
-altura similares y de proximidad \citep{paramos}. Esta variabilidad se
+altura similares y de proximidad \cite{paramos}. Esta variabilidad se
 presenta en todas las características climáticas, tales como
 precipitación, temperatura, radiación, velocidad del viento y humedad
 relativa y aunque hay todavía pocas estaciones climáticas en todos los
@@ -571,30 +565,30 @@ temperaturas medias multianuales en algunos casos pueden ser incluso
 menores a \(9^{\circ}C\), aproximadamente por encima de los
 \(3300 \ msnm\), en el páramo medio podrían llegar a ser menores de
 \(6^{\circ}C\) y ya en el superpáramo cerca de las nieves perpetuas son
-inferiores a \(3^{\circ}C\) \citep{morales2019atlas}. En cuanto a la
+inferiores a \(3^{\circ}C\) \cite{morales2019atlas}. En cuanto a la
 variación de la temperatura media mensual no hay grandes cambios, sin
 embargo en los páramos la temperatura puede variar a gran escala durante
 el día y la noche. En la precipitación hay una amplio rango y un gran
 contraste entre los páramos de Colombia, ésta puede variar entre los
 \(700\) y \(5000 \ mm\) al año. Algunos de los páramos tienen un régimen
-de lluvias monomodal como el páramo de Chingaza \citep{morales2019atlas}
+de lluvias monomodal como el páramo de Chingaza \cite{morales2019atlas}
 y otros bimodal como el complejo Guantiva - La Rusia
-\citep{morales2019atlas}; los páramos más húmedos se encuentran en las
+\cite{morales2019atlas}; los páramos más húmedos se encuentran en las
 vertientes oriental de la cordillera oriental y occidental de la
 cordillera occidental, en cuanto a los más secos se encuentran en
 ciertas áreas al interior de la cordillera oriental
-\citep{morales2019atlas}. Los ecosistemas de páramo presentan una humedad
+\cite{morales2019atlas}. Los ecosistemas de páramo presentan una humedad
 relativa alta que es variable y estacional, siendo máxima en tiempos de
 lluvia y mínima en tiempos secos, usualmente en un rango que comprende
 entre un \(80\) y \(90 \%\) esto debido a un factor de suma importancia
-en los páramos como lo es el fenómeno de niebla \citep{morales2019atlas}.
+en los páramos como lo es el fenómeno de niebla \cite{morales2019atlas}.
 Comúnmente la evapotranspiración en los páramos es baja pues casi
 siempre el ambiente es muy cercano a la saturación y se presenta un alta
 radiación ultravioleta sobre todo en periodos secos y abundancia de luz
-difusa \citep{morales2019atlas}. Por último los vientos en los páramos
+difusa \cite{morales2019atlas}. Por último los vientos en los páramos
 son muy variables pero regularmente los más intensos se dan en los
 páramos que se encuentran en las vertientes de los valles interandinos
-\citep{morales2019atlas}.
+\cite{morales2019atlas}.
 
 \hypertarget{materiales-y-muxe9todos}{%
 \section{MATERIALES Y MÉTODOS}\label{materiales-y-muxe9todos}}
@@ -609,7 +603,7 @@ oriental, entre los \(3100\) y \(4280 \ msnm\). Este páramo hace parte
 de un extenso corredor de páramos y bosques alto andinos denominado como
 Guantiva - La Rusia, complejo que incluye a los páramos de Cruz
 Colorada, Guina, Pan de Azúcar, Carnicerías y Guata y que tiene una
-extensión en área de \(119.009 \ ha\) \citep{Cobo}. En el
+extensión en área de \(119.009 \ ha\) (Corpoboyacá y CAS, 2017). En el
 páramo La Rusia predomina una topografía abrupta que varía de acuerdo
 con la alternancia de las formaciones geológicas presentes. El páramo
 está influenciado a escala global, por la Zona de Convergencia
@@ -617,14 +611,14 @@ Intertropical (ZCIT), de la misma forma que otros páramos y de manera
 local por el movimiento de las corrientes de vientos producto del
 relieve, lo que genera un régimen húmedo en mayor o menor medida. El
 régimen de lluvias es bimodal, con una precipitación máxima entre abril-
-mayo y octubre- noviembre \citep{Uptc}.
+mayo y octubre- noviembre (UPTC, 2015).
 
 El sitio de estudio se encuentra dentro del páramo La Rusia en la vereda
 San Alejo, municipio de Duitama Boyacá; contiguo por el norte a los
 límites con el municipio de Charalá departamento de Santander. El sitio
 de interés para el estudio y muestreo de datos climáticos está
 representado por las coordenadas \(5^{\circ}57’48.0"N\)
-\(73^{\circ}05'16.3"W\) y presenta una altitud de unos \(3500\ msnm\) (\textbf{Figura. 1}).
+\(73^{\circ}05'16.3"W\) y presenta una altitud de unos \(3500\ msnm\).
 
 \begin{figure}
 \centering
@@ -648,7 +642,7 @@ en cuenta una estación climática de hardware y software
 junio; tomados cada 15 minutos para todas las variables mencionadas. La
 estación climática ubicada en una cuenca del páramo, de la cual se
 obtuvieron los datos, hace parte de un complejo de estaciones climáticas
-instaladas por el equipo de trabajo del Dr.Mark Mulligan de King's
+instaladas por el equipo de trabajo del Dr.~Mark Mulligan de King´s
 College en London, como parte de un proyecto para mejorar y calibrar
 equipos de monitoreo open source más rentables para los proyectos de
 tipo científico e investigativos.
@@ -675,7 +669,7 @@ recolectados}\label{procesamiento-de-los-datos-recolectados}}
 
 Los datos climáticos pueden proporcionar una gran cantidad de
 información sobre el medio ambiente atmosférico que afecta a casi todos
-los aspectos del esfuerzo humano \citep{Bala}, es por ello que es
+los aspectos del esfuerzo humano \cite{Bala}, es por ello que es
 importante el análisis de éstos, para determinar tendencias en las
 variables que se puedan interpretar buscando entender el comportamiento
 y así tomar decisiones que más convengan. Buscando el filtrado y
@@ -694,7 +688,7 @@ comportamiento aproximado de la variable.
 \hypertarget{resultados-y-discusiuxf3n}{%
 \section{Resultados y discusión}\label{resultados-y-discusiuxf3n}}
 
-En la \textbf{Figura. 2} se puede observar la precipitación mensual
+En la \textbf{Fig. 2} se puede observar la precipitación mensual
 discriminada por la cantidad de precipitación de cada día (representados
 en colores), en esta escala no se percibe todo el ciclo anual pero sí la
 temporada de lluvias entre marzo, mayo y parte de una temporada seca a
@@ -704,7 +698,7 @@ meses suma \(1096.2mm\), una precipitación alta, característica de las
 laderas orientadas al occidente, pues las laderas internas de los Andes
 están altamente influenciadas por efectos de sombra y lluvia, para las
 lluvias que llegan tanto desde la cuenca del Amazonas como de la costa
-del Pacífico \citep{buytaert2006hidrologia}.
+del Pacífico \cite{buytaert2006hidrologia,}.
 
 \begin{figure}
 \centering
@@ -712,18 +706,18 @@ del Pacífico \citep{buytaert2006hidrologia}.
 \caption{Tendencia Diaría de precipitación}
 \end{figure}
 
-En la \textbf{Figura.4}, se observa la variación de la temperatura
+En la \textbf{Fig.3}, se observa la variación de la temperatura
 alrededor del promedio de los seis meses de \(9.2^{\circ}C\) con una
 temperatura máxima de \(19.5^{\circ}C\) y una mínima de
 \(1.6^{\circ}C\), sin embargo la fluctuación de mayor densidad se
 encuentra entre los \(8^{\circ}C\) y \(10^{\circ}C\). La variación
 diurna de la temperatura resulta del ciclo de insolación superficial
-\citep{poveda2004hidroclimatologia}, la cual es mayor entre las 11:00
+\cite{poveda2004hidroclimatologia,}, la cual es mayor entre las 11:00
 a.m. y la 1:00 p.m. Debido a su localización cercana a la línea
 ecuatorial, la radiación solar diaria es casi constante todo el año,
 esta constancia resulta en una baja variabilidad estacional en
 temperatura media del aire, en contraste con el ciclo diario, el cual es
-totalmente marcado \citep{buytaert2006hidrologia}. En la \textbf{Figura.3}
+totalmente marcado \cite{buytaert2006hidrologia,}. En la \textbf{Fig.4}
 se muestra la distribución de la temperatura a lo largo del periodo de
 medición. Es notable un comportamiento de los datos aproximadamente
 normal. De esto es posible deducir que los valores tienden a un valor
@@ -743,13 +737,13 @@ mes 1 en donde la variable tiende a un valor más bajo de temperatura.
 \caption{Tendencia de la temperatura mensual}
 \end{figure}
 
-En la \textbf{Figura.5} se presenta la distribución de la humedad relativa;
+En la \textbf{Fig.5} se presenta la distribución de la humedad relativa;
 ésta es parecida a una gráfica \texttt{Fisher}, sin embargo no tiene
 relación con el caso pues no se está comparando poblaciońes, más bien
 parece haber la tendencia a que en el páramo haya una alta humedad
 relativa centrada en valores \(> \ 90 \%\) lo cual es relacionable con
 la variable anterior pues se sabe que a mayor temperatura del aire hay
-mayor capacidad en retener humedad \citep{jaramillo}. Se puede inferir
+mayor capacidad en retener humedad \cite{jaramillo}. Se puede inferir
 entonces que la temperatura del páramo es fría solo con mirar su humedad
 relativa. Éste comportamiento está presente en los datos pues hay un
 valor bajo de temperatura con un alto porcentaje de humedad.
@@ -766,21 +760,21 @@ valor bajo de temperatura con un alto porcentaje de humedad.
 \caption{Distribución de la velocidad del viento}
 \end{figure}
 
-En la \textbf{Figura.6} se muestra la distribución de los datos para la
+En la \textbf{Fig.6} se muestra la distribución de los datos para la
 velocidad del viento y se extrae que los valores medios oscilan entre
 \(50\) y \(100 \frac{m}{s}\). Éste parámetro es relacionado con la
 precipitación pues si hay fuertes vientos, éstos pueden desplazar las
 masas de aire húmedas disminuyendo la probabilidad del evento
-\citep{tobon}. Por ejemplo, para el mes 2 que fue el que tuvo menor
+\cite{tobon}. Por ejemplo, para el mes 2 que fue el que tuvo menor
 precipitación, la velocidad del viento para esa fecha es variable, lo
 cual no explicaría la baja precipitación en ese mes; sin embargo, al
-mirar la \textbf{Figura.7} , la distribución de la radiación solar, se
+mirar la \textbf{Fig.7} , la distribución de la radiación solar, se
 puede ver cómo en la fecha, la incidencia de los rayos solares no fue
 constante lo que favoreció a su vez que la humedad relativa presentara
 los valores más pequeños en todo el registro. Las masas de aire entonces
 se calientan cuando hay una temperatura mayor debido a más radiación
 solar, éstas ascienden y la velocidad del viento puede o no llevarlas a
-otro lugar controlando así la precipitación en el sitio \citep{tobon}.
+otro lugar controlando así la precipitación en el sitio \cite{tobon}.
 
 \begin{figure}
 \centering
@@ -788,13 +782,13 @@ otro lugar controlando así la precipitación en el sitio \citep{tobon}.
 \caption{Distribución de la radiación solar media}
 \end{figure}
 
-En la \textbf{Figura.8} se puede observar la correlación para las distintas
+En la \textbf{Fig.8} se puede observar la correlación para las distintas
 variables climáticas. Se encuentra una correlación positiva entre la
 precipitación y humedad relativa (\(0.38\)), esto puede darse ya que en
 épocas de lluvia la humedad relativa es constantemente alta y tiende a
 la saturación en los eventos de precipitación, además suele presentarse
-el fenómeno de niebla \citep{morales2019atlas}. Relación que se puede
-corroborar en la \textbf{Figura.11} que muestra la relación entre
+el fenómeno de niebla \cite{morales2019atlas}. Relación que se puede
+corroborar en la \textbf{Fig.11} que muestra la relación entre
 precipitación y humedad relativa, que presenta una línea de tendencia
 con un aumento muy rápido en la humedad relativa mientras inicia la
 precipitación y luego se mantiene constante en el evento de lluvia
@@ -804,7 +798,7 @@ positiva de \(0.52\), la cual puede ser el resultado del gran aumento de
 insolación solar y temperatura que se presenta a medio día en el páramo
 ya que se encuentra muy cerca de la línea ecuatorial y recibe una gran
 radiación diaria todo el año mientras se tenga un cielo despejado
-\citep{buytaert2006hidrologia}. Esto se puede ver en la \textbf{Figura.10}
+\cite{buytaert2006hidrologia}. Esto se puede ver en la \textbf{Fig.10}
 que muestra la relación entre temperatura y radiación solar, donde la
 línea de tendencia muestra una relación directa en el aumento de la
 radiación y temperatura. Es el caso contrario cuando se analiza la
@@ -812,7 +806,7 @@ correlación entre radiación solar y humedad relativa (\(-0.81\)) o
 temperatura y humedad relativa (\(-0.25\)), obteniendo valores
 negativos; esto se pudo evidenciar en campo, pues mientras la
 temperatura era más alta el aire se sentía mucho más seco, como se puede
-ver en la \textbf{Figura.9} que muestra la relación entre temperatura vs
+ver en la \textbf{Fig.9} que muestra la relación entre temperatura vs
 humedad relativa, donde la línea de tendencia disminuye a medida que la
 temperatura aumenta. La gráfica de dispersión ilustra un comportamiento
 inverso entre las dos variables con una línea de tendencia que en
@@ -820,7 +814,7 @@ general es decreciente, a medida que comienza a ascender la temperatura
 la humedad relativa comienza a descender, lo que es normal pues a medida
 que el ambiente se torna más caliente, este se tornara más seco lo que
 en un páramo está sujeto a la estacionalidad, pues la humedad relativa
-es variable y estacional \citep{hofstede2017p}, así en épocas de lluvia
+es variable y estacional \cite{hofstede2017p}, así en épocas de lluvia
 habrá mayor humedad relativa que en épocas secas o de verano, la
 variación de este factor está estrechamente ligada a los fenómenos de
 niebla que en un páramo pueden presentarse con mayor o menor frecuencia
@@ -829,7 +823,7 @@ comportamiento general de estos dos parámetros climáticos (humedad
 relativa y temperatura), debido a que éstos son normalmente inversos.
 Cabe destacar que la humedad relativa extrañamente baja a valores
 menores de \(70 \%\) lo que es característico de estos ecosistemas.
-\citep{hofstede2017p}
+\cite{hofstede2017p}
 
 \begin{figure}
 \centering
@@ -855,7 +849,13 @@ menores de \(70 \%\) lo que es característico de estos ecosistemas.
 \caption{Precipitación vs Humedad relativa}
 \end{figure}
 
-En la \textbf{Figura.10} se observa la relación entre la temperatura y la
+\begin{figure}
+\centering
+\includegraphics{Hidrology_files/figure-latex/unnamed-chunk-22-1.pdf}
+\caption{Velocidad del viento vs Temperatura}
+\end{figure}
+
+En la \textbf{Fig.10} se observa la relación entre la temperatura y la
 radiación solar para el páramo La Rusia, de la gráfica se deduce que
 estos dos parámetros son directamente proporcionales pues en la mayoría
 del tiempo a medida que la temperatura aumenta la radiación solar
@@ -863,7 +863,7 @@ comienza también a aumentar, y es que esto mientras se tengan las
 condiciones necesarias (como un cielo despejado) es normal en un páramo
 pues debido a su altitud y cercanía con el ecuador la radiación solar
 que reciben estos ecosistemas es alta mientras no haya nubosidad
-\citep{montenegro2015estimacion}.
+\cite{montenegro2015estimacion}.
 
 \begin{figure}
 \centering
@@ -871,14 +871,14 @@ que reciben estos ecosistemas es alta mientras no haya nubosidad
 \caption{Distribución empírica acumulada de temperatura}
 \end{figure}
 
-En la \textbf{Figura.12} se observa la distribución empírica acumulada de
+En la \textbf{Fig.12} se observa la distribución empírica acumulada de
 la temperatura, es evidente notar que la probabilidad de encontrar
 temperaturas menores a \(11^{\circ}C\) es alta, lo contrario pasa con
 valores muy bajos del parámetro. Es poco probable encontrar valores
 cercanos a cero; de hecho los valores más comunes se encuentran
 alrededor del rango de \(8\) a \(11^{\circ}C\)
 
-En la \textbf{Figura.13} se muestra el modelo de temperatura construido a
+En la \textbf{Fig.13} se muestra el modelo de temperatura construido a
 partir de los datos del sensor HOBO. Cabe la pena aclarar que éste es
 una aproximación y no es un modelo que ajuste bien los datos. Es válido
 decir esto dado la baja cantidad de puntos utilizados (\(8\)), son
@@ -888,20 +888,20 @@ variabilidad de la temperatura en el páramo; los rangos mostrados
 difieren en aproximadamente \(3^{\circ}C\). Al observar este
 comportamiento, se procedió a verificar si la altitud tenía influencia
 sobre la temperatura; lo esperado sería que sí la tuviera
-\citep{basantes}. Para determinar la relación se hace un test de
+\cite{basantes}. Para determinar la relación se hace un test de
 correlación arrojando un resultado de \(-0.46\) lo cual indica que
 mientras una variable aumenta la otra disminuye, sin embargo, el mismo
 valor en sí deja en duda si es una relación lineal, pues se encontró un
 \(R^2\) de \(0.22\), lo que demuestra que si bien hay una conexión en
 entre los parámetros ésta puede fluctuar y no ser constante, es decir,
 pueden haber lugares altos pero con temperaturas más altas de lo normal;
-éste comportamiento no sigue el descrito por \citep{van} que afirma que
+éste comportamiento no sigue el descrito por \cite{van} que afirma que
 la tasa de cambio, en promedio, de la temperatura con respecto a la
 altitud, está típicamente entre \(-0.6\) y \(-0.7^{\circ}C\)
 \(100 \ m-1\) ascendidos debido a la disminución de temperatura causada
 por el desplazamiento de vientos cálidos desde zonas bajas que pierden
 calor al elevarse, esto viene acompañado de otros efectos secundarios
-\citep{buyta} los cuales no serán tratados acá.
+\cite{buyta} los cuales no serán tratados acá.
 
 \begin{figure}
 \centering
@@ -955,8 +955,6 @@ aspectos que se ven afectados cuando se intervienen en mayor o menor
 grado. Por lo cual, es necesario realizar investigaciones sobre los
 impactos antrópicos y la relación de estos impactos con el cambio en las
 funciones en cuanto a rendimiento y regulación hídrica.
-
-\bibliography{mybibfile}
 
 \end{document}
 

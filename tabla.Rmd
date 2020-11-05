@@ -1,0 +1,24 @@
+---
+title: ''
+author: ""
+date: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      message = FALSE, 
+                      warning = FALSE)
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+data<- read_xls("/home/cristian/Descargas/PS2.xls", sheet = 'fruta')
+
+data1<- data %>% mutate(`Ganancia 100%`= (`Kg/año*ha`)*3000)
+
+knitr::kable(data1, digits = 2, caption = 'Productos forestales no maderables: Frutales')
+
+```
+
